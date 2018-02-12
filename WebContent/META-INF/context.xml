@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context docBase="BoardBook" path="/BoardBook" reloadable="true" source="org.eclipse.jst.jee.server:BoardBook">
+
+<Resource
+	type="javax.sql.DataSource"
+	name="boardbook"
+	auth="Container"
+	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	url="jdbc:sqlserver://127.0.0.1:1433;databasename=BOARDBOOK_DB"
+	username="sa" password="Pa$$w0rd"
+/>
+
+</Context>
