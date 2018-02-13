@@ -1,12 +1,22 @@
 package fr.eni.ecole.boardbook.jdbc;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.ecole.boardbook.bo.Deplacement;
 import fr.eni.ecole.boardbook.bo.Fiche;
 import fr.eni.ecole.boardbook.dal.DAO;
 
 public class FicheDAOImplJDBC implements DAO<Fiche>{
+	
+	private Connection con;
+	private PreparedStatement pstmt;
+	private Statement stmt;
+	private List<Fiche> listFiches = new ArrayList<>();
 
 	@Override
 	public void insert(Fiche data) throws SQLException {

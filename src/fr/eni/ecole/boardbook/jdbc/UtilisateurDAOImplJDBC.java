@@ -1,12 +1,22 @@
 package fr.eni.ecole.boardbook.jdbc;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.ecole.boardbook.bo.Fiche;
 import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.dal.DAO;
 
 public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
+	
+	private Connection con;
+	private PreparedStatement pstmt;
+	private Statement stmt;
+	private List<Utilisateur> listUtilisateurs = new ArrayList<>();
 
 	@Override
 	public void insert(Utilisateur data) throws SQLException {

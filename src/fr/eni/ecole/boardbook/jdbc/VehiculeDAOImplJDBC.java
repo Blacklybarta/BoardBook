@@ -1,6 +1,10 @@
 package fr.eni.ecole.boardbook.jdbc;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.ecole.boardbook.bo.Vehicule;
@@ -8,6 +12,11 @@ import fr.eni.ecole.boardbook.dal.DAO;
 
 public class VehiculeDAOImplJDBC implements DAO<Vehicule>{
 
+	private Connection con;
+	private PreparedStatement pstmt;
+	private Statement stmt;
+	private List<Vehicule> listVehicules = new ArrayList<>();
+	
 	@Override
 	public void insert(Vehicule data) throws SQLException {
 		// TODO Auto-generated method stub

@@ -1,13 +1,23 @@
 package fr.eni.ecole.boardbook.jdbc;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.ecole.boardbook.bo.Fiche;
 import fr.eni.ecole.boardbook.bo.Lieu;
 import fr.eni.ecole.boardbook.dal.DAO;
 
 public class LieuDAOImplJDBC implements DAO<Lieu>{
 
+	private Connection con;
+	private PreparedStatement pstmt;
+	private Statement stmt;
+	private List<Lieu> listLieux = new ArrayList<>();
+	
 	@Override
 	public void insert(Lieu data) throws SQLException {
 		// TODO Auto-generated method stub
