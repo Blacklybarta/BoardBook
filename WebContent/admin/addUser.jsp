@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <title>Carnet de bord - Administrateur</title>
 </head>
@@ -30,20 +30,17 @@
 						<input name="identifiant"></br>
 						<label for="mdp">Mot de passe :</label>
 						<input name="mdp"></br>
+						<label for="conducteur">Conducteur</label>
+						<input type="checkbox" name="conducteur">
+						<label for="administrateur">Administrateur</label>
+						<input type="checkbox" name="administrateur"></br>
+						
 						<button type="submit">VALIDER LA CREATION</button>
 					</form>
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-4">
-
-			<!-- Menu -->
-			<div class="menu">
-				<h3>Menu</h3>
-				<%@include file="../fragments/menuUser.html" %>
-				<%@include file="../fragments/menuAdmin.html" %>
-				<br>
-				<a href="/BoardBook/accueil">Déconnexion</a>
-			</div>
+			<%@include file="../fragments/menu.jsp" %>
 		</div>
 </body>
 </html>
