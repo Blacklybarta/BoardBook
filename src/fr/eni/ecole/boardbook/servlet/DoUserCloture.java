@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DoAccueil extends HttpServlet {
+public class DoUserCloture extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,6 +20,5 @@ public class DoAccueil extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.doPost(req, resp);
 	}
-	
 	
 }

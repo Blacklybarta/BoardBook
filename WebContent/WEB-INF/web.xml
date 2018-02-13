@@ -2,11 +2,169 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>BoardBook</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>accueil.html</welcome-file>
   </welcome-file-list>
+  
+  
+
+<servlet>
+	<servlet-name>Accueil</servlet-name>
+	<jsp-file>/accueil.html</jsp-file>
+</servlet>
+<servlet-mapping>
+	<servlet-name>Accueil</servlet-name>
+	<url-pattern>/connexion</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+	<servlet-name>Connexion</servlet-name>
+	<jsp-file>/connexion.html</jsp-file>
+</servlet>
+<servlet-mapping>
+	<servlet-name>Connexion</servlet-name>
+	<url-pattern>/connexion</url-pattern>
+</servlet-mapping>  
+  
+  
+<servlet>
+  	<servlet-name>ErrorPage</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoErrorPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ErrorPage</servlet-name>
+ 	<url-pattern>/errorPage</url-pattern>
+</servlet-mapping>
+  
+
+<servlet>
+  	<servlet-name>AdminGestion</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminGestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminGestion</servlet-name>
+ 	<url-pattern>/admin/gestion</url-pattern>
+</servlet-mapping>
+
+
+ <servlet>
+  	<servlet-name>AdminAddUser</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminAddUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminAddUser</servlet-name>
+ 	<url-pattern>/admin/addUser</url-pattern>
+</servlet-mapping> 
+
+
+ <servlet>
+  	<servlet-name>AdminRemoveUser</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminRemoveUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminRemoveUser</servlet-name>
+ 	<url-pattern>/admin/removeUser</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+  	<servlet-name>AdminAddDest</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminAddDest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminAddDest</servlet-name>
+ 	<url-pattern>/admin/addDest</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+  	<servlet-name>AdminRemoveDest</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminRemoveDest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminRemoveDest</servlet-name>
+ 	<url-pattern>/admin/removeDest</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+  	<servlet-name>AdminAddCar</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminAddCar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminAddCar</servlet-name>
+ 	<url-pattern>/admin/addCar</url-pattern>
+</servlet-mapping>
+  
+  
+<servlet>
+  	<servlet-name>AdminRemoveCar</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminRemoveCar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminRemoveCar</servlet-name>
+ 	<url-pattern>/admin/removeCar</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+  	<servlet-name>AdminAddType</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminAddType</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminAddType</servlet-name>
+ 	<url-pattern>/admin/addType</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+  	<servlet-name>AdminRemoveType</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminRemoveType</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminRemoveType</servlet-name>
+ 	<url-pattern>/admin/removeType</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+  	<servlet-name>UserGestion</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoUserGestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserGestion</servlet-name>
+ 	<url-pattern>/user/gestion</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+  	<servlet-name>UserAjout</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoUserAjout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserAjout</servlet-name>
+ 	<url-pattern>/user/ajout</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+  	<servlet-name>UserCloture</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoUserCloture</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserCloture</servlet-name>
+ 	<url-pattern>/user/cloture</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+  	<servlet-name>UserSelectAll</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoUserSelectAll</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserSelectAll</servlet-name>
+ 	<url-pattern>/user/selectAll</url-pattern>
+</servlet-mapping>
+
+  
 </web-app>
