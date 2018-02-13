@@ -43,7 +43,7 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 	}
 
 	@Override
-	public Utilisateur selectByMail(String mail, String mdp) throws SQLException {
+	public Utilisateur selectByIdentifiant(String identifiant, String mdp) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

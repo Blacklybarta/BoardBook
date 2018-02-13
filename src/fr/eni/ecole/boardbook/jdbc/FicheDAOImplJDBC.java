@@ -42,11 +42,6 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 		return null;
 	}
 
-	@Override
-	public Fiche selectByMail(String mail, String mdp) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Fiche> selectAll() throws SQLException {
@@ -56,6 +51,12 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 
 	@Override
 	public List<Fiche> selectByKeyWord(String recherche) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Fiche selectByIdentifiant(String identifiant, String mdp) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

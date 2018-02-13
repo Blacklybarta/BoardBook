@@ -42,11 +42,6 @@ public class LieuDAOImplJDBC implements DAO<Lieu>{
 		return null;
 	}
 
-	@Override
-	public Lieu selectByMail(String mail, String mdp) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Lieu> selectAll() throws SQLException {
@@ -56,6 +51,12 @@ public class LieuDAOImplJDBC implements DAO<Lieu>{
 
 	@Override
 	public List<Lieu> selectByKeyWord(String recherche) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Lieu selectByIdentifiant(String identifiant, String mdp) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

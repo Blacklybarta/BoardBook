@@ -41,11 +41,6 @@ public class VehiculeDAOImplJDBC implements DAO<Vehicule>{
 		return null;
 	}
 
-	@Override
-	public Vehicule selectByMail(String mail, String mdp) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Vehicule> selectAll() throws SQLException {
@@ -55,6 +50,12 @@ public class VehiculeDAOImplJDBC implements DAO<Vehicule>{
 
 	@Override
 	public List<Vehicule> selectByKeyWord(String recherche) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vehicule selectByIdentifiant(String identifiant, String mdp) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

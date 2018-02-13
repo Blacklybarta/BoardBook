@@ -71,11 +71,6 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 		return null;
 	}
 
-	@Override
-	public Deplacement selectByMail(String mail, String mdp) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Deplacement> selectAll() throws SQLException {
@@ -85,6 +80,12 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 
 	@Override
 	public List<Deplacement> selectByKeyWord(String recherche) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Deplacement selectByIdentifiant(String identifiant, String mdp) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

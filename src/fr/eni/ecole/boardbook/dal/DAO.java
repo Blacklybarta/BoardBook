@@ -13,7 +13,7 @@ public interface DAO<T> {
 
 	public T selectById(int id) throws SQLException ;
 	
-	public T selectByMail(String mail, String mdp) throws SQLException;
+	public T selectByIdentifiant(String identifiant, String mdp) throws SQLException;
 
 	public List<T> selectAll() throws SQLException ;
 	
