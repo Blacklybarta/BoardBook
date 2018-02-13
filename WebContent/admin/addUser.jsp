@@ -31,7 +31,7 @@
 				<label for="identifiant">Identifiant :</label>
 				<input name="identifiant"></br>
 				<label for="mdp">Mot de passe :</label>
-				<input name="mdp"></br>
+				<input name="mdp" type="password"></br>
 				<label for="conducteur">Conducteur</label>
 				<input type="checkbox" name="conducteur" value="true">
 				<label for="administrateur">Administrateur</label>
