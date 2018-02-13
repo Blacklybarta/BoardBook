@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,24 +15,24 @@
 		<p class="titre2">Administrateur</p>
 	</header>
 	<div class="col-xs-12 col-sm-8">
-		
-			<!-- Présentation des possibilités de l'administrateur -->
-			<div class="contenu">
+		<div class="contenu">
 			<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
-				<mark>L'utilisateur <%= utilisateur.getNom() %> est connecté en tant qu'administrateur</mark>
-				<br>
-				<br>
-				En tant qu'admnistrateur vous pouvez :<br>
-					<ul>
-						<li>Ajouter ou supprimer un conducteur</li>
-						<li>Ajouter ou supprimer une destination</li>
-						<li>Ajouter ou supprimer un véhicule</li>
-						<li>Ajouter ou supprimer un type de déplacement</li>
-					</ul>
-			</div>
+			<mark>L'utilisateur <%= utilisateur.getNom() %> est connecté en tant qu'administrateur</mark>
+			<br>
+			<br>
+			En tant qu'admnistrateur vous pouvez :<br>
+			<ul>
+				<li>Ajouter ou supprimer un conducteur</li>
+				<li>Ajouter ou supprimer une destination</li>
+				<li>Ajouter ou supprimer un véhicule</li>
+				<li>Ajouter ou supprimer un type de déplacement</li>
+			</ul>
 		</div>
-		<div class="col-xs-12 col-sm-4">
-			<%@include file="../fragments/menu.jsp" %>
-		</div>
+	</div>
+	<div class="col-xs-12 col-sm-4">
+
+		<!-- Menu -->
+		<%@include file="../fragments/menu.jsp" %>
+	</div>
 </body>
 </html>
