@@ -3,6 +3,9 @@ package fr.eni.ecole.boardbook.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.ecole.boardbook.bo.exception.ListException;
+import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
+
 public class Deplacement {
 	private int id;
 	private String nature;
@@ -12,8 +15,18 @@ public class Deplacement {
 		
 	}
 	
-	public Deplacement(String nature) {
-		this.setNature(nature);
+	public Deplacement(String nature) throws ListException {
+		ListException listE =  new ListException ();
+		boolean isException = false;
+		try {
+			this.setNature(nature);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;
+		}
+		if (isException){
+			throw listE;
+		}
 	}
 
 	public int getId() {
@@ -28,8 +41,12 @@ public class Deplacement {
 		return nature;
 	}
 
-	public void setNature(String nature) {
-		this.nature = nature;
+	public void setNature(String nature) throws ParameterNullException {
+		if (nature != null && nature.trim().length()>0){
+			this.nature = nature;
+		}else {
+			throw new ParameterNullException("La nature du déplacement doit être renseignée");
+		}
 	}
 	
 	public List<Fiche> getFiches() {

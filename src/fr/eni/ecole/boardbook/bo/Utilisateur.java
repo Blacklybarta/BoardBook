@@ -3,6 +3,9 @@ package fr.eni.ecole.boardbook.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.ecole.boardbook.bo.exception.ListException;
+import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
+
 public class Utilisateur {
 	private int id;
 	private String nom;
@@ -18,14 +21,34 @@ public class Utilisateur {
 	}
 	
 
-	public Utilisateur(String nom, String prenom, String identifiant, String mdp, boolean conducteur,
-			boolean administrateur) {
-		this.setNom(nom);
-		this.setPrenom(prenom);
+	public Utilisateur(String nom, String prenom, String identifiant, String mdp, boolean conducteur, boolean administrateur) throws ListException{
+		ListException listE =  new ListException ();
+		boolean isException = false;
+		try {
+			this.setNom(nom);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());	
+			isException = true;			
+		}
+		try {
+			this.setPrenom(prenom);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;	
+		}
 		this.setIdentifiant (identifiant);
-		this.setMdp(mdp);
+		try {
+			this.setMdp(mdp);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;	
+		}
 		this.setConducteur(conducteur);
 		this.setAdministrateur (administrateur);
+		
+		if (isException){
+			throw listE;
+		}
 	}
 
 
@@ -44,9 +67,14 @@ public class Utilisateur {
 	}
 
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setNom(String nom) throws ParameterNullException {
+		if (nom != null && nom.trim().length() > 0){
+			this.nom = nom;
+		}else {
+			throw new ParameterNullException("Le nom de l'utilisateur doit être renseigné");
+		}		
 	}
+	
 
 
 	public String getPrenom() {
@@ -54,8 +82,12 @@ public class Utilisateur {
 	}
 
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setPrenom(String prenom) throws ParameterNullException {
+		if (prenom != null && prenom.trim().length() > 0){
+			this.prenom = prenom;
+		}else {
+			throw new ParameterNullException("Le prenom de l'utilisateur doit être renseigné");
+		}		
 	}
 
 
@@ -74,9 +106,14 @@ public class Utilisateur {
 	}
 
 
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
+	public void setMdp(String mdp) throws ParameterNullException {
+		if (mdp != null && mdp.trim().length() > 0){
+			this.mdp = mdp;
+		}else {
+			throw new ParameterNullException("Le mot de passe de l'utilisateur doit être renseigné");
+		}		
 	}
+		
 
 
 	public boolean isConducteur() {
@@ -103,7 +140,7 @@ public class Utilisateur {
 		return fiches;
 	}
 
-	public void setFiches(List<Fiche> fiches) {
+	private void setFiches(List<Fiche> fiches) {
 		this.fiches = fiches;
 	}
 

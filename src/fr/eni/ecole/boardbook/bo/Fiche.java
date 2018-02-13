@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import fr.eni.ecole.boardbook.bo.exception.ClotureException;
+import fr.eni.ecole.boardbook.bo.exception.ListException;
+import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
+
 public class Fiche {
 	private int id;
 	private GregorianCalendar dateDepart;
@@ -24,9 +28,25 @@ public class Fiche {
 		
 	}
 
-	public Fiche(GregorianCalendar dateDepart, Double nbKmEntree) {
-		this.setDateDepart(dateDepart);
-		this.setNbKmEntree(nbKmEntree);
+	public Fiche(GregorianCalendar dateDepart, Double nbKmEntree) throws ListException {
+		ListException listE =  new ListException ();
+		boolean isException = false;
+		
+		try {
+			this.setDateDepart(dateDepart);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;
+		}
+		try {
+			this.setNbKmEntree(nbKmEntree);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;
+		}
+		if (isException){
+			throw listE;
+		}
 	}
 
 	public int getId() {
@@ -41,15 +61,22 @@ public class Fiche {
 		return dateDepart;
 	}
 
-	public void setDateDepart(GregorianCalendar dateDepart) {
-		this.dateDepart = dateDepart;
+	public void setDateDepart(GregorianCalendar dateDepart) throws ParameterNullException {
+		if (dateDepart != null){
+			this.dateDepart = dateDepart;
+		}else {
+			throw new ParameterNullException("La date de départ doit être renseignée.");
+		}
 	}
 
 	public GregorianCalendar getDateCloture() {
 		return dateCloture;
 	}
 
-	public void setDateCloture(GregorianCalendar dateCloture) {
+	public void setDateCloture(GregorianCalendar dateCloture) throws ClotureException {
+		if (dateCloture.before(dateDepart)){
+			throw new ClotureException("La date de cloture doit être posterieur à la date de départ.");
+		}	
 		this.dateCloture = dateCloture;
 	}
 
@@ -57,24 +84,36 @@ public class Fiche {
 		return nbKmEntree;
 	}
 
-	public void setNbKmEntree(Double nbKmEntree) {
-		this.nbKmEntree = nbKmEntree;
+	public void setNbKmEntree(Double nbKmEntree) throws ParameterNullException {
+		if (nbKmEntree > 0){
+			this.nbKmEntree = nbKmEntree;
+		}else {
+			throw new ParameterNullException("Le nombre de km au départ du véhicule doit être renseigné.");
+		}
 	}
 
 	public Double getNbKmSortie() {
 		return nbKmSortie;
 	}
 
-	public void setNbKmSortie(Double nbKmSortie) {
-		this.nbKmSortie = nbKmSortie;
+	public void setNbKmSortie(Double nbKmSortie) throws ParameterNullException {
+		if (nbKmSortie > nbKmEntree ){
+			this.nbKmSortie = nbKmSortie;
+		}else {
+			throw new ParameterNullException("Le nombre de km au retour du véhicule doit être inferieur au nombre de km renseigné au départ du véhicule.");
+		}				
 	}
 
 	public Double getCarburantNbLitre() {
 		return carburantNbLitre;
 	}
 
-	public void setCarburantNbLitre(Double carburantNbLitre) {
-		this.carburantNbLitre = carburantNbLitre;
+	public void setCarburantNbLitre(Double carburantNbLitre) throws ParameterNullException {
+		if (carburantNbLitre > 0 ){
+			this.carburantNbLitre = carburantNbLitre;
+		}else {
+			throw new ParameterNullException("Le volume de carburant ajouté doit être superieur à 0.");
+		}
 	}
 
 	public Double getCarburantMontant() {
@@ -97,39 +136,58 @@ public class Fiche {
 		return natureDeplacement;
 	}
 
-	public void setNatureDeplacement(Deplacement natureDeplacement) {
-		this.natureDeplacement = natureDeplacement;
+	public void setNatureDeplacement(Deplacement natureDeplacement) throws ParameterNullException {
+		if (natureDeplacement != null ){
+			this.natureDeplacement = natureDeplacement;
+		}else {
+			throw new ParameterNullException("La nature du déplacement doit être renseignée.");
+		}
 	}
-
+		
 	public Vehicule getVehiculeLoue() {
 		return vehiculeLoue;
 	}
 
-	public void setVehiculeLoue(Vehicule vehiculeLoue) {
-		this.vehiculeLoue = vehiculeLoue;
+	public void setVehiculeLoue(Vehicule vehiculeLoue) throws ParameterNullException {
+		if (vehiculeLoue != null ){
+			this.vehiculeLoue = vehiculeLoue;
+		}else {
+			throw new ParameterNullException("Un véhicule doit être renseigné pour effectuer un déplacement.");
+		}
 	}
+			
 
 	public Lieu getLieuArrivee() {
 		return lieuArrivee;
 	}
 
-	public void setLieuArrivee(Lieu lieuArrivee) {
-		this.lieuArrivee = lieuArrivee;
+	public void setLieuArrivee(Lieu lieuArrivee) throws ParameterNullException {
+		if (lieuArrivee != null ){
+			this.lieuArrivee = lieuArrivee;
+		}else {
+			throw new ParameterNullException("Un lieu d'arrivé doit être défini");
+		}
 	}
+		
 
 	public Lieu getLieuDepart() {
 		return lieuDepart;
 	}
 
-	public void setLieuDepart(Lieu lieuDepart) {
-		this.lieuDepart = lieuDepart;
+	public void setLieuDepart(Lieu lieuDepart) throws ParameterNullException {
+		if (lieuArrivee != null ){
+			this.lieuDepart = lieuDepart;
+		}else {
+			throw new ParameterNullException("Un lieu de départ doit être défini");
+		}
 	}
+		
 
 	public List<Utilisateur> getConducteur() {
 		return conducteur;
 	}
 
-	public void setConducteur(List<Utilisateur> conducteur) {
+	private void setConducteur(List<Utilisateur> conducteur) {
 		this.conducteur = conducteur;
 	}
 
