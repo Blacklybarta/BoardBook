@@ -32,20 +32,7 @@
 					</ul>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-4">
-<<<<<<< HEAD
-
-			<!-- Menu -->
-			<div class="menu">
-				<h3>Menu</h3>
-				<%@include file="../fragments/menuUser.html" %>
-				<%@include file="../fragments/menuAdmin.html" %>
-				<br>
-				<a href="/BoardBook/logout">Déconnexion</a>
-			</div>
-=======
-			<%@include file="../fragments/menu.jsp" %>
->>>>>>> refs/remotes/origin/master
+		<div class="col-xs-12 col-sm-4"><%@include file="../fragments/menu.jsp" %>
 		</div>
 </body>
 </html>
