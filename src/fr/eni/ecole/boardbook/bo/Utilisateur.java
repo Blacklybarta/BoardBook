@@ -1,5 +1,8 @@
 package fr.eni.ecole.boardbook.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utilisateur {
 	private int id;
 	private String nom;
@@ -8,6 +11,7 @@ public class Utilisateur {
 	private String mdp;
 	private boolean conducteur;
 	private boolean administrateur;
+	private List<Fiche> fiches = new ArrayList<Fiche>();
 	
 	public Utilisateur() {
 		super();
@@ -92,6 +96,15 @@ public class Utilisateur {
 
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
+	}
+
+	
+	public List<Fiche> getFiches() {
+		return fiches;
+	}
+
+	public void setFiches(List<Fiche> fiches) {
+		this.fiches = fiches;
 	}
 
 
