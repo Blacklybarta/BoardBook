@@ -9,25 +9,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.ecole.boardbook.bo.Deplacement;
+import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAO;
 import fr.eni.ecole.boardbook.dal.DBConnection;
 
 public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 	
-	private static final String INSERT = "INSERT INTO DEPLACEMENT nature VALUES ?";
-	private static final String DELETE = "DELETE FROM Deplacement WHERE idDeplacement=?";
+	private static final String SQL_INSERT = "INSERT INTO DEPLACEMENT (nature) VALUES (?)";
+	private static final String DELETE = "DELETE FROM DEPLACEMENT WHERE idDeplacement=?";
+	
 	private Connection con;
 	private PreparedStatement pstmt;
 	private Statement stmt;
 	private List<Deplacement> listDeplacements = new ArrayList<>();
 	
+	public void closeConnection(){
+		if(con!=null){
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			con=null;
+		}
+	}
+	
 	@Override
-	public void insert(Deplacement data) throws SQLException {
+	public void insert(Deplacement data) throws DALException {
 		try {
-			System.out.println("ici");
 			con = DBConnection.getConnection();
-			System.out.println("la");
-			pstmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+			pstmt = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, data.getNature());
 			int nbRows = pstmt.executeUpdate();
 			if (nbRows == 1) {
@@ -37,55 +49,56 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			//throw new SQLException("Erreur lors de l'ajout d'un déplacement");
+			throw new DALException("Insert lieu failed - " + data, e);
 		}finally {
-			con.close();
+			closeConnection();
 		}
 	}
 
 	@Override
-	public void update(Deplacement data) throws SQLException {
+	public void update(Deplacement data) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(int id) throws SQLException {
+	public void delete(int id) throws DALException {
+		/*
 		try {
 			con = DBConnection.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new SQLException("Echec lors de la suppression du déplacement");
+			throw new DALException("delete failed - ", e);
 		}finally {
-			con.close();
+			closeConnection();
 		}
+		*/
 		
 	}
 
 	@Override
-	public Deplacement selectById(int id) throws SQLException {
+	public Deplacement selectById(int id) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	@Override
-	public List<Deplacement> selectAll() throws SQLException {
+	public List<Deplacement> selectAll() throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Deplacement> selectByKeyWord(String recherche) throws SQLException {
+	public List<Deplacement> selectByKeyWord(String recherche) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Deplacement selectByIdentifiant(String identifiant, String mdp) throws SQLException {
+	public Deplacement selectByIdentifiant(String identifiant, String mdp) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}

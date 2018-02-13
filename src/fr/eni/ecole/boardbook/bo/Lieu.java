@@ -10,6 +10,7 @@ public class Lieu {
 	private int id;
 	private String nom;
 	private List<Fiche> fiches = new ArrayList<Fiche>();
+	private boolean actif;
 	
 	public Lieu (){
 		
@@ -57,7 +58,14 @@ public class Lieu {
 		this.fiches = fiches;
 	}
 	
-	
+	public boolean isActif() {
+		return actif;
+	}
+
+	public void setActif(boolean actif) {
+		this.actif = actif;
+	}
+
 	@Override
 	public String toString() {
 		return "Lieu [id=" + id + ", nom=" + nom + "]";

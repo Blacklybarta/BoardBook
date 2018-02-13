@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 
 public class DBConnection {
 
-	public static Connection getConnection()throws SQLException {
+	public static Connection getConnection()throws DALException {
 		Connection cnx = null;
 		InitialContext jndi=null;
 		DataSource ds=null;
@@ -17,12 +17,12 @@ public class DBConnection {
 		try{
 		jndi=new InitialContext();}
 		catch(NamingException e){
-			throw new SQLException("Erreur d'accès au contexte initial JNDI");}
+			throw new DALException("Erreur d'accès au contexte initial JNDI");}
 		//----> recherche du pool de connexion dans l'annuaire
 		try{
 		ds=(DataSource)jndi.lookup("java:comp/env/BoardBook");}
 		catch(NamingException e){
-			throw new SQLException("Objet introuvable dans l'arbre JNDI:"+e.getMessage());
+			throw new DALException("Objet introuvable dans l'arbre JNDI:"+e.getMessage());
 		}
 		//----> obtenir une connexion
 		try{
@@ -30,7 +30,7 @@ public class DBConnection {
 			return cnx;
 		}
 		catch(SQLException e){
-			throw new SQLException("Impossible d'obtenir une connexion:"+e.getMessage());}
+			throw new DALException("Impossible d'obtenir une connexion:"+e.getMessage());}
 		}
 	
 }

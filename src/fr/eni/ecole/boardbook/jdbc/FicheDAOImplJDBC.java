@@ -9,6 +9,7 @@ import java.util.List;
 
 import fr.eni.ecole.boardbook.bo.Deplacement;
 import fr.eni.ecole.boardbook.bo.Fiche;
+import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAO;
 
 public class FicheDAOImplJDBC implements DAO<Fiche>{
@@ -18,45 +19,57 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 	private Statement stmt;
 	private List<Fiche> listFiches = new ArrayList<>();
 
+	public void closeConnection(){
+		if(con!=null){
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			con=null;
+		}
+	}
+	
 	@Override
-	public void insert(Fiche data) throws SQLException {
+	public void insert(Fiche data) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(Fiche data) throws SQLException {
+	public void update(Fiche data) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(int id) throws SQLException {
+	public void delete(int id) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Fiche selectById(int id) throws SQLException {
+	public Fiche selectById(int id) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	@Override
-	public List<Fiche> selectAll() throws SQLException {
+	public List<Fiche> selectAll() throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Fiche> selectByKeyWord(String recherche) throws SQLException {
+	public List<Fiche> selectByKeyWord(String recherche) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Fiche selectByIdentifiant(String identifiant, String mdp) throws SQLException {
+	public Fiche selectByIdentifiant(String identifiant, String mdp) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
