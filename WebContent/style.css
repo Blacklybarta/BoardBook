@@ -46,3 +46,7 @@ mark {
 	background-color: silver;
 	position: relative;
 }
+
+.deplacementEnCours {
+	background-color: silver;
+}

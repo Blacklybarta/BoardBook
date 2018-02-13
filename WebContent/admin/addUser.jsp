@@ -42,7 +42,7 @@
 				<%@include file="../fragments/menuUser.html" %>
 				<%@include file="../fragments/menuAdmin.html" %>
 				<br>
-				<a href="/BoardBook/connexion">Déconnexion</a>
+				<a href="/BoardBook/accueil">Déconnexion</a>
 			</div>
 		</div>
 </body>

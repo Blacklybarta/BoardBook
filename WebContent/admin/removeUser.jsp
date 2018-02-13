@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+<link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <title>Carnet de bord - Administrateur</title>
 </head>
@@ -16,17 +16,21 @@
 	</header>
 	
 	<div class="col-xs-12 col-sm-8">
-			<!-- Formulaire d'ajout d'un véhicule -->
+			<!-- Formulaire de mofification d'un utilisateur -->
 			<div class="contenu">
 				<mark>L'utilisateur Arthur est connecté en tant qu'administrateur</mark>
 				<br>
-				<h3>Ajout d'un véhicule</h3>
-					<form class="addCar" action="/BoardBook/admin/addCar" method="post">
-						<label for="marque">Marque :</label>
-						<input name="marque"></br>
-						<label for="immatriculation">Plaque d'immatriculation :</label>
-						<input name="immatriculation"></br>
-						<button type="submit">VALIDER LA CREATION</button>
+				<h3>Modification des droits d'un utilisateur</h3>
+					<form class="removeUser" action="/BoardBook/admin/removeUser" method="post">
+						<label for="nom">Nom : </label>
+						<input type="nom" value=""></br>
+						<label for="prenom">Prenom : </label>
+						<input type="prenom" value=""></br>
+						<label for="conducteur">Conducteur</label>
+						<input type="checkbox" name="conducteur">
+						<label for="administrateur">Administrateur</label>
+						<input type="checkbox" name="administrateur"></br>
+						<button type="submit">VALIDER LA MODIFICATION</button>
 					</form>
 			</div>
 		</div>

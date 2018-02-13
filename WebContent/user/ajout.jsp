@@ -18,7 +18,7 @@
 	<div class="col-xs-12 col-sm-8">
 			<!-- Formulaire d'ajout d'un type de déplacement -->
 			<div class="contenu">
-				<mark>L'utilisateur Arthur est connecté en tant qu'administrateur</mark>
+				<mark>L'utilisateur Arthur est connecté en tant qu'utilisateur</mark>
 				<br>
 				<h3>Création d'un déplacement</h3>
 					<form class="ajout" action="/BoardBook/user/ajout" method="post">
@@ -58,7 +58,7 @@
 				<%@include file="../fragments/menuUser.html" %>
 				<%@include file="../fragments/menuAdmin.html" %>
 				<br>
-				<a href="/BoardBook/connexion">Déconnexion</a>
+				<a href="/BoardBook/accueil">Déconnexion</a>
 			</div>
 		</div>
 </body>
