@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<title>Carnet de bord - Connexion</title>
+</head>
+<body>
+	<!-- Header -->
+	<header>
+  		<p class="titre1">Carnet de bord</p>
+  		<p class="titre2">Connexion</p>
+	</header>
+	
+	<div class="row">
+		<div class="col-xs-12 col-sm-8">
+		
+			<!-- Formulaire de connexion -->
+			<div class="contenu">
+        	<form action="/connexion" method="post">
+          		<label for="identifiant">IDENTIFIANT : </label>
+          		<input type="text" name="identifiant" value=""><br>
+          		<label for="password">MOT DE PASSE : </label>
+          		<input type="password" name="password" value=""><br>
+          		<button type="submit">SE CONNECTER</button>
+        	</form>
+      		</div>
+      	</div>
+      	<div class="col-xs-12 col-sm-4">
+      	
+      		<!-- Menu -->
+      		<div class="menu">
+      			<h3>Menu</h3>
+      			<a href="/BoardBook/accueil">Accueil</a>
+      		</div>
+      	</div>
+	</div>
+</body>
+</html>

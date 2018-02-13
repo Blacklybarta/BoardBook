@@ -1,0 +1,29 @@
+header {
+  background-color: silver;
+  height: 150px;
+  width: 100%;
+  text-align: center;
+}
+
+.titre1 {
+  font-size: 40px;
+  padding-top: 15px;
+}
+
+.titre2 {
+  font-size: 30px;
+}
+
+.contenu {
+  background-color: white;
+  margin-top: 20px;
+  text-align: center;
+  height: 100%;
+}
+
+.menu {
+  background-color: #66b3ff;
+  margin-top: 20px;
+  text-align: center;
+  height: 100%;
+}
