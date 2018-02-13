@@ -46,7 +46,7 @@
 				<!-- Menu user -->
 				<%@include file="../fragments/menuAdmin.html" %>
 				<br>
-				<a href="/BoardBook/accueil">Déconnexion</a>
+				<a href="/BoardBook/logout">Déconnexion</a>
 			</div>
 		</div>
 </body>

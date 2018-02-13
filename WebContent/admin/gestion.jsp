@@ -33,6 +33,7 @@
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-4">
+<<<<<<< HEAD
 
 			<!-- Menu -->
 			<div class="menu">
@@ -42,6 +43,9 @@
 				<br>
 				<a href="/BoardBook/logout">Déconnexion</a>
 			</div>
+=======
+			<%@include file="../fragments/menu.jsp" %>
+>>>>>>> refs/remotes/origin/master
 		</div>
 </body>
 </html>
