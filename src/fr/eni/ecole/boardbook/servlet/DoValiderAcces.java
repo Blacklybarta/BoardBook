@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.boardbook.bo.Utilisateur;
+import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAOFactory;
 
 public class DoValiderAcces extends HttpServlet {
@@ -19,6 +20,7 @@ public class DoValiderAcces extends HttpServlet {
 		HttpSession session = req.getSession();
 		Utilisateur utilisateur = null;
 		if (session.getAttribute("idUtilisateur") != null) {
+
 			try {
 				utilisateur = DAOFactory.getUtilisateurDAO().selectById((int) session.getAttribute("idUtilisateur"));
 				if (utilisateur != null) {
@@ -30,12 +32,11 @@ public class DoValiderAcces extends HttpServlet {
 						this.getServletContext().getRequestDispatcher("/user/gestion.jsp").forward(req, resp);
 					}
 				}
-			} catch (SQLException e) {
+			} catch (DALException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-		}else{
+		} else {
 			resp.sendRedirect("/BoardBook/connexion.html");
 		}
 	}
@@ -46,27 +47,29 @@ public class DoValiderAcces extends HttpServlet {
 		String mdp = req.getParameter("password");
 		HttpSession session = req.getSession();
 		Utilisateur utilisateur = null;
-		try {
-			utilisateur = DAOFactory.getUtilisateurDAO().selectByIdentifiant(identifiant, mdp);
-			if (utilisateur != null) {
-				if (utilisateur.isAdministrateur()) {
-					req.setAttribute("utilisateur", utilisateur);
-					session.setAttribute("idUtilisateur", utilisateur.getId());
-					this.getServletContext().getRequestDispatcher("/admin/gestion.jsp").forward(req, resp);
-				} else if (utilisateur.isConducteur()) {
-					req.setAttribute("utilisateur", utilisateur);
-					session.setAttribute("idUtilisateur", utilisateur.getId());
-					this.getServletContext().getRequestDispatcher("/user/gestion.jsp").forward(req, resp);
+		
+			try {
+				utilisateur = DAOFactory.getUtilisateurDAO().selectByIdentifiant(identifiant, mdp);
+				if (utilisateur != null) {
+					if (utilisateur.isAdministrateur()) {
+						req.setAttribute("utilisateur", utilisateur);
+						session.setAttribute("idUtilisateur", utilisateur.getId());
+						this.getServletContext().getRequestDispatcher("/admin/gestion.jsp").forward(req, resp);
+					} else if (utilisateur.isConducteur()) {
+						req.setAttribute("utilisateur", utilisateur);
+						session.setAttribute("idUtilisateur", utilisateur.getId());
+						this.getServletContext().getRequestDispatcher("/user/gestion.jsp").forward(req, resp);
+					} else {
+						resp.sendRedirect("errorPage");
+					}
 				} else {
 					resp.sendRedirect("errorPage");
 				}
-			} else {
-				resp.sendRedirect("errorPage");
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
 }
