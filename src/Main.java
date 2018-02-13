@@ -10,11 +10,14 @@ public class Main {
 		Deplacement deplacement = new Deplacement();
 		deplacement.setNature("Cours");
 		
-		try {
-			DAOFactory.getDeplacementDAO().insert(deplacement);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
+		
+			try {
+				DAOFactory.getDeplacementDAO().insert(deplacement);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 	}
 
 }

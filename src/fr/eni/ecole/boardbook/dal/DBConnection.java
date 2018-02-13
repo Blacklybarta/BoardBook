@@ -20,7 +20,7 @@ public class DBConnection {
 			throw new SQLException("Erreur d'accès au contexte initial JNDI");}
 		//----> recherche du pool de connexion dans l'annuaire
 		try{
-		ds=(DataSource)jndi.lookup("java:comp/env/boardbook");}
+		ds=(DataSource)jndi.lookup("java:comp/env/BoardBook");}
 		catch(NamingException e){
 			throw new SQLException("Objet introuvable dans l'arbre JNDI:"+e.getMessage());
 		}

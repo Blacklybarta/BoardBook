@@ -4,7 +4,7 @@
 
 <Resource
 	type="javax.sql.DataSource"
-	name="boardbook"
+	name="BoardBook"
 	auth="Container"
 	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 	url="jdbc:sqlserver://127.0.0.1:1433;databasename=BOARDBOOK_DB"

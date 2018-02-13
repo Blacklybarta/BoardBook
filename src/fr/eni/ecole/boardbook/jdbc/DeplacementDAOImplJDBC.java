@@ -14,7 +14,7 @@ import fr.eni.ecole.boardbook.dal.DBConnection;
 
 public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 	
-	private static final String INSERT = "INSERT INTO Deplacement nature VALUES (?)";
+	private static final String INSERT = "INSERT INTO DEPLACEMENT nature VALUES ?";
 	private static final String DELETE = "DELETE FROM Deplacement WHERE idDeplacement=?";
 	private Connection con;
 	private PreparedStatement pstmt;
@@ -24,7 +24,9 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 	@Override
 	public void insert(Deplacement data) throws SQLException {
 		try {
+			System.out.println("ici");
 			con = DBConnection.getConnection();
+			System.out.println("la");
 			pstmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, data.getNature());
 			int nbRows = pstmt.executeUpdate();
@@ -35,7 +37,8 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 				}
 			}
 		} catch (SQLException e) {
-			throw new SQLException("Erreur lors de l'ajout d'un déplacement");
+			e.printStackTrace();
+			//throw new SQLException("Erreur lors de l'ajout d'un déplacement");
 		}finally {
 			con.close();
 		}
