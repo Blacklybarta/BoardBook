@@ -3,19 +3,19 @@ package fr.eni.ecole.boardbook.jdbc;
 import java.sql.SQLException;
 import java.util.List;
 
-import fr.eni.ecole.boardbook.bo.Vehicule;
+import fr.eni.ecole.boardbook.bo.Lieu;
 import fr.eni.ecole.boardbook.dal.DAO;
 
-public class VehiculeDAOImplJDBC implements DAO<Vehicule>{
+public class LieuDAOImplJDBC implements DAO<Lieu>{
 
 	@Override
-	public void insert(Vehicule data) throws SQLException {
+	public void insert(Lieu data) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(Vehicule data) throws SQLException {
+	public void update(Lieu data) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -27,25 +27,25 @@ public class VehiculeDAOImplJDBC implements DAO<Vehicule>{
 	}
 
 	@Override
-	public Vehicule selectById(int id) throws SQLException {
+	public Lieu selectById(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Vehicule selectByMail(String mail, String mdp) throws SQLException {
+	public Lieu selectByMail(String mail, String mdp) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Vehicule> selectAll() throws SQLException {
+	public List<Lieu> selectAll() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Vehicule> selectByKeyWord(String recherche) throws SQLException {
+	public List<Lieu> selectByKeyWord(String recherche) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
