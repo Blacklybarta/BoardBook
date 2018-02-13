@@ -13,7 +13,7 @@
 </servlet>
 <servlet-mapping>
 	<servlet-name>Accueil</servlet-name>
-	<url-pattern>/connexion</url-pattern>
+	<url-pattern>/accueil</url-pattern>
 </servlet-mapping>
 
 
