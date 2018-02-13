@@ -19,7 +19,7 @@
 
 <servlet>
 	<servlet-name>Connexion</servlet-name>
-	<jsp-file>/connexion.html</jsp-file>
+	<servlet-class>fr.eni.ecole.boardbook.servlet.DoValiderAcces</servlet-class>
 </servlet>
 <servlet-mapping>
 	<servlet-name>Connexion</servlet-name>
@@ -36,6 +36,26 @@
  	<url-pattern>/errorPage</url-pattern>
 </servlet-mapping>
   
+
+<servlet>
+  	<servlet-name>Deconnexion</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoLogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Deconnexion</servlet-name>
+ 	<url-pattern>/logout</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+  	<servlet-name>ValiderAcces</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoValiderAcces</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ValiderAcces</servlet-name>
+ 	<url-pattern>/validerAcces</url-pattern>
+</servlet-mapping>
+
 
 <servlet>
   	<servlet-name>AdminGestion</servlet-name>

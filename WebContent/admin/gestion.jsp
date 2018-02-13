@@ -20,7 +20,7 @@
 			<!-- Présentation des possibilités de l'administrateur -->
 			<div class="contenu">
 			<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
-				<mark>L'utilisateur <% utilisateur.getNom(); %> est connecté en tant qu'administrateur</mark>
+				<mark>L'utilisateur <%= utilisateur.getNom() %> est connecté en tant qu'administrateur</mark>
 				<br>
 				<br>
 				En tant qu'admnistrateur vous pouvez :<br>
@@ -40,7 +40,7 @@
 				<%@include file="../fragments/menuUser.html" %>
 				<%@include file="../fragments/menuAdmin.html" %>
 				<br>
-				<a href="/BoardBook/accueil">Déconnexion</a>
+				<a href="/BoardBook/logout">Déconnexion</a>
 			</div>
 		</div>
 </body>
