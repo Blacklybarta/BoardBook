@@ -9,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-public class FilterController implements Filter {
+public class FilterControllerUser implements Filter {
 
 	@Override
 	public void destroy() {
@@ -18,9 +18,15 @@ public class FilterController implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
-			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+//		HttpServletRequest request = (HttpServletRequest) req;
+//		HttpSession session = request.getSession();
+//		
+//		if (session.getAttribute("") == null) {
+//			request.getRequestDispatcher("/connexion").forward(req, resp);
+//		}else{
+//			chain.doFilter(req, resp);
+//		}
 		
 	}
 
@@ -29,5 +35,5 @@ public class FilterController implements Filter {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }

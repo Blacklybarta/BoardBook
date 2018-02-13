@@ -166,5 +166,25 @@
  	<url-pattern>/user/selectAll</url-pattern>
 </servlet-mapping>
 
+
+<!-- <filter> -->
+<!-- 	<filter-name>RestrictionAdmin</filter-name> -->
+<!-- 	<filter-class>fr.eni.ecole.boardbook.filter.FilterControllerAdmin</filter-class> -->
+<!-- </filter> -->
+<!-- <filter-mapping> -->
+<!-- 	<filter-name>RestrictionAdmin</filter-name> -->
+<!-- 	<url-pattern>/admin/*</url-pattern> -->
+<!-- </filter-mapping> -->
+
   
+<!-- <filter> -->
+<!-- 	<filter-name>RestrictionUser</filter-name> -->
+<!-- 	<filter-class>fr.eni.ecole.boardbook.filter.FilterControllerUser</filter-class> -->
+<!-- </filter> -->
+<!-- <filter-mapping> -->
+<!-- 	<filter-name>RestrictionUser</filter-name> -->
+<!-- 	<url-pattern>/user/*</url-pattern> -->
+<!-- </filter-mapping>  -->
+
+ 
 </web-app>
