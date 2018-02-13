@@ -20,8 +20,21 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 	private Statement stmt;
 	private List<Utilisateur> listUtilisateurs = new ArrayList<>();
 	
-	private static final String SQL_SELECT_BY_ID = "SELECT * FROM UTILISATEUR WHERE identifiant=? and mdp=?";
-
+	private static final String SQL_SELECT_BY_IDENTIFIANT = "SELECT * FROM UTILISATEUR WHERE identifiant=? and mdp=?";
+	private static final String SQL_SELECT_BY_ID = "SELECT * FROM UTILISATEUR WHERE idUtilisateur=?";
+	
+	public void closeConnection(){
+		if(con!=null){
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			con=null;
+		}
+	}
+	
 	@Override
 	public void insert(Utilisateur data) throws SQLException {
 		// TODO Auto-generated method stub
@@ -43,7 +56,40 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 	@Override
 	public Utilisateur selectById(int id) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		con = null;
+		pstmt = null;
+		ResultSet rs = null;
+		Utilisateur utilisateur = null;
+		try {
+			con = DBConnection.getConnection();
+			pstmt = con.prepareStatement(SQL_SELECT_BY_ID);
+			pstmt.setInt(1, id);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				utilisateur = new Utilisateur();
+				utilisateur.setId(rs.getInt("idUtilisateur"));
+				utilisateur.setIdentifiant(rs.getString("identifiant"));
+				utilisateur.setMdp(rs.getString("mdp"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				utilisateur.setConducteur(rs.getBoolean("conducteur"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			closeConnection();
+		}
+		return utilisateur;
 	}
 
 	@Override
@@ -55,13 +101,21 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 		Utilisateur utilisateur = null;
 		try {
 			con = DBConnection.getConnection();
-			pstmt = con.prepareStatement(SQL_SELECT_BY_ID);
+			pstmt = con.prepareStatement(SQL_SELECT_BY_IDENTIFIANT);
 			pstmt.setString(1, identifiant);
 			pstmt.setString(2, mdp);
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				utilisateur = new Utilisateur(rs.getString("nom"), rs.getString("prenom"), rs.getString("identifiant"), rs.getString("mdp"), rs.getBoolean("conducteur"), rs.getBoolean("administrateur"));
+				utilisateur = new Utilisateur();
+				utilisateur.setId(rs.getInt("idUtilisateur"));
+				utilisateur.setIdentifiant(rs.getString("identifiant"));
+				utilisateur.setMdp(rs.getString("mdp"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				utilisateur.setConducteur(rs.getBoolean("conducteur"));
+				
 			}
 			
 		} catch (Exception e) {
@@ -74,8 +128,8 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			closeConnection();
 		}
-		
 		return utilisateur;
 	}
 
