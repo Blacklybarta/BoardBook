@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.bo.exception.ListException;
+import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
 import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAOFactory;
 
@@ -20,15 +21,19 @@ public class DoAdminUpdateUser extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		try {
-			List<Utilisateur> listUtilisateur = DAOFactory.getUtilisateurDAO().selectAll();
+			List<Utilisateur> listUtilisateur = null;
+			
+			listUtilisateur = DAOFactory.getUtilisateurDAO().selectAll();
 			req.setAttribute("listeUtilisateurs", listUtilisateur);
 			this.getServletContext().getRequestDispatcher("/admin/updateUser.jsp").forward(req, resp);
+			
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
+		
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

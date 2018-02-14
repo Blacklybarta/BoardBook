@@ -15,32 +15,32 @@ import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAO;
 import fr.eni.ecole.boardbook.dal.DBConnection;
 
-public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
-	
+public class UtilisateurDAOImplJDBC implements DAO<Utilisateur> {
+
 	private Connection con;
 	private PreparedStatement pstmt;
 	private Statement stmt;
 	private List<Utilisateur> listUtilisateurs = new ArrayList<>();
-	
+
 	private static final String SQL_SELECT_BY_IDENTIFIANT = "SELECT * FROM UTILISATEUR WHERE identifiant=? and mdp=?";
 	private static final String SQL_SELECT_BY_ID = "SELECT * FROM UTILISATEUR WHERE idUtilisateur=?";
 	private static final String SQL_INSERT = "INSERT INTO UTILISATEUR(identifiant,mdp,nom,prenom,administrateur,conducteur) VALUES(?,?,?,?,?,?)";
 	private static final String SQL_SELECTALL = "SELECT * FROM UTILISATEUR";
 	private static final String SQL_DELETE = "UPDATE UTILISATEUR SET administrateur=?,conducteur=? WHERE idUtilisateur=?";
 	private static final String SQL_UPDATE = "UPDATE UTILISATEUR SET identifiant=?,mdp=?,nom=?,prenom=?,administrateur=?,conducteur=? WHERE idUtilisateur=?";
-	
-	public void closeConnection(){
-		if(con!=null){
+
+	public void closeConnection() {
+		if (con != null) {
 			try {
 				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			con=null;
+			con = null;
 		}
 	}
-	
+
 	@Override
 	public void insert(Utilisateur data) throws DALException {
 		// TODO Auto-generated method stub
@@ -70,7 +70,7 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 				if (pstmt != null) {
 					pstmt.close();
 				}
-				
+
 			} catch (SQLException e) {
 				throw new DALException("close failed - ", e);
 			}
@@ -111,10 +111,9 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 		}
 	}
 
-	
 	/**
-	 * On ne supprime pas un utilisateur, on lui retire son droit d'administrateur 
-	 * et son droit de conducteur
+	 * On ne supprime pas un utilisateur, on lui retire son droit
+	 * d'administrateur et son droit de conducteur
 	 */
 	@Override
 	public void delete(int id) throws DALException {
@@ -124,7 +123,7 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 		try {
 			con = DBConnection.getConnection();
 			pstmt = con.prepareStatement(SQL_DELETE);
-			
+
 			pstmt.setBoolean(1, false);
 			pstmt.setBoolean(2, false);
 			pstmt.setInt(3, id);
@@ -174,7 +173,7 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) {
+				if (pstmt != null) {
 					pstmt.close();
 				}
 			} catch (Exception e) {
@@ -198,7 +197,7 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 			pstmt.setString(1, identifiant);
 			pstmt.setString(2, mdp);
 			rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				utilisateur = new Utilisateur();
 				utilisateur.setId(rs.getInt("idUtilisateur"));
@@ -208,13 +207,13 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 				utilisateur.setPrenom(rs.getString("prenom"));
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 				utilisateur.setConducteur(rs.getBoolean("conducteur"));
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) {
+				if (pstmt != null) {
 					pstmt.close();
 				}
 			} catch (Exception e) {
@@ -227,18 +226,13 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 
 	@Override
 	public List<Utilisateur> selectAll() throws DALException {
-		// TODO Auto-generated method stub
-		con = null;
-		stmt = null;
-		ResultSet rs = null;
-		listUtilisateurs = null;
 		try {
 			con = DBConnection.getConnection();
 			stmt = con.createStatement();
-			rs = stmt.executeQuery(SQL_SELECTALL);
-			
+			ResultSet rs = stmt.executeQuery(SQL_SELECTALL);
+
 			Utilisateur utilisateur = null;
-			
+			listUtilisateurs.clear();
 			while (rs.next()) {
 				utilisateur = new Utilisateur();
 				utilisateur.setId(rs.getInt("idUtilisateur"));
@@ -246,20 +240,12 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 				
 				try {
 					utilisateur.setMdp(rs.getString("mdp"));
-				} catch (ParameterNullException e) {
-					e.printStackTrace();
-				}
-				try {
 					utilisateur.setNom(rs.getString("nom"));
+					utilisateur.setPrenom(rs.getString("prenom"));
 				} catch (ParameterNullException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				try {
-					utilisateur.setPrenom(rs.getString("prenom"));					
-				} catch (ParameterNullException e) {
-					e.printStackTrace();
-				}
-				
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 				utilisateur.setConducteur(rs.getBoolean("conducteur"));
 				
@@ -269,11 +255,11 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 			throw new DALException("selectAll failed - ", e);
 		} finally {
 			try {
-				
+
 				if (stmt != null) {
 					stmt.close();
 				}
-				
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
