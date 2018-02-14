@@ -19,7 +19,6 @@
 	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			<!-- Formulaire de suppression d'un employé -->
 			<h3>Suppression d'un employé</h3>
@@ -27,14 +26,12 @@
 			<form class="removeUser"action="/BoardBook/admin/removeUser" method="post">
 				<select name="idUser">
 					<% for (Utilisateur u:listeUtilisateurs) {%>
-
-					<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></option>
-
+						<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></option>
 					<% } %>
 				</select>
 				</br>
-				<button type="submit">CHOISIR</button>
-				</form>
+				<button type="submit">SUPPRIMER</button>
+			</form>
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">

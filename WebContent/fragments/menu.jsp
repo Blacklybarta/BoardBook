@@ -8,5 +8,8 @@
 <% } %>
 <%@include file="../fragments/menuStatistiques.html" %>
 </br>
-<a href="/BoardBook/logout">Déconnexion</a>
+<a href="/BoardBook/logout">Déconnexion</a></br>
+<% if (session.getAttribute("nomUtilisateur") != null) { %>
+	<p class="connecte">Connecté en tant que <%= session.getAttribute("nomUtilisateur") %></p>
+<% } %>
 </div>

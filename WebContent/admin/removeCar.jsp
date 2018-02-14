@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Vehicule" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,17 +16,22 @@
 		<p class="titre1">Carnet de bord</p>
 		<p class="titre2">Administrateur</p>
 	</header>
+	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
 			<br>
-			<br>
-			En tant qu'admnistrateur vous pouvez :<br>
-			<ul>
-				<li>Ajouter ou supprimer un conducteur</li>
-				<li>Ajouter ou supprimer une destination</li>
-				<li>Ajouter ou supprimer un véhicule</li>
-				<li>Ajouter ou supprimer un type de déplacement</li>
-			</ul>
+			<!-- Formulaire de suppression d'un véhicule -->
+			<h3>Suppression d'un vehicule</h3>
+			<% List<Vehicule> listeVehicules = (ArrayList<Vehicule>)request.getAttribute("listeVehicules"); %>
+			<form class="removeCar"action="/BoardBook/admin/removeCar" method="post">
+				<select name="idVehicule">
+					<% for (Vehicule v:listeVehicules) {%>
+						<option value="<%= v.getId() %>"><%= v.getMarque() + " " + v.getImmatriculation()%></option>
+					<% } %>
+				</select>
+				</br>
+				<button type="submit">SUPPRIMER</button>
+			</form>
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
