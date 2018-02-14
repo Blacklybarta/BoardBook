@@ -3,8 +3,6 @@ package fr.eni.ecole.boardbook.dal;
 import java.sql.SQLException;
 import java.util.List;
 
-import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
-
 public interface DAO<T> {
 
 	public void insert(T data) throws DALException ;

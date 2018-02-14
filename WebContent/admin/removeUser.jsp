@@ -17,16 +17,15 @@
 	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
 			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			<!-- Formulaire de suppression d'un employé -->
 			<h3>Suppression d'un employé</h3>
 			<form class="removeUser" action="/BoardBook/admin/removeUser" method="post">
 				<label for="nom">Nom : </label>
-				<input type="nom" value=""></br>
+				<input type="text" name="nom" value=""></br>
 				<label for="prenom">Prenom : </label>
-				<input type="prenom" value=""></br>
+				<input type="text" name="prenom" value=""></br>
 				<button type="submit">SUPPRIMER</button>
 			</form>
 		</div>

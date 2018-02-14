@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="fr.eni.ecole.boardbook.bo.Deplacement" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,20 +16,11 @@
 	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<% List<Deplacement> listeDeplacements = (ArrayList<Deplacement>)request.getAttribute("listeDeplacements"); %>
 			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
-			<!-- Formulaire de suppression d'une nature de déplacements -->
-			<h3>Suppression d'une nature de déplacements</h3>
-			<form class="removeType" action="/BoardBook/admin/removeType" method="post">
-				<label for="nature">Nature : </label>
-				<select name="nature">
-					<% for (Deplacement d:listeDeplacements) {%>
-					<option value="<% d.getId(); %>"><%= d.getNature() %></option>
-					<% } %>
-				</select>
-				<button type="submit">SUPPRIMER</button>
-			</form>
+			
+			<!-- Graphique -->
+			
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">

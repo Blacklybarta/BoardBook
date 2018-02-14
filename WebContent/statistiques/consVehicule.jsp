@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="fr.eni.ecole.boardbook.bo.Vehicule" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,18 +17,16 @@
 	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<% List<Vehicule> listeVehicules = (ArrayList<Vehicule>)request.getAttribute("listeVehicules"); %>
 			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
-			<!-- Formulaire de suppression d'un véhicule -->
-			<h3>Suppression d'un véhicule</h3>
-			<form class="removeCar" action="/BoardBook/admin/removeCar" method="post">
-				<label for="nom">Immatriculation : </label>
-				<select name="nom">
-					<% for (Vehicule v:listeVehicules) {%>
-					<option value="<% v.getId(); %>"><%= v.getImmatriculation() %></option>
-					<% } %>
-				</select>
+			<!-- Formulaire -->
+			<h3>Nombre de kilomètres par conducteur sur une periode</h3>
+			<form class="removeUser" action="/BoardBook/admin/removeUser" method="post">
+				<label for="dateDebut">Début : </label>
+				<input type="date" name ="dateDebut"></br>
+				<label for="dateFin">Fin : </label>
+				<input type="date" name="dateFin"></br>
+				
 				<button type="submit">SUPPRIMER</button>
 			</form>
 		</div>

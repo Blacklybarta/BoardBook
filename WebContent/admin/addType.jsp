@@ -17,14 +17,13 @@
 	
 	<div class="col-xs-12 col-sm-8">
 			<div class="contenu">
-				<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
 				<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 				<br>
 				<!-- Formulaire d'ajout d'un type de déplacement -->
 				<h3>Ajout d'un type de déplacement</h3>
 					<form class="addType" action="/BoardBook/admin/addUser" method="post">
 						<label for="nom">Type de déplacement :</label>
-						<input name="nom"></br>
+						<input type="text" name="nom"></br>
 						<button type="submit">VALIDER LA CREATION</button>
 					</form>
 			</div>
