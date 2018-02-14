@@ -20,7 +20,7 @@
 			<br>
 			
 			<!-- Graphique -->
-			
+			<img src="http://localhost:8080/BoardBook/testGraph">
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
