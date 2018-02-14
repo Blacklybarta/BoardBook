@@ -14,7 +14,7 @@ header {
   font-size: 30px;
 }
 
-.contenu {
+.contenu, .contenuAccueil {
   background-color: white;
   text-align: left;
   margin-left: auto;
@@ -23,6 +23,10 @@ header {
   padding: 0px;
   text-align: center;
   font-size: 20px;
+}
+
+.contenuAccueil {
+	padding-top: 20px;
 }
 
 .menu {
@@ -54,4 +58,8 @@ header {
 
 label {
 	width: 300px;
+}
+
+img {
+	width: 100%;
 }
