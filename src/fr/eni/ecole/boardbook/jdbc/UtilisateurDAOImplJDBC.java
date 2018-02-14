@@ -237,9 +237,8 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(SQL_SELECTALL);
 			Utilisateur utilisateur = null;
-
+			
 			while (rs.next()) {
-				
 				utilisateur = new Utilisateur();
 				utilisateur.setId(rs.getInt("idUtilisateur"));
 				utilisateur.setIdentifiant(rs.getString("identifiant"));
@@ -262,7 +261,7 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 				
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 				utilisateur.setConducteur(rs.getBoolean("conducteur"));
-
+				
 				listUtilisateurs.add(utilisateur);
 			}
 		} catch (SQLException e) {

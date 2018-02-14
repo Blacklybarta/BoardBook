@@ -77,6 +77,16 @@
 </servlet-mapping> 
 
 
+<servlet>
+  	<servlet-name>AdminUpdateUser</servlet-name>
+  	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminUpdateUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminUpdateUser</servlet-name>
+ 	<url-pattern>/admin/updateUser</url-pattern>
+</servlet-mapping> 
+
+
  <servlet>
   	<servlet-name>AdminRemoveUser</servlet-name>
   	<servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminRemoveUser</servlet-class>
@@ -95,6 +105,7 @@
   	<servlet-name>AdminAddDest</servlet-name>
  	<url-pattern>/admin/addDest</url-pattern>
 </servlet-mapping>
+
 
 
 <servlet>

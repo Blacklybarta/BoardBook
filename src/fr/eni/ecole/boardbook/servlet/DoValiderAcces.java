@@ -17,10 +17,10 @@ public class DoValiderAcces extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		HttpSession session = req.getSession();
 		Utilisateur utilisateur = null;
 		if (session.getAttribute("idUtilisateur") != null) {
-
 			try {
 				utilisateur = DAOFactory.getUtilisateurDAO().selectById((int) session.getAttribute("idUtilisateur"));
 				if (utilisateur != null) {
@@ -46,6 +46,9 @@ public class DoValiderAcces extends HttpServlet {
 		String identifiant = req.getParameter("identifiant");
 		String mdp = req.getParameter("password");
 		HttpSession session = req.getSession();
+		resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		resp.setHeader("Pragma", "no-cache");
+		resp.setHeader("Expires", "0");
 		Utilisateur utilisateur = null;
 		
 			try {
@@ -54,10 +57,15 @@ public class DoValiderAcces extends HttpServlet {
 					if (utilisateur.isAdministrateur()) {
 						req.setAttribute("utilisateur", utilisateur);
 						session.setAttribute("idUtilisateur", utilisateur.getId());
+						session.setAttribute("nomUtilisateur", utilisateur.getNom());
+						session.setAttribute("conducteur", utilisateur.isConducteur());
+						session.setAttribute("administrateur", utilisateur.isAdministrateur());
 						this.getServletContext().getRequestDispatcher("/admin/gestion.jsp").forward(req, resp);
 					} else if (utilisateur.isConducteur()) {
 						req.setAttribute("utilisateur", utilisateur);
 						session.setAttribute("idUtilisateur", utilisateur.getId());
+						session.setAttribute("nomUtilisateur", utilisateur.getNom());
+						session.setAttribute("conducteur", utilisateur.isConducteur());
 						this.getServletContext().getRequestDispatcher("/user/gestion.jsp").forward(req, resp);
 					} else {
 						resp.sendRedirect("errorPage");

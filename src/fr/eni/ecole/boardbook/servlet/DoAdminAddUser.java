@@ -49,9 +49,7 @@ public class DoAdminAddUser extends HttpServlet {
 			try {
 				utilisateur = new Utilisateur(nom, prenom, identifiant, mdp, conducteur, admin);
 				DAOFactory.getUtilisateurDAO().insert(utilisateur);
-				if (utilisateur != null) {
-					System.out.println(utilisateur.toString());
-				}
+				resp.sendRedirect("/BoardBook/admin/gestion");
 			} catch (ListException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
