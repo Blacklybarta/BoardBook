@@ -18,16 +18,14 @@ public class DoAdminRemoveDest extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
+			//seletion de tous les lieux et envoie la jsp de suppression
 			List<Lieu> listLieu = DAOFactory.getLieuDAO().selectAll();
 			req.setAttribute("listeLieux", listLieu);
+			this.getServletContext().getRequestDispatcher("/admin/removeDest.jsp").forward(req, resp);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-		this.getServletContext().getRequestDispatcher("/admin/removeDest.jsp").forward(req, resp);
-		
+		}	
 	}
 	
 	@Override

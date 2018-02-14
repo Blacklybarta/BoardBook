@@ -133,6 +133,8 @@
     <servlet-name>AdminRemoveCar</servlet-name>
     <url-pattern>/admin/removeCar</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AdminAddType</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminAddType</servlet-class>
@@ -141,6 +143,8 @@
     <servlet-name>AdminAddType</servlet-name>
     <url-pattern>/admin/addType</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AdminRemoveType</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminRemoveType</servlet-class>
@@ -149,6 +153,8 @@
     <servlet-name>AdminRemoveType</servlet-name>
     <url-pattern>/admin/removeType</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>UserGestion</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoUserGestion</servlet-class>
@@ -157,6 +163,8 @@
     <servlet-name>UserGestion</servlet-name>
     <url-pattern>/user/gestion</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>UserAjout</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoUserAjout</servlet-class>
@@ -165,6 +173,8 @@
     <servlet-name>UserAjout</servlet-name>
     <url-pattern>/user/ajout</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>UserCloture</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoUserCloture</servlet-class>
@@ -174,6 +184,7 @@
     <url-pattern>/user/cloture</url-pattern>
   </servlet-mapping>
   
+  
   <servlet>
     <servlet-name>UserSelectAll</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoUserSelectAll</servlet-class>
@@ -182,6 +193,7 @@
     <servlet-name>UserSelectAll</servlet-name>
     <url-pattern>/user/selectAll</url-pattern>
   </servlet-mapping>
+  
   
   <servlet>
     <servlet-name>AdminKmDeplacement</servlet-name>
