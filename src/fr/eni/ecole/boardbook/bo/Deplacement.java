@@ -10,6 +10,7 @@ public class Deplacement {
 	private int id;
 	private String nature;
 	private List<Fiche> fiches = new ArrayList<Fiche>();
+	private boolean actif;
 	
 	public Deplacement (){
 		
@@ -27,6 +28,15 @@ public class Deplacement {
 		if (isException){
 			throw listE;
 		}
+	}
+		
+	
+	public boolean isActif() {
+		return actif;
+	}
+
+	public void setActif(boolean actif) {
+		this.actif = actif;
 	}
 
 	public int getId() {
