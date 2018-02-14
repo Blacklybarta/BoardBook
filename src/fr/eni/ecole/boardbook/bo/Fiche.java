@@ -22,6 +22,7 @@ public class Fiche {
 	private Lieu lieuArrivee;
 	private Lieu lieuDepart;
 	private List<Utilisateur> conducteur = new ArrayList<Utilisateur>();
+	private String commentaire;
 	
 	
 	public Fiche (){
@@ -189,6 +190,15 @@ public class Fiche {
 
 	private void setConducteur(List<Utilisateur> conducteur) {
 		this.conducteur = conducteur;
+	}
+	
+	
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
 	}
 
 	@Override
