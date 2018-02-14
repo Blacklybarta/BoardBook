@@ -236,6 +236,7 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur>{
 			con = DBConnection.getConnection();
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(SQL_SELECTALL);
+			
 			Utilisateur utilisateur = null;
 			
 			while (rs.next()) {
