@@ -1,6 +1,7 @@
 package fr.eni.ecole.boardbook.bll;
 
 
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.jfree.chart.ChartFactory;
@@ -10,6 +11,7 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import fr.eni.ecole.boardbook.bo.Point;
+import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAOFactory;
 
@@ -74,9 +76,31 @@ public class Manager {
 	
 	
 	private static JFreeChart createGraphKmUtilisateur (){
-
-		
-		return null;
+		List <Point <Utilisateur, Integer, Integer>> listPoint = null;
+		try {
+			listPoint = (List<Point<Utilisateur, Integer, Integer>>) DAOFactory.getGraphKmMensuelParUtilisateur();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
+		  DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
+	      for(int i =0; i< listPoint.size(); ++i){
+	    	  int mois = listPoint.get(i).getZ()-1;
+	    	  GregorianCalendar calendar = new GregorianCalendar (0,mois,0);
+	    	  String month = calendar.;
+	    	  
+	    	  dataset.addValue( listPoint.get(i).getY() , listPoint.get(i).getX() , "" );
+	      }        
+	
+		JFreeChart graph = ChartFactory.createBarChart(
+	    	         "Nombre de Km par mois et par utilisateur",           
+	    	         "Déplacements",            
+	    	         "Nb km",            
+	    	         dataset,          
+	    	         PlotOrientation.VERTICAL,           
+	    	         true, true, false);	
+		return graph;
 	}
 	
 	private static JFreeChart createGraphKmConsommationUtilisateur (){
