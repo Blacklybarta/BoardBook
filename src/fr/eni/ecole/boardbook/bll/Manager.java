@@ -10,6 +10,8 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import fr.eni.ecole.boardbook.bo.Point;
+import fr.eni.ecole.boardbook.dal.DALException;
+import fr.eni.ecole.boardbook.dal.DAOFactory;
 
 public class Manager {
 	public final static int KM_PAR_MOIS_PAR_UTILISATEUR = 1;
@@ -47,7 +49,12 @@ public class Manager {
 	}
 	
 	private static JFreeChart createGraphKmDeplacement (){
-		
+		try {
+			List <Point <String, Integer, Boolean>> listPoint = DAOFactory.getGraphKmParDeplementDAO().selectAll();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		try {
 //			data = DAOFactory.getStatistiqueDAO().KmParNatureDeplacement();
 //		} catch (DALException e) {
