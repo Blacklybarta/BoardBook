@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,21 +20,49 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
 			<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
-			<mark>L'utilisateur <%= utilisateur.getNom() %> est connecté</mark>
+			<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>()request.getAttribute("listeUtilisateurs"); %>
+			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
-			<!-- Formulaire de modification d'un employé -->
-			<h3>Suppression d'un employé</h3>
+			<h3>Modification d'un employé</h3>
+			<!-- Choix de l'employé à modifier -->
+			<% if (utilisateur == null) { %>
+				<form class="updateUser"action="/BoardBook/admin/updateUser" method="post">
+				<select>
+					<% for (Utilisateur u:listeUtilisateurs) {%>
+					<option value="<% u.getId(); %>"><%= u.getNom() + u.getPrenom() %></option>
+					<% } %>
+				</select>
+				<button type="submit">CHOISIR</button>
+				</form>
+			<!-- Modification de l'employé sélectionné -->
+			<% } else { %>
 			<form class="updateUser" action="/BoardBook/admin/updateUser" method="post">
 				<label for="nom">Nom : </label>
-				<input type="nom" value=""></br>
+				<input type="text" name="nom" value="<% utilisateur.getNom(); %>"></br>
 				<label for="prenom">Prenom : </label>
-				<input type="prenom" value=""></br>
-				<label for="conducteur">Conducteur</label>
-				<input type="checkbox" name="conducteur" value="true">
-				<label for="administrateur">Administrateur</label>
-				<input type="checkbox" name="administrateur" value="true"></br>
+				<input type="text" name="prenom" value="<% utilisateur.getPrenom(); %>"></br>
+				<label for="identifiant">Identifiant : </label>
+				<input type="text" name="idenftifiant" value="<% utilisateur.getIdentifiant(); %>"></br>
+				<label for="mdp">Prenom : </label>
+				<input type="text" name="mdp" value="<% utilisateur.getMdp(); %>"></br>
+				<% // Test de la condition conducteur de l'employé %>
+				<% if (utilisateur.isConducteur()) { %>
+					<label for="conducteur">Conducteur</label>
+					<input type="checkbox" name="conducteur" value="true" checked>
+				<% } else { %>
+					<label for="conducteur">Conducteur</label>
+					<input type="checkbox" name="conducteur" value="true">
+				<% } %>
+				<% if (utilisateur.isAdministrateur()) { %>
+					<label for="administrateur">Administrateur</label>
+					<input type="checkbox" name="administrateur" value="true" checked></br>
+				<% } else { %>
+					<label for="administrateur">Administrateur</label>
+					<input type="checkbox" name="administrateur" value="true"></br>
+				<% } %>
 				<button type="submit">MODIFIER</button>
 			</form>
+			<% } %>
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
