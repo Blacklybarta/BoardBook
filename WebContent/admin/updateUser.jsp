@@ -20,10 +20,11 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
 			<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
-			<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>()request.getAttribute("listeUtilisateurs"); %>
+			<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
 			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			<h3>Modification d'un employé</h3>
+
 			<!-- Choix de l'employé à modifier -->
 			<% if (utilisateur == null) { %>
 				<form class="updateUser"action="/BoardBook/admin/updateUser" method="post">
@@ -34,6 +35,7 @@
 				</select>
 				<button type="submit">CHOISIR</button>
 				</form>
+
 			<!-- Modification de l'employé sélectionné -->
 			<% } else { %>
 			<form class="updateUser" action="/BoardBook/admin/updateUser" method="post">
@@ -45,6 +47,7 @@
 				<input type="text" name="idenftifiant" value="<% utilisateur.getIdentifiant(); %>"></br>
 				<label for="mdp">Prenom : </label>
 				<input type="text" name="mdp" value="<% utilisateur.getMdp(); %>"></br>
+
 				<% // Test de la condition conducteur de l'employé %>
 				<% if (utilisateur.isConducteur()) { %>
 					<label for="conducteur">Conducteur</label>
