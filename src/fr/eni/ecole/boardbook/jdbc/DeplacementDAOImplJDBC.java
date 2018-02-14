@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.ecole.boardbook.bo.Deplacement;
+import fr.eni.ecole.boardbook.bo.Lieu;
+import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
 import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAO;
 import fr.eni.ecole.boardbook.dal.DBConnection;
@@ -17,6 +19,7 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 	
 	private static final String SQL_INSERT = "INSERT INTO DEPLACEMENT (nature) VALUES (?)";
 	private static final String SQL_DELETE = "UPDATE DEPLACEMENT SET actif=? WHERE idDeplacement=?";
+	private static final String SQL_SELECTALL = "SELECT * FROM DEPLACEMENT";
 	
 	private Connection con;
 	private PreparedStatement pstmt;
@@ -85,8 +88,45 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 
 	@Override
 	public List<Deplacement> selectAll() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			con = DBConnection.getConnection();
+			stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(SQL_SELECTALL);
+
+			Deplacement deplacement = null;
+			listDeplacements.clear();
+			while (rs.next()) {
+				
+				deplacement = new Deplacement();
+				
+				try {
+					deplacement.setNature(rs.getString("nature"));
+				} catch (ParameterNullException e) {
+					e.printStackTrace();
+				}
+				
+				deplacement.setId(rs.getInt("idDeplacement"));
+				deplacement.setActif(rs.getBoolean("actif"));
+				
+				listDeplacements.add(deplacement);
+				
+			}
+		} catch (SQLException e) {
+			throw new DALException("selectAll deplacement failed - ", e);
+		} finally {
+			try {
+
+				if (stmt != null) {
+					stmt.close();
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			closeConnection();
+		}
+		return listDeplacements;
 	}
 
 	@Override
