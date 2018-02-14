@@ -28,7 +28,7 @@
 			<!-- Choix de l'employé à modifier -->
 			<% if (utilisateur == null) { %>
 				<form class="updateUser"action="/BoardBook/admin/updateUser" method="post">
-				<select>
+				<select name="idUser">
 					<% for (Utilisateur u:listeUtilisateurs) {%>
 					<option value="<% u.getId(); %>"><%= u.getNom() + u.getPrenom() %></option>
 					<% } %>

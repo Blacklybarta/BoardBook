@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Lieu" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,14 +19,17 @@
 	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
+			<% List<Lieu> listeLieux = (ArrayList<Lieu>)request.getAttribute("listeLieux"); %>
 			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			<!-- Formulaire de suppression d'une destination -->
 			<h3>Suppression d'une destination</h3>
-			<form class="removeUser" action="/BoardBook/admin/removeUser" method="post">
+			<form class="removeDest" action="/BoardBook/admin/removeDest" method="post">
 				<label for="nom">Nom : </label>
 				<select name="nom">
+					<% for (Lieu l:listeLieux) {%>
+					<option value="<% l.getId(); %>"><%= l.getNom() %></option>
+					<% } %>
 				</select>
 				<button type="submit">SUPPRIMER</button>
 			</form>
