@@ -8,6 +8,7 @@ import fr.eni.ecole.boardbook.bo.Vehicule;
 import fr.eni.ecole.boardbook.jdbc.DeplacementDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.FicheDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.LieuDAOImplJDBC;
+import fr.eni.ecole.boardbook.jdbc.StatistiqueDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.UtilisateurDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.VehiculeDAOImplJDBC;
 
@@ -41,6 +42,15 @@ public class DAOFactory {
 		DAO<Utilisateur> utilisateurDAO = null;
 		utilisateurDAO = new UtilisateurDAOImplJDBC();
 		return utilisateurDAO;
+	}
+	
+	/**
+	 * Dal specifique, n'implemente pas l'interface DAO
+	 * @return
+	 */
+	public static StatistiqueDAOImplJDBC getStatistiqueDAO (){
+		StatistiqueDAOImplJDBC statistiqueDAO = new StatistiqueDAOImplJDBC();
+		return statistiqueDAO;
 	}
 	
 }
