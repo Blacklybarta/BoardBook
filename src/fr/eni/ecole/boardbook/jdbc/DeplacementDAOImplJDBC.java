@@ -70,7 +70,8 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 		try {
 			con = DBConnection.getConnection();
 			pstmt = con.prepareStatement(SQL_DELETE);
-			pstmt.setInt(1, id);
+			pstmt.setBoolean(1, false);
+			pstmt.setInt(2, id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new DALException("delete failed - ", e);
