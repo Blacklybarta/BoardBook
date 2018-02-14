@@ -4,6 +4,7 @@
   <welcome-file-list>
     <welcome-file>accueil.html</welcome-file>
   </welcome-file-list>
+  
   <servlet>
     <servlet-name>Accueil</servlet-name>
     <jsp-file>/accueil.html</jsp-file>
@@ -12,6 +13,8 @@
     <servlet-name>Accueil</servlet-name>
     <url-pattern>/accueil</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>Connexion</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoValiderAcces</servlet-class>
@@ -20,6 +23,8 @@
     <servlet-name>Connexion</servlet-name>
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>ErrorPage</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoErrorPage</servlet-class>
@@ -28,6 +33,8 @@
     <servlet-name>ErrorPage</servlet-name>
     <url-pattern>/errorPage</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>Deconnexion</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoLogOut</servlet-class>
@@ -36,6 +43,8 @@
     <servlet-name>Deconnexion</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>ValiderAcces</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoValiderAcces</servlet-class>
@@ -44,6 +53,8 @@
     <servlet-name>ValiderAcces</servlet-name>
     <url-pattern>/validerAcces</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AdminGestion</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminGestion</servlet-class>
@@ -52,6 +63,8 @@
     <servlet-name>AdminGestion</servlet-name>
     <url-pattern>/admin/gestion</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AdminAddUser</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminAddUser</servlet-class>
@@ -60,6 +73,8 @@
     <servlet-name>AdminAddUser</servlet-name>
     <url-pattern>/admin/addUser</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AdminUpdateUser</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminUpdateUser</servlet-class>
@@ -68,6 +83,8 @@
     <servlet-name>AdminUpdateUser</servlet-name>
     <url-pattern>/admin/updateUser</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AdminRemoveUser</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminRemoveUser</servlet-class>
@@ -76,6 +93,8 @@
     <servlet-name>AdminRemoveUser</servlet-name>
     <url-pattern>/admin/removeUser</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AdminAddDest</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminAddDest</servlet-class>
@@ -84,6 +103,8 @@
     <servlet-name>AdminAddDest</servlet-name>
     <url-pattern>/admin/addDest</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AdminRemoveDest</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminRemoveDest</servlet-class>
@@ -92,6 +113,8 @@
     <servlet-name>AdminRemoveDest</servlet-name>
     <url-pattern>/admin/removeDest</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AdminAddCar</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminAddCar</servlet-class>
@@ -100,6 +123,8 @@
     <servlet-name>AdminAddCar</servlet-name>
     <url-pattern>/admin/addCar</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AdminRemoveCar</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminRemoveCar</servlet-class>
@@ -165,6 +190,16 @@
   <servlet-mapping>
     <servlet-name>AdminKmDeplacement</servlet-name>
     <url-pattern>/admin/kmTypeDeplacement</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>AdminAppelGraphServlet</servlet-name>
+    <servlet-class>fr.eni.ecole.boardbook.servlet.GraphServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAppelGraphServlet</servlet-name>
+    <url-pattern>/admin/graphique</url-pattern>
   </servlet-mapping>
   
   

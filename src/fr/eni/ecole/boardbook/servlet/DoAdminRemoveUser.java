@@ -18,6 +18,7 @@ public class DoAdminRemoveUser extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Utilisateur> listUtilisateur;
 		try {
+			//envoi d'une liste d'utilisateur pour la selection
 			listUtilisateur = DAOFactory.getUtilisateurDAO().selectAll();
 			req.setAttribute("listeUtilisateurs", listUtilisateur);
 			this.getServletContext().getRequestDispatcher("/admin/removeUser.jsp").forward(req, resp);
@@ -33,6 +34,7 @@ public class DoAdminRemoveUser extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String[] values = req.getParameterValues("idUser");
 		try {
+			//suppression d'une utilisateur et redirection sur la page gestion damin
 			DAOFactory.getUtilisateurDAO().delete(Integer.parseInt(values[0]));
 			resp.sendRedirect("/BoardBook/admin/gestion");
 		} catch (NumberFormatException e) {

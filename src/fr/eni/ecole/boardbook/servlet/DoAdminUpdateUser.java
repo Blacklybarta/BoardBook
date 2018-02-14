@@ -18,7 +18,6 @@ public class DoAdminUpdateUser extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
 		try {
 			List<Utilisateur> listUtilisateur = DAOFactory.getUtilisateurDAO().selectAll();
 			req.setAttribute("listeUtilisateurs", listUtilisateur);

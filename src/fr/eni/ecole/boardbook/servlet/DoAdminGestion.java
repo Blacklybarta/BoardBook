@@ -18,12 +18,16 @@ public class DoAdminGestion extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		if (session.getAttribute("idUtilisateur") != null) {
+			// récupération d'info de connexion dans la session
 			if(String.valueOf(session.getAttribute("administrateur")).equals("true")){
+				//redirige sur la page admin si == true
 				this.getServletContext().getRequestDispatcher("/admin/gestion.jsp").forward(req, resp);
 			}else if(String.valueOf(session.getAttribute("conducteur")).equals("true")){
+				//redirige sur la page user si == true
 				this.getServletContext().getRequestDispatcher("/user/gestion.jsp").forward(req, resp);
 			}
 		} else {
+			// envoie a la connexion si session == null
 			resp.sendRedirect("/BoardBook/connexion.html");
 		}
 		}
