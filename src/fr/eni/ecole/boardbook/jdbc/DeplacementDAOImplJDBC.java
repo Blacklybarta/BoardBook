@@ -16,7 +16,7 @@ import fr.eni.ecole.boardbook.dal.DBConnection;
 public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 	
 	private static final String SQL_INSERT = "INSERT INTO DEPLACEMENT (nature) VALUES (?)";
-	private static final String DELETE = "DELETE FROM DEPLACEMENT WHERE idDeplacement=?";
+	private static final String SQL_DELETE = "UPDATE DEPLACEMENT SET actif=? WHERE idDeplacement=?";
 	
 	private Connection con;
 	private PreparedStatement pstmt;
@@ -63,10 +63,9 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 
 	@Override
 	public void delete(int id) throws DALException {
-		/*
 		try {
 			con = DBConnection.getConnection();
-			pstmt = con.prepareStatement(DELETE);
+			pstmt = con.prepareStatement(SQL_DELETE);
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -74,7 +73,6 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 		}finally {
 			closeConnection();
 		}
-		*/
 		
 	}
 
