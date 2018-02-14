@@ -56,7 +56,7 @@ public class Manager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
+		//sqsdfsdfsdf		
 		  
 		  DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 	      for(int i =0; i< listPoint.size(); ++i){
