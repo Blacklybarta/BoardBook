@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="fr.eni.ecole.boardbook.bo.Lieu" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Deplacement" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Vehicule" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,29 +26,43 @@
 				<h3>Création d'un déplacement</h3>
 					<form class="ajout" action="/BoardBook/user/ajout" method="post">
 						<% List<Lieu> listeLieux = (ArrayList<Lieu>)request.getAttribute("listeLieux"); %>
+						<label for="idDestination">Destination</label>
 						<select name="idDestination">
-						<option selected disabled hidden>Choisir une destination</option>
-						<% for (Lieu l:listeLieux) {%>
-							<option value="<%= l.getId() %>"><%= l.getNom() %></option>
-						<% } %>
+							<option selected disabled hidden>Choisir une destination</option>
+							<% for (Lieu l:listeLieux) {%>
+								<% if (l.isActif()) {%>
+									<option value="<%= l.getId() %>"><%= l.getNom() %></option>
+								<% } %>
+							<% } %>
 						</select></br>
-						<label for="lieuReception">Lieu de réception du véhicule : </label>
-						<select name="lieuReception">
-							<option>option 1
-							<option>option 2
-							<option>option 3
+						<label for="idReception">Lieu de réception du véhicule</label>
+						<select name="idReception">
+							<option selected disabled hidden>Choisir un lieu de réception</option>
+							<% for (Lieu l:listeLieux) {%>
+								<% if (l.isActif()) {%>
+									<option value="<%= l.getId() %>"><%= l.getNom() %></option>
+								<% } %>
+							<% } %>
 						</select></br>
-						<label for="nature">Nature du déplacement : </label>
-						<select name="nature">
-							<option>option 1
-							<option>option 2
-							<option>option 3
+						<% List<Deplacement> listeTypes = (ArrayList<Deplacement>)request.getAttribute("listeTypes"); %>
+						<label for="idType">Deplacement</label>
+						<select name="idType">
+							<option selected disabled hidden>Choisir une nature de déplacement</option>
+							<% for (Deplacement d:listeTypes) {%>
+								<% if (d.isActif()) { %>
+									<option value="<%= d.getId() %>"><%= d.getNature() %></option>
+								<% } %>
+							<% } %>
 						</select></br>
-						<label for="vehicule">Véhicule : </label>
-						<select name="vehicule">
-							<option>option 1
-							<option>option 2
-							<option>option 3
+						<% List<Vehicule> listeVehicules = (ArrayList<Vehicule>)request.getAttribute("listeVehicules"); %>
+						<label for="idVehicule">Vehicule</label>
+						<select name="idVehicule">
+							<option selected disabled hidden>Choisir un véhicule</option>
+							<% for (Vehicule v:listeVehicules) {%>
+								<% if (v.isDisponible()) { %>
+									<option value="<%= v.getId() %>"><%= v.getMarque() + " " + v.getImmatriculation()%></option>
+								<% } %>
+							<% } %>
 						</select></br>
 						<button type="submit">VALIDER LA CREATION</button>
 					</form>

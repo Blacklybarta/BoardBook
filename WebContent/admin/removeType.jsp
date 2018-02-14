@@ -20,12 +20,12 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
 			<br>
-			<!-- Formulaire de suppression d'un véhicule -->
-			<h3>Suppression d'un vehicule</h3>
+			<!-- Formulaire de suppression d'un type de déplacement -->
+			<h3>Suppression d'une nature de déplacement</h3>
 			<% List<Deplacement> listeTypes = (ArrayList<Deplacement>)request.getAttribute("listeTypes"); %>
 			<form class="removeType"action="/BoardBook/admin/removeType" method="post">
 				<select name="idType">
-					<option selected disabled hidden>Choisir un véhicule</option>
+					<option selected disabled hidden>Choisir une nature de déplacement</option>
 					<% for (Deplacement d:listeTypes) {%>
 						<option value="<%= d.getId() %>"><%= d.getNature() %></option>
 					<% } %>
