@@ -43,7 +43,6 @@ public class DoValiderAcces extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("cuicui");
 		String identifiant = req.getParameter("identifiant");
 		String mdp = req.getParameter("password");
 		HttpSession session = req.getSession();
@@ -51,7 +50,6 @@ public class DoValiderAcces extends HttpServlet {
 		resp.setHeader("Pragma", "no-cache");
 		resp.setHeader("Expires", "0");
 		Utilisateur utilisateur = null;
-		
 			try {
 				utilisateur = DAOFactory.getUtilisateurDAO().selectByIdentifiant(identifiant, mdp);
 				if (utilisateur != null) {

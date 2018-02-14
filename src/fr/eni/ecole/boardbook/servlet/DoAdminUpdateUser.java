@@ -40,7 +40,9 @@ public class DoAdminUpdateUser extends HttpServlet {
 		Utilisateur utilisateur = null;
 		try {
 			if(String.valueOf(req.getParameter("select")).equals("true")){
-				utilisateur = DAOFactory.getUtilisateurDAO().selectById(Integer.parseInt(req.getParameter("idUser")));
+				String[] values = req.getParameterValues("idUser");
+				System.out.println(values[0]);
+				utilisateur = DAOFactory.getUtilisateurDAO().selectById(Integer.parseInt(values[0]));
 				req.setAttribute("utilisateur", utilisateur);
 				this.getServletContext().getRequestDispatcher("/admin/updateUser.jsp").forward(req, resp);
 			}else if(String.valueOf(req.getParameter("update")).equals("true")){
