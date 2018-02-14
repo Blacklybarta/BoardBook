@@ -36,7 +36,6 @@ public class DoAdminUpdateUser extends HttpServlet {
 		try {
 			if(String.valueOf(req.getParameter("select")).equals("true")){
 				String[] values = req.getParameterValues("idUser");
-				System.out.println(values[0]);
 				utilisateur = DAOFactory.getUtilisateurDAO().selectById(Integer.parseInt(values[0]));
 				req.setAttribute("utilisateur", utilisateur);
 				this.getServletContext().getRequestDispatcher("/admin/updateUser.jsp").forward(req, resp);
@@ -49,12 +48,13 @@ public class DoAdminUpdateUser extends HttpServlet {
 				boolean admin = Boolean.valueOf(req.getParameter("administrateur"));
 				try {
 					utilisateur = new Utilisateur(nom, prenom, identifiant, mdp, conducteur, admin);
+					utilisateur.setId(Integer.parseInt(req.getParameter("id")));
+					DAOFactory.getUtilisateurDAO().update(utilisateur);
+					resp.sendRedirect("/BoardBook/admin/gestion");
 				} catch (ListException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				DAOFactory.getUtilisateurDAO().update(utilisateur);
-				resp.sendRedirect("/BoardBook/admin/gestion");
 			}
 		} catch (NumberFormatException | DALException e) {
 			// TODO Auto-generated catch block

@@ -148,6 +148,7 @@
     <servlet-name>UserCloture</servlet-name>
     <url-pattern>/user/cloture</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>UserSelectAll</servlet-name>
     <servlet-class>fr.eni.ecole.boardbook.servlet.DoUserSelectAll</servlet-class>
@@ -156,4 +157,15 @@
     <servlet-name>UserSelectAll</servlet-name>
     <url-pattern>/user/selectAll</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdminKmDeplacement</servlet-name>
+    <servlet-class>fr.eni.ecole.boardbook.servlet.DoKmTypeDeplacement</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminKmDeplacement</servlet-name>
+    <url-pattern>/admin/kmTypeDeplacement</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
