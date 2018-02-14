@@ -6,7 +6,7 @@
 <% if (String.valueOf(session.getAttribute("administrateur")).equals("true")) { %>
 <%@include file="../fragments/menuAdmin.html" %>
 <% } %>
-<%@include file="../fragments/statistiques.html" %>
+<%@include file="../fragments/menuStatistiques.html" %>
 </br>
 <a href="/BoardBook/logout">Déconnexion</a>
 </div>

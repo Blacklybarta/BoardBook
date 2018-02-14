@@ -17,16 +17,15 @@
 	
 	<div class="col-xs-12 col-sm-8">
 			<div class="contenu">
-				<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
 				<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 				<br>
 				<!-- Formulaire d'ajout d'un véhicule -->
 				<h3>Ajout d'un véhicule</h3>
 					<form class="addCar" action="/BoardBook/admin/addCar" method="post">
 						<label for="marque">Marque :</label>
-						<input name="marque"></br>
+						<input type="text" name="marque"></br>
 						<label for="immatriculation">Plaque d'immatriculation :</label>
-						<input name="immatriculation"></br>
+						<input type="text" name="immatriculation"></br>
 						<button type="submit">VALIDER LA CREATION</button>
 					</form>
 			</div>

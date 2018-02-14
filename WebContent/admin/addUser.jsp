@@ -17,20 +17,19 @@
 	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
 			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			<!-- Formulaire de création d'un conducteur -->
 			<h3>Création d'un compte conducteur</h3>
 			<form class="addUser" action="/BoardBook/admin/addUser" method="post">
 				<label for="nom">Nom :</label>
-				<input name="nom"></br>
+				<input type="text" name="nom"></br>
 				<label for="prenom">Prénom :</label>
-				<input name="prenom"></br>
+				<input type="text" name="prenom"></br>
 				<label for="identifiant">Identifiant :</label>
-				<input name="identifiant"></br>
+				<input type="text" name="identifiant"></br>
 				<label for="mdp">Mot de passe :</label>
-				<input name="mdp" type="password"></br>
+				<input type="text" name="mdp"></br>
 				<label for="conducteur">Conducteur</label>
 				<input type="checkbox" name="conducteur" value="true">
 				<label for="administrateur">Administrateur</label>

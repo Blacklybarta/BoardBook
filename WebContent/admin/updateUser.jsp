@@ -30,7 +30,7 @@
 				<form class="updateUser"action="/BoardBook/admin/updateUser" method="post">
 				<select name="idUser">
 					<% for (Utilisateur u:listeUtilisateurs) {%>
-					<option value="<% u.getId(); %>"><%= u.getNom() + u.getPrenom() %></option>
+					<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></option>
 					<% } %>
 				</select>
 				<input type="hidden" name="select" value="true"/>

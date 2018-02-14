@@ -19,13 +19,14 @@
 		<div class="contenu">
 			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
-			<!-- Formulaire de suppression d'un employé -->
-			<h3>Suppression d'un employé</h3>
+			<!-- Formulaire -->
+			<h3>Nombre de kilomètres par conducteur sur une periode</h3>
 			<form class="removeUser" action="/BoardBook/admin/removeUser" method="post">
-				<label for="nom">Nom : </label>
-				<input type="text" name="nom" value=""></br>
-				<label for="prenom">Prenom : </label>
-				<input type="text" name="prenom" value=""></br>
+				<label for="dateDebut">Début : </label>
+				<input type="date" name ="dateDebut"></br>
+				<label for="dateFin">Fin : </label>
+				<input type="date" name="dateFin"></br>
+				
 				<button type="submit">SUPPRIMER</button>
 			</form>
 		</div>

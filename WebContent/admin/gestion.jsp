@@ -16,7 +16,6 @@
 	</header>
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
 			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			<br>
