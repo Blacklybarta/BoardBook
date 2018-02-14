@@ -17,7 +17,7 @@ import fr.eni.ecole.boardbook.dal.DBConnection;
 
 public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 	
-	private static final String SQL_INSERT = "INSERT INTO DEPLACEMENT (nature) VALUES (?)";
+	private static final String SQL_INSERT = "INSERT INTO DEPLACEMENT (nature,actif) VALUES (?,?)";
 	private static final String SQL_DELETE = "UPDATE DEPLACEMENT SET actif=? WHERE idDeplacement=?";
 	private static final String SQL_SELECTALL = "SELECT * FROM DEPLACEMENT";
 	
@@ -44,6 +44,7 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 			con = DBConnection.getConnection();
 			pstmt = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, data.getNature());
+			pstmt.setBoolean(2, data.isActif());
 			int nbRows = pstmt.executeUpdate();
 			if (nbRows == 1) {
 				ResultSet key = pstmt.getGeneratedKeys();
