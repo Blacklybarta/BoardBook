@@ -19,6 +19,7 @@ public class DoUserAjout extends HttpServlet{
 			req.setAttribute("listeLieux", DAOFactory.getLieuDAO().selectAll());
 			req.setAttribute("listeTypes", DAOFactory.getDeplacementDAO().selectAll());
 			req.setAttribute("listeVehicules", DAOFactory.getVehiculeDAO().selectAll());
+
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

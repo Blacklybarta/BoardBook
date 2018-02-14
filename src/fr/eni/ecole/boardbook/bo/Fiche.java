@@ -12,8 +12,8 @@ public class Fiche {
 	private int id;
 	private GregorianCalendar dateDepart;
 	private GregorianCalendar dateCloture;
-	private Double nbKmEntree;
-	private Double nbKmSortie;
+	private int nbKmEntree;
+	private int nbKmSortie;
 	private Double carburantNbLitre;
 	private Double carburantMontant;
 	private boolean cloture;
@@ -28,7 +28,7 @@ public class Fiche {
 		
 	}
 
-	public Fiche(GregorianCalendar dateDepart, Double nbKmEntree) throws ListException {
+	public Fiche(GregorianCalendar dateDepart, int nbKmEntree) throws ListException {
 		ListException listE =  new ListException ();
 		boolean isException = false;
 		
@@ -80,11 +80,11 @@ public class Fiche {
 		this.dateCloture = dateCloture;
 	}
 
-	public Double getNbKmEntree() {
+	public int getNbKmEntree() {
 		return nbKmEntree;
 	}
 
-	public void setNbKmEntree(Double nbKmEntree) throws ParameterNullException {
+	public void setNbKmEntree(int nbKmEntree) throws ParameterNullException {
 		if (nbKmEntree > 0){
 			this.nbKmEntree = nbKmEntree;
 		}else {
@@ -92,11 +92,11 @@ public class Fiche {
 		}
 	}
 
-	public Double getNbKmSortie() {
+	public int getNbKmSortie() {
 		return nbKmSortie;
 	}
 
-	public void setNbKmSortie(Double nbKmSortie) throws ParameterNullException {
+	public void setNbKmSortie(int nbKmSortie) throws ParameterNullException {
 		if (nbKmSortie > nbKmEntree ){
 			this.nbKmSortie = nbKmSortie;
 		}else {
