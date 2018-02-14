@@ -47,7 +47,7 @@
 				<label for="prenom">Prenom : </label>
 				<input type="text" name="prenom" value="<%= utilisateur.getPrenom() %>"/></br>
 				<label for="identifiant">Identifiant : </label>
-				<input type="text" name="idenftifiant" value="<%= utilisateur.getIdentifiant() %>"/></br>
+				<input type="text" name="identifiant" value="<%= utilisateur.getIdentifiant() %>"/></br>
 				<label for="mdp">Prenom : </label>
 				<input type="text" name="mdp" value="<%= utilisateur.getMdp() %>"/></br>
 

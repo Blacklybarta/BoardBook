@@ -22,6 +22,7 @@ header {
   margin-right: auto;
   height: 100%;
   padding: 5px;
+  text-align: center;
 }
 
 .menu {
@@ -44,13 +45,14 @@ header {
 
 mark {
 	background-color: silver;
-	position: relative;
+	position: absolute;
+	left: 5px;
 }
 
 .deplacementEnCours {
 	background-color: silver;
 }
 
-input {
-	text-align: right;
+label {
+	width: 150px;
 }

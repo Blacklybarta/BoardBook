@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,13 +23,18 @@
 			<br>
 			<!-- Formulaire de suppression d'un employé -->
 			<h3>Suppression d'un employé</h3>
-			<form class="removeUser" action="/BoardBook/admin/removeUser" method="post">
-				<label for="nom">Nom : </label>
-				<input type="text" name="nom" value=""></br>
-				<label for="prenom">Prenom : </label>
-				<input type="text" name="prenom" value=""></br>
-				<button type="submit">SUPPRIMER</button>
-			</form>
+			<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
+			<form class="removeUser"action="/BoardBook/admin/removeUser" method="post">
+				<select name="idUser">
+					<% for (Utilisateur u:listeUtilisateurs) {%>
+
+					<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></option>
+
+					<% } %>
+				</select>
+				</br>
+				<button type="submit">CHOISIR</button>
+				</form>
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
