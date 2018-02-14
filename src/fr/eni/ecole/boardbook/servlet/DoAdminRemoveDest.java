@@ -30,8 +30,18 @@ public class DoAdminRemoveDest extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		String[] values = req.getParameterValues("idDest");
+		try {
+			//suppression d'une utilisateur et redirection sur la page gestion damin
+			DAOFactory.getLieuDAO().delete(Integer.parseInt(values[0]));
+			resp.sendRedirect("/BoardBook/admin/gestion");
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
