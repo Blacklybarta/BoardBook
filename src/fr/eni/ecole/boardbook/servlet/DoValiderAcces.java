@@ -43,7 +43,6 @@ public class DoValiderAcces extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("cuicui");
 		String identifiant = req.getParameter("identifiant");
 		String mdp = req.getParameter("password");
 		HttpSession session = req.getSession();
@@ -56,6 +55,7 @@ public class DoValiderAcces extends HttpServlet {
 				utilisateur = DAOFactory.getUtilisateurDAO().selectByIdentifiant(identifiant, mdp);
 				if (utilisateur != null) {
 					if (utilisateur.isAdministrateur()) {
+						
 						req.setAttribute("utilisateur", utilisateur);
 						session.setAttribute("idUtilisateur", utilisateur.getId());
 						session.setAttribute("nomUtilisateur", utilisateur.getNom());
