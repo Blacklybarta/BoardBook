@@ -16,11 +16,10 @@
 	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			
 			<!-- Graphique -->
-			<img src="http://localhost:8080/BoardBook/testGraph">
+			<img src="http://localhost:8080/BoardBook/admin/graphique">
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">

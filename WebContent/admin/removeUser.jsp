@@ -25,11 +25,11 @@
 			<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
 			<form class="removeUser"action="/BoardBook/admin/removeUser" method="post">
 				<select name="idUser">
+					<option selected disabled hidden>Choisir un employé</option>
 					<% for (Utilisateur u:listeUtilisateurs) {%>
 						<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></option>
 					<% } %>
 				</select>
-				</br>
 				<button type="submit">SUPPRIMER</button>
 			</form>
 		</div>

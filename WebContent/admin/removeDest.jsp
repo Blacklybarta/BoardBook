@@ -25,11 +25,11 @@
 			<% List<Lieu> listeLieux = (ArrayList<Lieu>)request.getAttribute("listeLieux"); %>
 			<form class="removeDest"action="/BoardBook/admin/removeDest" method="post">
 				<select name="idDest">
+					<option selected disabled hidden>Choisir une destination</option>
 					<% for (Lieu l:listeLieux) {%>
 						<option value="<%= l.getId() %>"><%= l.getNom()%></option>
 					<% } %>
 				</select>
-				</br>
 				<button type="submit">SUPPRIMER</button>
 			</form>
 		</div>
