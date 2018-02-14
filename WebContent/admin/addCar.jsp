@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,11 +16,11 @@
 	</header>
 	
 	<div class="col-xs-12 col-sm-8">
-			<!-- Formulaire d'ajout d'un véhicule -->
 			<div class="contenu">
-			<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
-				<mark>L'utilisateur Arthur est connecté en tant qu'administrateur</mark>
+				<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
+				<mark>L'utilisateur <%= utilisateur.getNom() %> est connecté</mark>
 				<br>
+				<!-- Formulaire d'ajout d'un véhicule -->
 				<h3>Ajout d'un véhicule</h3>
 					<form class="addCar" action="/BoardBook/admin/addCar" method="post">
 						<label for="marque">Marque :</label>
@@ -33,6 +32,8 @@
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-4">
+		
+			<!-- Menu -->
 			<%@include file="../fragments/menu.jsp" %>
 		</div>
 </body>

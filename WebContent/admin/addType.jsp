@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,10 +16,11 @@
 	</header>
 	
 	<div class="col-xs-12 col-sm-8">
-			<!-- Formulaire d'ajout d'un type de déplacement -->
 			<div class="contenu">
-				<mark>L'utilisateur Arthur est connecté en tant qu'administrateur</mark>
+				<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
+				<mark>L'utilisateur <%= utilisateur.getNom() %> est connecté</mark>
 				<br>
+				<!-- Formulaire d'ajout d'un type de déplacement -->
 				<h3>Ajout d'un type de déplacement</h3>
 					<form class="addType" action="/BoardBook/admin/addUser" method="post">
 						<label for="nom">Type de déplacement :</label>
@@ -31,13 +32,7 @@
 		<div class="col-xs-12 col-sm-4">
 
 			<!-- Menu -->
-			<div class="menu">
-				<h3>Menu</h3>
-				<%@include file="../fragments/menuUser.html" %>
-				<%@include file="../fragments/menuAdmin.html" %>
-				<br>
-				<a href="/BoardBook/logout">Déconnexion</a>
-			</div>
+			<%@include file="../fragments/menu.jsp" %>
 		</div>
 </body>
 </html>
