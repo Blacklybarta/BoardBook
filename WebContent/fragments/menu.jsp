@@ -1,9 +1,9 @@
 <div class="menu">
 <h3>Menu</h3>
-<% if ((boolean)session.getAttribute("conducteur")) { %>
+<% if (String.valueOf(session.getAttribute("conducteur")).equals("true")) { %>
 <%@include file="../fragments/menuUser.html" %>
 <% } %>
-<% if ((boolean)session.getAttribute("administrateur")) { %>
+<% if (String.valueOf(session.getAttribute("administrateur")).equals("true")) { %>
 <%@include file="../fragments/menuAdmin.html" %>
 <% } %>
 <%@include file="../fragments/statistiques.html" %>
