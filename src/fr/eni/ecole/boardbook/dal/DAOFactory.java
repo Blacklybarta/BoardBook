@@ -8,6 +8,7 @@ import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.bo.Vehicule;
 import fr.eni.ecole.boardbook.jdbc.DeplacementDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.FicheDAOImplJDBC;
+import fr.eni.ecole.boardbook.jdbc.GraphKmMensuelParUtilisateur;
 import fr.eni.ecole.boardbook.jdbc.GraphKmParDeplementDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.LieuDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.UtilisateurDAOImplJDBC;
@@ -54,6 +55,12 @@ public class DAOFactory {
 		DAO<Point<String, Integer, Boolean>> graphKmParDeplementDAO = null;
 		graphKmParDeplementDAO = new GraphKmParDeplementDAOImplJDBC();
 		return graphKmParDeplementDAO;
+	}
+	
+	public static DAO<Point<Utilisateur, Integer, Integer>> getGraphKmMensuelParUtilisateur () {
+		DAO<Point<Utilisateur, Integer, Integer>> graphKmMensuelParUtilisateur = null;
+		graphKmMensuelParUtilisateur = new GraphKmMensuelParUtilisateur();
+		return graphKmMensuelParUtilisateur;
 	}
 	
 }
