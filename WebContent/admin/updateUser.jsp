@@ -33,6 +33,7 @@
 					<option value="<% u.getId(); %>"><%= u.getNom() + u.getPrenom() %></option>
 					<% } %>
 				</select>
+				<input type="hidden" name="select" value="true"/>
 				<button type="submit">CHOISIR</button>
 				</form>
 
@@ -63,6 +64,7 @@
 					<label for="administrateur">Administrateur</label>
 					<input type="checkbox" name="administrateur" value="true"></br>
 				<% } %>
+				<input type="hidden" name="update" value="true"/>
 				<button type="submit">MODIFIER</button>
 			</form>
 			<% } %>
