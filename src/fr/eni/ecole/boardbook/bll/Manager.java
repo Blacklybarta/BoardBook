@@ -88,7 +88,7 @@ public class Manager {
 	      for(int i =0; i< listPoint.size(); ++i){
 	    	  int mois = listPoint.get(i).getZ()-1;
 	    	  GregorianCalendar calendar = new GregorianCalendar (0,mois,0);
-	    	  String month = calendar.;
+	    	  String month = calendar.get();
 	    	  
 	    	  dataset.addValue( listPoint.get(i).getY() , listPoint.get(i).getX() , "" );
 	      }        

@@ -17,11 +17,11 @@ public class Fiche {
 	private Double carburantNbLitre;
 	private Double carburantMontant;
 	private boolean cloture;
-	private Deplacement natureDeplacement;
-	private Vehicule vehiculeLoue;
-	private Lieu lieuArrivee;
-	private Lieu lieuDepart;
-	private List<Utilisateur> conducteur = new ArrayList<Utilisateur>();
+	private Deplacement natureDeplacement = new Deplacement();
+	private Vehicule vehiculeLoue = new Vehicule();
+	private Lieu lieuArrivee = new Lieu ();
+	private Lieu lieuDepart  = new Lieu ();
+	private List<Utilisateur> conducteurList = new ArrayList<Utilisateur>();
 	private String commentaire;
 	
 	
@@ -184,12 +184,12 @@ public class Fiche {
 	}
 		
 
-	public List<Utilisateur> getConducteur() {
-		return conducteur;
+	public List<Utilisateur> getConducteurList() {
+		return conducteurList;
 	}
 
 	private void setConducteur(List<Utilisateur> conducteur) {
-		this.conducteur = conducteur;
+		this.conducteurList = conducteur;
 	}
 	
 	
