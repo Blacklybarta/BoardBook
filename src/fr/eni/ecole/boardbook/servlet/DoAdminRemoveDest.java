@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.boardbook.bo.Lieu;
 import fr.eni.ecole.boardbook.dal.DALException;
@@ -16,16 +17,20 @@ public class DoAdminRemoveDest extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		try {
-			//seletion de tous les lieux et envoie la jsp de suppression
-			List<Lieu> listLieu = DAOFactory.getLieuDAO().selectAll();
-			req.setAttribute("listeLieux", listLieu);
-			this.getServletContext().getRequestDispatcher("/admin/removeDest.jsp").forward(req, resp);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+		HttpSession session = req.getSession();
+		if(String.valueOf(session.getAttribute("administrateur")).equals("true")){
+			try {
+				//seletion de tous les lieux et envoie la jsp de suppression
+				List<Lieu> listLieu = DAOFactory.getLieuDAO().selectAll();
+				req.setAttribute("listeLieux", listLieu);
+				this.getServletContext().getRequestDispatcher("/admin/removeDest.jsp").forward(req, resp);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			resp.sendRedirect("/BoardBook/connexion.html");
+		}
 	}
 	
 	@Override

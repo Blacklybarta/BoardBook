@@ -54,7 +54,6 @@ public class DoValiderAcces extends HttpServlet {
 				utilisateur = DAOFactory.getUtilisateurDAO().selectByIdentifiant(identifiant, mdp);
 				if (utilisateur != null) {
 					if (utilisateur.isAdministrateur()) {
-						
 						req.setAttribute("utilisateur", utilisateur);
 						session.setAttribute("idUtilisateur", utilisateur.getId());
 						session.setAttribute("nomUtilisateur", utilisateur.getNom());

@@ -18,15 +18,19 @@ public class DoAdminUpdateUser extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-			List<Utilisateur> listUtilisateur = DAOFactory.getUtilisateurDAO().selectAll();
-			req.setAttribute("listeUtilisateurs", listUtilisateur);
-			this.getServletContext().getRequestDispatcher("/admin/updateUser.jsp").forward(req, resp);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		HttpSession session = req.getSession();
+		if(String.valueOf(session.getAttribute("administrateur")).equals("true")){
+			try {
+				List<Utilisateur> listUtilisateur = DAOFactory.getUtilisateurDAO().selectAll();
+				req.setAttribute("listeUtilisateurs", listUtilisateur);
+				this.getServletContext().getRequestDispatcher("/admin/updateUser.jsp").forward(req, resp);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			resp.sendRedirect("/BoardBook/connexion.html");
 		}
-		
 	}
 	
 	@Override

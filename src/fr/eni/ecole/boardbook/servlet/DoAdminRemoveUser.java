@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.dal.DALException;
@@ -16,18 +17,22 @@ public class DoAdminRemoveUser extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Utilisateur> listUtilisateur;
-		try {
-			//envoi d'une liste d'utilisateur pour la selection
-			listUtilisateur = DAOFactory.getUtilisateurDAO().selectAll();
-			req.setAttribute("listeUtilisateurs", listUtilisateur);
-			this.getServletContext().getRequestDispatcher("/admin/removeUser.jsp").forward(req, resp);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		HttpSession session = req.getSession();
+		if(String.valueOf(session.getAttribute("administrateur")).equals("true")){
+			try {
+				List<Utilisateur> listUtilisateur;
+				//envoi d'une liste d'utilisateur pour la selection
+				listUtilisateur = DAOFactory.getUtilisateurDAO().selectAll();
+				req.setAttribute("listeUtilisateurs", listUtilisateur);
+				this.getServletContext().getRequestDispatcher("/admin/removeUser.jsp").forward(req, resp);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			resp.sendRedirect("/BoardBook/connexion.html");
 		}
-		
-		
 	}
 	
 	@Override

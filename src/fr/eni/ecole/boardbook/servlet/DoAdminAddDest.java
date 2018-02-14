@@ -18,9 +18,12 @@ public class DoAdminAddDest extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		this.getServletContext().getRequestDispatcher("/admin/addDest.jsp").forward(req, resp);
-		
+		HttpSession session = req.getSession();
+		if(String.valueOf(session.getAttribute("administrateur")).equals("true")){
+			this.getServletContext().getRequestDispatcher("/admin/addDest.jsp").forward(req, resp);
+		}else{
+			resp.sendRedirect("/BoardBook/connexion.html");
+		}
 	}
 	
 	@Override

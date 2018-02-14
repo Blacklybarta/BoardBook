@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.boardbook.bo.Vehicule;
 import fr.eni.ecole.boardbook.dal.DALException;
@@ -16,16 +17,19 @@ public class DoAdminRemoveCar extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		try {
-			List<Vehicule> listVehicule = DAOFactory.getVehiculeDAO().selectAll();
-			req.setAttribute("listeVehicules", listVehicule);
-			this.getServletContext().getRequestDispatcher("/admin/removeCar.jsp").forward(req, resp);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		HttpSession session = req.getSession();
+		if(String.valueOf(session.getAttribute("administrateur")).equals("true")){
+			try {
+				List<Vehicule> listVehicule = DAOFactory.getVehiculeDAO().selectAll();
+				req.setAttribute("listeVehicules", listVehicule);
+				this.getServletContext().getRequestDispatcher("/admin/removeCar.jsp").forward(req, resp);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			resp.sendRedirect("/BoardBook/connexion.html");
 		}
-		
 		
 		
 		
