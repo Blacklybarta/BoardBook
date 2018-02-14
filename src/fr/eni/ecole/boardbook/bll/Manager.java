@@ -48,8 +48,7 @@ public class Manager {
 		return graph;
 	}
 	
-	private static JFreeChart createGraphKmDeplacement (){
-		
+	private static JFreeChart createGraphKmDeplacement (){	
 		List <Point <String, Integer, Boolean>> listPoint = null;
 		try {
 			listPoint = DAOFactory.getGraphKmParDeplementDAO().selectAll();
@@ -67,7 +66,7 @@ public class Manager {
 	      //	      dataset.addValue( 3.0 , fiat , userrating );        
 	
 		JFreeChart graph = ChartFactory.createBarChart(
-	    	         "Nombre de Km en fonction du déplacement",           
+	    	         "Nombre de Km par mois et par utilisateur",           
 	    	         "Déplacements",            
 	    	         "Nb km",            
 	    	         dataset,          
@@ -78,6 +77,8 @@ public class Manager {
 	
 	
 	private static JFreeChart createGraphKmUtilisateur (){
+
+		
 		return null;
 	}
 	
