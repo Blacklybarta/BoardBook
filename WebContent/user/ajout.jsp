@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="fr.eni.ecole.boardbook.bo.Lieu" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,11 +23,12 @@
 				<br>
 				<h3>Création d'un déplacement</h3>
 					<form class="ajout" action="/BoardBook/user/ajout" method="post">
-						<label for="destination">Destination : </label>
-						<select name="destination">
-							<option>option 1
-							<option>option 2
-							<option>option 3
+						<% List<Lieu> listeLieux = (ArrayList<Lieu>)request.getAttribute("listeLieux"); %>
+						<select name="idDestination">
+						<option selected disabled hidden>Choisir une destination</option>
+						<% for (Lieu l:listeLieux) {%>
+							<option value="<%= l.getId() %>"><%= l.getNom() %></option>
+						<% } %>
 						</select></br>
 						<label for="lieuReception">Lieu de réception du véhicule : </label>
 						<select name="lieuReception">
