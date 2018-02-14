@@ -67,6 +67,7 @@
 					<input type="checkbox" name="administrateur" value="true"></br>
 				<% } %>
 				<input type="hidden" name="update" value="true"/>
+				<input type="hidden" name="id" value="<%= utilisateur.getId() %>"/>
 				<button type="submit">MODIFIER</button>
 			</form>
 			<% } %>

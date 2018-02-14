@@ -50,3 +50,7 @@ mark {
 .deplacementEnCours {
 	background-color: silver;
 }
+
+input {
+	text-align: right;
+}
