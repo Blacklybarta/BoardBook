@@ -18,7 +18,6 @@
 	<div class="col-xs-12 col-sm-8">
 			<!-- Formulaire d'ajout d'un type de déplacement -->
 			<div class="contenu">
-				<mark>L'utilisateur Arthur est connecté en tant qu'utilisateur</mark>
 				<br>
 				<h3>Clôture d'un déplacement</h3>
 					<div class="col-xs-12">
@@ -39,15 +38,7 @@
 		<div class="col-xs-12 col-sm-4">
 
 			<!-- Menu -->
-			<div class="menu">
-				<h3>Menu</h3>
-				<!-- Menu admin -->
-				<%@include file="../fragments/menuUser.html" %>
-				<!-- Menu user -->
-				<%@include file="../fragments/menuAdmin.html" %>
-				<br>
-				<a href="/BoardBook/logout">Déconnexion</a>
-			</div>
+			<%@include file="../fragments/menu.jsp" %>
 		</div>
 </body>
 </html>

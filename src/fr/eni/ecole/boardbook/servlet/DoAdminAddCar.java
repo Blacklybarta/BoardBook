@@ -31,7 +31,7 @@ public class DoAdminAddCar extends HttpServlet{
 		String immatriculation = String.valueOf(req.getParameter("immatriculation"));
 				
 		try {
-			Vehicule vehicule;
+			Vehicule vehicule = null;
 			try {
 				// Par defaut le vehicule est disponible lors d'un ajout
 				vehicule = new Vehicule(marque, immatriculation, true);

@@ -18,7 +18,6 @@
 		
 			<!-- Présentation des possibilités de l'utilisateur -->
 			<div class="contenu">
-				<mark>L'utilisateur Arthur est connecté en tant qu'utilisateur</mark>
 				<br>
 				<br>
 				En tant qu'utilisateur vous pouvez :<br>
@@ -32,12 +31,7 @@
 		<div class="col-xs-12 col-sm-4">
 
 			<!-- Menu -->
-			<div class="menu">
-				<h3>Menu</h3>
-				<%@include file="../fragments/menuUser.html" %>
-				<br>
-				<a href="/BoardBook/logout">Déconnexion</a>
-			</div>
+			<%@include file="../fragments/menu.jsp" %>
 		</div>
 </body>
 </html>

@@ -20,6 +20,7 @@ public class Vehicule {
 	public Vehicule(String marque, String immatriculation, boolean disponible) throws ListException {		
 		ListException listE =  new ListException ();
 		boolean isException = false;
+		this.disponible = disponible;
 		try {
 			this.setMarque(marque);
 		} catch (ParameterNullException e) {
