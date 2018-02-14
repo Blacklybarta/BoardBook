@@ -17,24 +17,23 @@
 	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			<!-- Formulaire de création d'un conducteur -->
 			<h3>Création d'un compte conducteur</h3>
 			<form class="addUser" action="/BoardBook/admin/addUser" method="post">
-				<label for="nom">Nom :</label>
+				<label for="nom">Nom</label>
 				<input type="text" name="nom"></br>
-				<label for="prenom">Prénom :</label>
+				<label for="prenom">Prénom</label>
 				<input type="text" name="prenom"></br>
-				<label for="identifiant">Identifiant :</label>
+				<label for="identifiant">Identifiant</label>
 				<input type="text" name="identifiant"></br>
-				<label for="mdp">Mot de passe :</label>
+				<label for="mdp">Mot de passe</label>
 				<input type="text" name="mdp"></br>
 				<label for="conducteur">Conducteur</label>
 				<input type="checkbox" name="conducteur" value="true">
 				<label for="administrateur">Administrateur</label>
 				<input type="checkbox" name="administrateur" value="true"></br>
-				<button type="submit">VALIDER LA CREATION</button>
+				<button type="submit">CREER</button>
 			</form>
 		</div>
 	</div>

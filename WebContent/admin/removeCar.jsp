@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="fr.eni.ecole.boardbook.bo.Vehicule" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,9 +20,18 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
 			<br>
-			
-			<!-- Graphique -->
-			<img src="http://localhost:8080/BoardBook/admin/graphique">
+			<!-- Formulaire de suppression d'un véhicule -->
+			<h3>Suppression d'un vehicule</h3>
+			<% List<Vehicule> listeVehicules = (ArrayList<Vehicule>)request.getAttribute("listeVehicules"); %>
+			<form class="removeCar"action="/BoardBook/admin/removeCar" method="post">
+				<select name="idVehicule">*
+					<option selected disabled hidden>Choisir un véhicule</option>
+					<% for (Vehicule v:listeVehicules) {%>
+						<option value="<%= v.getId() %>"><%= v.getMarque() + " " + v.getImmatriculation()%></option>
+					<% } %>
+				</select>
+				<button type="submit">SUPPRIMER</button>
+			</form>
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">

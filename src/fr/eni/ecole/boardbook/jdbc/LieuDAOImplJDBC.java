@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.ecole.boardbook.bo.Fiche;
 import fr.eni.ecole.boardbook.bo.Lieu;
+import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
 import fr.eni.ecole.boardbook.dal.DAO;
 import fr.eni.ecole.boardbook.dal.DBConnection;
 import fr.eni.ecole.boardbook.dal.DALException;
@@ -23,6 +23,7 @@ public class LieuDAOImplJDBC implements DAO<Lieu>{
 	
 	private static final String SQL_INSERT = "INSERT INTO LIEU(nom,actif) VALUES(?,?)";
 	private static final String SQL_DELETE = "UPDATE LIEU SET actif=? WHERE idLieu=?";
+	private static final String SQL_SELECTALL = "SELECT * FROM LIEU";
 	
 	public void closeConnection(){
 		if(con!=null){
@@ -118,8 +119,45 @@ public class LieuDAOImplJDBC implements DAO<Lieu>{
 
 	@Override
 	public List<Lieu> selectAll() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			con = DBConnection.getConnection();
+			stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(SQL_SELECTALL);
+
+			Lieu lieu = null;
+			listLieux.clear();
+			while (rs.next()) {
+				
+				lieu = new Lieu();
+				
+				try {
+					lieu.setNom(rs.getString("nom"));
+				} catch (ParameterNullException e) {
+					e.printStackTrace();
+				}
+				
+				lieu.setId(rs.getInt("idLieu"));
+				lieu.setActif(rs.getBoolean("actif"));
+
+				
+				listLieux.add(lieu);
+			}
+		} catch (SQLException e) {
+			throw new DALException("selectAll lieu failed - ", e);
+		} finally {
+			try {
+
+				if (stmt != null) {
+					stmt.close();
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			closeConnection();
+		}
+		return listLieux;
 	}
 
 	@Override

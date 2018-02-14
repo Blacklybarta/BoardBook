@@ -56,14 +56,11 @@ public class Manager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
 		  
 		  DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 	      for(int i =0; i< listPoint.size(); ++i){
 	    	  dataset.addValue( listPoint.get(i).getY() , listPoint.get(i).getX() , "" );
-	      }
-	          
-	      //	      dataset.addValue( 3.0 , fiat , userrating );        
+	      }        
 	
 		JFreeChart graph = ChartFactory.createBarChart(
 	    	         "Nombre de Km par mois et par utilisateur",           
@@ -83,14 +80,17 @@ public class Manager {
 	}
 	
 	private static JFreeChart createGraphKmConsommationUtilisateur (){
+		
 		return null;
 	}
 	
 	private static JFreeChart createGraphKmConsommationVehicule (){
+		
 		return null;
 	}
 	
 	private static JFreeChart createGraphNbJourVehicule () {
+		
 		return null;
 	}
 	

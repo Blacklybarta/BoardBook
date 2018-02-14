@@ -21,7 +21,6 @@
 		<div class="contenu">
 			<% Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
 			<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
-			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			<h3>Modification d'un employé</h3>
 
@@ -29,6 +28,7 @@
 			<% if (utilisateur == null) { %>
 				<form class="updateUser"action="/BoardBook/admin/updateUser" method="post">
 				<select name="idUser">
+					<option selected disabled hidden>Choisir un employé</option>
 					<% for (Utilisateur u:listeUtilisateurs) {%>
 
 					<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></option>
@@ -42,13 +42,13 @@
 			<!-- Modification de l'employé sélectionné -->
 			<% } else { %>
 			<form class="updateUser" action="/BoardBook/admin/updateUser" method="post">
-				<label for="nom">Nom : </label>
+				<label for="nom">Nom</label>
 				<input type="text" name="nom" value="<%= utilisateur.getNom() %>"/></br>
-				<label for="prenom">Prenom : </label>
+				<label for="prenom">Prenom</label>
 				<input type="text" name="prenom" value="<%= utilisateur.getPrenom() %>"/></br>
-				<label for="identifiant">Identifiant : </label>
-				<input type="text" name="idenftifiant" value="<%= utilisateur.getIdentifiant() %>"/></br>
-				<label for="mdp">Prenom : </label>
+				<label for="identifiant">Identifiant</label>
+				<input type="text" name="identifiant" value="<%= utilisateur.getIdentifiant() %>"/></br>
+				<label for="mdp">Prenom</label>
 				<input type="text" name="mdp" value="<%= utilisateur.getMdp() %>"/></br>
 
 				<% // Test de la condition conducteur de l'employé %>
@@ -67,6 +67,7 @@
 					<input type="checkbox" name="administrateur" value="true"></br>
 				<% } %>
 				<input type="hidden" name="update" value="true"/>
+				<input type="hidden" name="id" value="<%= utilisateur.getId() %>"/>
 				<button type="submit">MODIFIER</button>
 			</form>
 			<% } %>

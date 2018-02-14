@@ -16,12 +16,13 @@ header {
 
 .contenu {
   background-color: white;
-  margin-top: 20px;
   text-align: left;
   margin-left: auto;
   margin-right: auto;
   height: 100%;
-  padding: 5px;
+  padding: 0px;
+  text-align: center;
+  font-size: 20px;
 }
 
 .menu {
@@ -42,11 +43,15 @@ header {
 	color: white;
 }
 
-mark {
-	background-color: silver;
-	position: relative;
+.connecte {
+	font-size: 11px;
+	color: white;
 }
 
 .deplacementEnCours {
 	background-color: silver;
+}
+
+label {
+	width: 300px;
 }

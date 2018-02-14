@@ -19,16 +19,15 @@
 	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<% List<Lieu> listeLieux = (ArrayList<Lieu>)request.getAttribute("listeLieux"); %>
-			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			<!-- Formulaire de suppression d'une destination -->
 			<h3>Suppression d'une destination</h3>
-			<form class="removeDest" action="/BoardBook/admin/removeDest" method="post">
-				<label for="nom">Nom : </label>
-				<select name="nom">
+			<% List<Lieu> listeLieux = (ArrayList<Lieu>)request.getAttribute("listeLieux"); %>
+			<form class="removeDest"action="/BoardBook/admin/removeDest" method="post">
+				<select name="idDest">
+					<option selected disabled hidden>Choisir une destination</option>
 					<% for (Lieu l:listeLieux) {%>
-					<option value="<% l.getId(); %>"><%= l.getNom() %></option>
+						<option value="<%= l.getId() %>"><%= l.getNom()%></option>
 					<% } %>
 				</select>
 				<button type="submit">SUPPRIMER</button>

@@ -17,12 +17,11 @@
 	
 	<div class="col-xs-12 col-sm-8">
 			<div class="contenu">
-				<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 				<br>
 				<!-- Formulaire de création d'une destination -->
 				<h3>Création d'une destination</h3>
 					<form class="addDest" action="/BoardBook/admin/addDest" method="post">
-						<label for="nom">Nouvelle destination :</label>
+						<label for="nom">Nouvelle destination</label>
 						<input type="text" name="nom"></br>
 						<button type="submit">VALIDER LA CREATION</button>
 					</form>
