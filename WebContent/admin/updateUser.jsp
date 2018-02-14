@@ -40,13 +40,13 @@
 			<% } else { %>
 			<form class="updateUser" action="/BoardBook/admin/updateUser" method="post">
 				<label for="nom">Nom : </label>
-				<input type="text" name="nom" value="<% utilisateur.getNom(); %>"></br>
+				<input type="text" name="nom" value="<% utilisateur.getNom(); %>"/></br>
 				<label for="prenom">Prenom : </label>
-				<input type="text" name="prenom" value="<% utilisateur.getPrenom(); %>"></br>
+				<input type="text" name="prenom" value="<% utilisateur.getPrenom(); %>"/></br>
 				<label for="identifiant">Identifiant : </label>
-				<input type="text" name="idenftifiant" value="<% utilisateur.getIdentifiant(); %>"></br>
+				<input type="text" name="idenftifiant" value="<% utilisateur.getIdentifiant(); %>"/></br>
 				<label for="mdp">Prenom : </label>
-				<input type="text" name="mdp" value="<% utilisateur.getMdp(); %>"></br>
+				<input type="text" name="mdp" value="<% utilisateur.getMdp(); %>"/></br>
 
 				<% // Test de la condition conducteur de l'employé %>
 				<% if (utilisateur.isConducteur()) { %>
