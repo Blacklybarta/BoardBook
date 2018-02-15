@@ -81,7 +81,6 @@ public class DoUserAjout extends HttpServlet{
 		try {
 			lieuArrive =  DAOFactory.getLieuDAO().selectById(idDestination);
 			lieuDepart =  DAOFactory.getLieuDAO().selectById(idLieuReception);
-			System.out.println(lieuDepart);
 			natureDeplacement = DAOFactory.getDeplacementDAO().selectById(idNature);
 			vehicule = DAOFactory.getVehiculeDAO().selectById(idVehicule);
 			conducteurPrincipale = DAOFactory.getUtilisateurDAO().selectById(idConducteurPrincipal);
