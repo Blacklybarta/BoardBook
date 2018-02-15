@@ -80,7 +80,12 @@ public class Manager {
 	private static JFreeChart createGraphKmUtilisateur (){
 		List<Point<Utilisateur, Integer, Integer>> listPoint = null;
 
-		listPoint = (List<Point<Utilisateur, Integer, Integer>>) DAOFactory.getGraphKmMensuelParUtilisateur();
+		try {
+			listPoint =  DAOFactory.getGraphKmMensuelParUtilisateur().selectAll();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (int i = 0; i < listPoint.size(); ++i) {

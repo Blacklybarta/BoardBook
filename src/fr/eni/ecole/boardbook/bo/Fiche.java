@@ -240,7 +240,7 @@ public class Fiche {
 	}
 
 	public void setLieuDepart(Lieu lieuDepart) throws ParameterNullException {
-		if (lieuArrivee != null ){
+		if (lieuDepart != null ){
 			this.lieuDepart = lieuDepart;
 		}else {
 			throw new ParameterNullException("Un lieu de départ doit être défini");

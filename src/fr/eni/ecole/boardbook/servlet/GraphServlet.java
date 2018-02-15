@@ -33,7 +33,7 @@ public class GraphServlet extends HttpServlet {
     	  response.setContentType("image/png"); 
           BufferedImage buf = graph.createBufferedImage(640, 400, null);
           PngEncoder encoder = new PngEncoder( buf, false, 0, 9 );
-          response.getOutputStream().write(encoder.pngEncode() );
+          response.getOutputStream().write(encoder.pngEncode());
 	}
 
 }
