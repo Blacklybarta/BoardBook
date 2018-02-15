@@ -24,7 +24,7 @@
 				<!-- Formulaire de sélection du véhicule -->
 				<% List<Vehicule> listeVehicules = (ArrayList<Vehicule>)request.getAttribute("listeVehicules"); %>
 				<form action="/BoardBook/user/ageVehicule" method="post">
-					<select name="vehicule">
+					<select name="vehicule" required>
 						<option selected disabled hidden>Choisir un véhicule</option>
 						<% for (Vehicule v:listeVehicules) {%>
 							<option value="<%= v.getId() %>"><%= v.getMarque() + " " + v.getImmatriculation() %></option>
