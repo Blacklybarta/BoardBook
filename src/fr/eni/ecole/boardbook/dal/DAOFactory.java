@@ -16,7 +16,7 @@ import fr.eni.ecole.boardbook.jdbc.VehiculeDAOImplJDBC;
 
 public class DAOFactory {
 
-	public static DAO<Fiche> getFormationDAO(){
+	public static DAO<Fiche> getFicheDAO(){
 		DAO<Fiche> ficheDAO = null;
 		ficheDAO = new FicheDAOImplJDBC();
 		return ficheDAO;

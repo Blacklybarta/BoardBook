@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.boardbook.bo.Deplacement;
 import fr.eni.ecole.boardbook.bo.Fiche;
@@ -26,19 +27,24 @@ public class DoUserAjout extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			
-		try {
-			req.setAttribute("listeLieux", DAOFactory.getLieuDAO().selectAll());
-			req.setAttribute("listeTypes", DAOFactory.getDeplacementDAO().selectAll());
-			req.setAttribute("listeVehicules", DAOFactory.getVehiculeDAO().selectAll());
-			req.setAttribute("listeUtilisateurs", DAOFactory.getUtilisateurDAO().selectAll());
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		HttpSession session = req.getSession();
+		if(session.getAttribute("idUtilisateur") != null){
+			try {
+				req.setAttribute("listeLieux", DAOFactory.getLieuDAO().selectAll());
+				req.setAttribute("listeTypes", DAOFactory.getDeplacementDAO().selectAll());
+				req.setAttribute("listeVehicules", DAOFactory.getVehiculeDAO().selectAll());
+				req.setAttribute("listeUtilisateurs", DAOFactory.getUtilisateurDAO().selectAll());
+				this.getServletContext().getRequestDispatcher("/user/ajout.jsp").forward(req, resp);
+			} catch (DALException e) {
+				req.setAttribute("error", e.getMessage());
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
+			}
+		}else{
+			req.setAttribute("error", "Merci de vous connecter");
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 		
 		
-		getServletContext().getRequestDispatcher("/user/ajout.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -68,13 +74,14 @@ public class DoUserAjout extends HttpServlet{
 		try {
 			dateDebut.setTime(df.parse(req.getParameter("dateDepart")));		
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 		
 		try {
 			lieuArrive =  DAOFactory.getLieuDAO().selectById(idDestination);
 			lieuDepart =  DAOFactory.getLieuDAO().selectById(idLieuReception);
+			System.out.println(lieuDepart);
 			natureDeplacement = DAOFactory.getDeplacementDAO().selectById(idNature);
 			vehicule = DAOFactory.getVehiculeDAO().selectById(idVehicule);
 			conducteurPrincipale = DAOFactory.getUtilisateurDAO().selectById(idConducteurPrincipal);
@@ -89,8 +96,8 @@ public class DoUserAjout extends HttpServlet{
 			listUtilisateur.add(conducteurPrincipale);
 			
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 		
 		Fiche fiche = null;
@@ -110,10 +117,11 @@ public class DoUserAjout extends HttpServlet{
 		
 		System.out.println("fiche = " + fiche);
 		try {
-			DAOFactory.getFormationDAO().insert(fiche);
+			DAOFactory.getFicheDAO().insert(fiche);
+			
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 		
 	}
