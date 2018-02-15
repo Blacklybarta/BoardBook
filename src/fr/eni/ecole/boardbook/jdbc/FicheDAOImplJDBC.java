@@ -51,7 +51,7 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 	
 	private static final String SQL_UPDATE ="UPDATE FICHE SET carburantNbLitre=?,carburantMontant=?,nbKmSortie=?,dateCloture=?,cloture=? WHERE idFiche=?";
 	
-	private static final String SQL_SELECTALL="SELECT * FROM FROM FICHE INNER JOIN RENSEIGNER "
+	private static final String SQL_SELECTALL="SELECT * FROM FICHE INNER JOIN RENSEIGNER "
 			+"ON FICHE.idFiche = RENSEIGNER.idFiche WHERE idUtilisateur=?";
 	
 	public void closeConnection(){
@@ -184,14 +184,13 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 		return null;
 	}
 
-
-	@Override
-	public List<Fiche> selectAll() throws DALException {
+	public List<Fiche> selectAllById(int id) throws DALException {
 		try {
 			con = DBConnection.getConnection();
-			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(SQL_SELECTALL);
-
+			pstmt = con.prepareStatement(SQL_SELECTALL);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+	
 			Fiche fiche = null;
 			listFiches.clear();
 			while (rs.next()) {
@@ -244,6 +243,13 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 			closeConnection();
 		}
 		return listFiches;
+	
+	
+	}
+	
+	@Override
+	public List<Fiche> selectAll() throws DALException {
+		return null;
 	}
 
 	@Override
