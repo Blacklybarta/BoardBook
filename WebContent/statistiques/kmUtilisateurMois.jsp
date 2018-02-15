@@ -26,12 +26,42 @@
 	
 				<form action="/BoardBook/admin/kmUtilisateurMois" method="post">
 					<select name="utilisateur" required>
-
 						<option selected disabled hidden>Choisir un employé</option>
 						<% for (Utilisateur u:listeUtilisateurs) {%>
 							<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom() %></option>
 						<% } %>
-					</select>
+					</select><br>
+					<label for="moisDebut">A partir du mois de</label>
+					<select name="moisDebut" required>
+						<option value="1">Janvier</option>						
+						<option value="2">Février</option>
+						<option value="3">Mars</option>
+						<option value="4">Avril</option>
+						<option value="5">Mai</option>
+						<option value="6">Juin</option>
+						<option value="7">Juillet</option>
+						<option value="8">Août</option>
+						<option value="9">Septembre</option>
+						<option value="10">Octobre</option>
+						<option value="11">Novembre</option>
+						<option value="12">Décembre</option>					
+					</select><br>
+					<label for="moisFin">Jusqu'au mois de</label>
+					<select name="moisFin" required>
+						<option value="1">Janvier</option>						
+						<option value="2">Février</option>
+						<option value="3">Mars</option>
+						<option value="4">Avril</option>
+						<option value="5">Mai</option>
+						<option value="6">Juin</option>
+						<option value="7">Juillet</option>
+						<option value="8">Août</option>
+						<option value="9">Septembre</option>
+						<option value="10">Octobre</option>
+						<option value="11">Novembre</option>
+						<option value="12">Décembre</option>					
+					</select><br>
+					
 					<button action="submit">AFFICHER</button>
 				</form>
 			<% } else {%>

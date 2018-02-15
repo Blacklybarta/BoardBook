@@ -38,17 +38,11 @@ public class DoKmUtilisateurMois extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String [] idUtiliateurListe = request.getParameterValues("utilisateur");
 		int idUtilisateur = Integer.parseInt(idUtiliateurListe[0]);
-
-		Utilisateur utilisateur = null;
-		try {
-			utilisateur = DAOFactory.getUtilisateurDAO().selectById(idUtilisateur);
-		} catch (DALException e) {
-			request.setAttribute("error", e.getMessage());
-			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
-		}
-		
-		List<Point<Utilisateur, Integer, Integer>> listPoint = DAOFactory.getGraphKmMensuelParUtilisateur(utilisateur);
-		Manager.createGraphKmUtilisateur(listPoint);		
+		int moisDebut = Integer.parseInt(request.getParameter("moisDebut"));
+		int moisFin = Integer.parseInt(request.getParameter("moisFin"));
+			
+		List<Point<Integer, Integer, Boolean>> listPoint = DAOFactory.getGraphKmMensuelParUtilisateur(idUtilisateur, moisDebut, moisFin);
+		Manager.createGraphKmUtilisateur(listPoint, idUtilisateur);		
 		this.getServletContext().getRequestDispatcher("/statistiques/kmUtilisateurMois.jsp").forward(request, response);			
 	}
 

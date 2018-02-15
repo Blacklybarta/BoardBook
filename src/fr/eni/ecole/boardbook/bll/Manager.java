@@ -1,8 +1,6 @@
 package fr.eni.ecole.boardbook.bll;
 
 
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.jfree.chart.ChartFactory;
@@ -12,6 +10,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import fr.eni.ecole.boardbook.bo.Point;
 import fr.eni.ecole.boardbook.bo.Utilisateur;
+import fr.eni.ecole.boardbook.bo.Vehicule;
 import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAOFactory;
 
@@ -48,19 +47,22 @@ public class Manager {
 	}
 	
 	
-	public static void createGraphKmUtilisateur (List<Point<Utilisateur, Integer, Integer>> listPoint){
-	
-		String nom = null;
-		String prenom = null;
+	public static void createGraphKmUtilisateur (List<Point<Integer, Integer, Boolean>> listPoint, int idUtilisateur){
+		Utilisateur utilisateur = null;		
+		try {
+			utilisateur = DAOFactory.getUtilisateurDAO().selectById(idUtilisateur);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		String nom = utilisateur.getNom();
+		String prenom = utilisateur.getPrenom();
+		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		for (int i = 0; i < listPoint.size(); ++i) {
-			//if (Manager.idUtilisateur == listPoint.get(i).getX().getId()){
-				nom = listPoint.get(i).getX().getNom();
-				prenom = listPoint.get(i).getX().getPrenom();
-				int mois = listPoint.get(i).getZ() - 1;
-				String month = listMois[listPoint.get(i).getZ() - 1];	
-				dataset.addValue(listPoint.get(i).getY(),month, "");
-				
+		
+		
+		for (int i = 0; i < listPoint.size(); ++i) {				
+				dataset.addValue(listPoint.get(i).getY(),listMois[listPoint.get(i).getX()], "");				
 		}
 
 		graph = ChartFactory.createBarChart(
@@ -70,21 +72,39 @@ public class Manager {
 				dataset,
 				PlotOrientation.VERTICAL,
 				true, true, false);
-
 	}
 	
 	private static void createGraphKmConsommationUtilisateur (){
 		
 	}
 	
-	private static JFreeChart createGraphKmConsommationVehicule (){
+	private static void createGraphKmConsommationVehicule (){
 		
-		return null;
+		
 	}
 	
-	private static JFreeChart createGraphNbJourVehicule () {
-		
-		return null;
+	private static void createGraphNbJourVehicule (List<Point<Integer, Integer, Boolean>> listPoint, int idVehicule) {
+		Vehicule vehicule = null;		
+		try {
+			vehicule = DAOFactory.getVehiculeDAO().selectById(idVehicule);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		String nom = vehicule.getMarque();		
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+			
+		for (int i = 0; i < listPoint.size(); ++i) {				
+				dataset.addValue(listPoint.get(i).getY(),listMois[listPoint.get(i).getX()], "");				
+		}
+
+		graph = ChartFactory.createBarChart(
+				"Nombre de Km par mois pour le véhicule : " + vehicule.getMarque(), 
+				"Mois",
+				"km", 
+				dataset,
+				PlotOrientation.VERTICAL,
+				true, true, false);	
 	}
 	
 }
