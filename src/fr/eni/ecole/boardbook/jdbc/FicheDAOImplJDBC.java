@@ -16,6 +16,7 @@ import fr.eni.ecole.boardbook.bo.Fiche;
 import fr.eni.ecole.boardbook.bo.Lieu;
 import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.bo.Vehicule;
+import fr.eni.ecole.boardbook.bo.exception.ClotureException;
 import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
 import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAO;
@@ -49,6 +50,9 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 			+"ON VEHICULE.idVehicule = FICHE.idVehicule WHERE cloture=0 AND idUtilisateur=?";
 	
 	private static final String SQL_UPDATE ="UPDATE FICHE SET carburantNbLitre=?,carburantMontant=?,nbKmSortie=?,dateCloture=?,cloture=? WHERE idFiche=?";
+	
+	private static final String SQL_SELECTALL="SELECT * FROM FROM FICHE INNER JOIN RENSEIGNER "
+			+"ON FICHE.idFiche = RENSEIGNER.idFiche WHERE idUtilisateur=?";
 	
 	public void closeConnection(){
 		if(con!=null){
@@ -183,8 +187,63 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 
 	@Override
 	public List<Fiche> selectAll() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			con = DBConnection.getConnection();
+			stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(SQL_SELECTALL);
+
+			Fiche fiche = null;
+			listFiches.clear();
+			while (rs.next()) {
+				
+				fiche = new Fiche();
+				fiche.setId(rs.getInt("idFiche"));
+				
+				try {
+					GregorianCalendar gcDateDepart = new GregorianCalendar();
+					gcDateDepart.setTime(rs.getDate("dateDepart"));
+					fiche.setDateDepart(gcDateDepart);
+					
+					fiche.setCarburantNbLitre(rs.getDouble("carburantNbLitre"));
+					fiche.setNbKmEntree(rs.getInt("nbKmEntree"));
+					fiche.setNbKmSortie(rs.getInt("nbKmSortie"));
+					
+					try {
+						GregorianCalendar gcDateCloture = new GregorianCalendar();
+						gcDateCloture.setTime(rs.getDate("dateCloture"));
+						fiche.setDateCloture(gcDateCloture);
+					} catch (ClotureException e) {
+						// TODO Auto-generated catch block
+						throw new DALException("ClotureException - ", e);
+					}
+					
+				} catch (ParameterNullException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				fiche.setCarburantMontant(rs.getDouble("carburantMontant"));
+				fiche.setCommentaire(rs.getString("commentaire"));
+				fiche.setCloture(rs.getBoolean("cloture"));
+				
+				listFiches.add(fiche);
+			}
+		} catch (SQLException e) {
+			throw new DALException("selectAll fiche failed - ", e);
+		} finally {
+			try {
+
+				if (stmt != null) {
+					stmt.close();
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			closeConnection();
+		}
+		return listFiches;
 	}
 
 	@Override
