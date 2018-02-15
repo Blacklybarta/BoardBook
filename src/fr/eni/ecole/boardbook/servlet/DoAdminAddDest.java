@@ -42,7 +42,7 @@ public class DoAdminAddDest extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		} catch (DALException e) {
-			req.setAttribute("error1", e.getMessage());
+			req.setAttribute("error", e.getMessage());
 			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 
