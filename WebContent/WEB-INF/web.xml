@@ -126,7 +126,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>UserGestion</servlet-name>
-    <servlet-class>fr.eni.ecole.boardbook.servlet.DoUserGestion</servlet-class>
+    <servlet-class>fr.eni.ecole.boardbook.servlet.DoAdminGestion</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserGestion</servlet-name>
