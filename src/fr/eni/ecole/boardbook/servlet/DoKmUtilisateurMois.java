@@ -18,7 +18,9 @@ public class DoKmUtilisateurMois extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest (request, response);
+		//processRequest (request, response);
+		Manager.choix = Manager.KM_PAR_MOIS_PAR_UTILISATEUR;
+		getServletContext().getRequestDispatcher("/statistiques/kmUtilisateurMois.jsp").forward(request, response);
 	}
 
 

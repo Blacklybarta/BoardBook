@@ -24,6 +24,7 @@ public class Manager {
 	private final static String [] listMois ={"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
 	
 	public static int choix;
+	public static int idUtilisateur;
 
 	
 	public static JFreeChart getGraphique (){
