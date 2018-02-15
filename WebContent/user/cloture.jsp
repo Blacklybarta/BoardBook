@@ -41,13 +41,16 @@
 						<input name="nature" type="text" value="<%= fiche.getNatureDeplacement() %>" disabled/></br>
 						<label for="vehicule">Véhicule</label>
 						<input name="vehicule" type="text" value="<%= fiche.getVehiculeLoue().getMarque() + " " +  fiche.getVehiculeLoue().getImmatriculation() %>" disabled/></br>
-						<label for="nbKmEntree">Kilometrage au départ</label>
+						<label for="commentaire">Commentaire</label>
+						<textarea name="commentaire" rows="1" cols="40"><%= fiche.getCommentaire() %></textarea></br>
+						<label for="nbKmEntree">Kilometrage au départ</label>						
 						<input name="nbKmEntree" type="text" value="<%= fiche.getNbKmEntree() %>" disabled/></br>
 						<label for="nbKmSortie">Kilometrage à l'arrivée</label>
 						<input type="number" name="nbKmSortie" required/></br>
-						<label for="commentaire">Commentaire</label>
-						<textarea name="commentaire" rows="1" cols="40"><%= fiche.getCommentaire() %></textarea></br>
-						<button type="submit">VALIDER LA CREATION</button>
+						<label for="carburantNbLitre">Nombre de litres mis au réservoir </label>
+						<input type="number" name="carburantNbLitre" required/></br>
+						<label for="carburantMontant">Montant du plein </label>
+						<input type="number" name="carburantMontant" required/></br>
 						<button type="submit">CLOTURER</button>
 					</form>
 			</div>

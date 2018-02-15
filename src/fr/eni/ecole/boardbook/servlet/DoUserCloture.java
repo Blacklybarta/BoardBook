@@ -21,14 +21,13 @@ public class DoUserCloture extends HttpServlet{
 		HttpSession session = req.getSession();
 		if(session.getAttribute("idUtilisateur") != null){
 			try {
-				Fiche fiche = DAOFactory.getFicheDAO().selectById((int)session.getAttribute("idUtilisateur"));
+				Fiche fiche = DAOFactory.getFicheDAO().selectByUtilisateur((int)session.getAttribute("idUtilisateur"));
 				if(fiche != null){
 					req.setAttribute("fiche", fiche);
 					this.getServletContext().getRequestDispatcher("/user/cloture.jsp").forward(req, resp);
 				}else{
 					req.setAttribute("error", "Aucune fiche vous correspondant n'est ouverte");
 					this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
-					
 				}	
 			} catch (DALException e) {
 				req.setAttribute("error", e.getMessage());
@@ -42,8 +41,7 @@ public class DoUserCloture extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		
 	}
 	
 }
