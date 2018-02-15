@@ -71,8 +71,9 @@
 						<input type="number" name="nbKmVehicule" required/>
 						<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
 						<label for="listeConducteurs">Conducteurs supplémentaires (9 max)</label>
-						<select name="listeConducteurs" size="5" multiple required>
+						<select name="listeConducteurs" size="5" multiple>
 							<% for (Utilisateur u:listeUtilisateurs) {%>
+								<option value="aucun">Aucun</option>
 								<% if (u.getNom() != session.getAttribute("nomUtilisateur")) {%>
 									<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom() %></option>
 								<% } %>
