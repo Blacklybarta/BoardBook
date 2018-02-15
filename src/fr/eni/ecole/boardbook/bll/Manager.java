@@ -13,6 +13,7 @@ import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.bo.Vehicule;
 import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAOFactory;
+import fr.eni.ecole.boardbook.jdbc.GraphKmParDeplementDAOImplJDBC;
 
 public class Manager {
 	private final static String [] listMois ={"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};	
@@ -25,8 +26,9 @@ public class Manager {
 	
 	public static void createGraphKmDeplacement (){	
 		List <Point <String, Integer, Boolean>> listPoint = null;
+		GraphKmParDeplementDAOImplJDBC gkpd = DAOFactory.getGraphKmParDeplacement();
 		try {
-			listPoint = DAOFactory.getGraphKmParDeplementDAO().selectAll();
+			listPoint = gkpd.selectAll();
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
