@@ -66,8 +66,8 @@ public class DAOFactory {
 	}
 	*/
 	
-	public static GraphKmMensuelParUtilisateur getGraphKmMensuelParUtilisateur(int idUtilisateur, int moisDebut, int moisFin) {
-		GraphKmMensuelParUtilisateur graphKmMensuelParUtilisateur = new GraphKmMensuelParUtilisateur(int idUtilisateur, int moisDebut, int moisFin);
+	public static GraphKmMensuelParUtilisateur getGraphKmMensuelParUtilisateur() {
+		GraphKmMensuelParUtilisateur graphKmMensuelParUtilisateur = new GraphKmMensuelParUtilisateur();
 		return graphKmMensuelParUtilisateur;
 	}
 	
