@@ -1,5 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="fr.eni.ecole.boardbook.bo.Lieu" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Deplacement" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Vehicule" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,18 +24,12 @@
 			<!-- Formulaire d'ajout d'un type de déplacement -->
 			<div class="contenu">
 				<br>
-				<h3>Clôture d'un déplacement</h3>
-					<div class="col-xs-12">
-						<div class="deplacementEnCours">
-							Déplacement en cours
-							<form class="clotureDeplacement" action="/BoardBook/user/cloture" method="post">
-								<label for="destination">Destination : </label>
-								<input name="destination" type="text" value="" disabled="disabled" required></br>
-								<label for="dateDepart">Date de départ : </label>
-								<input name="dateDepart" type="text" value="" disabled="disabled" required></br>s
-							</form>
-						</div>
-					</div>
+				<h3>Création d'un déplacement</h3>
+					<form class="ajout" action="/BoardBook/user/ajout" method="post">
+						<label for="dateDepart">Date de départ</label>
+						<input name="dateDepart" type="date" value="" required disabled/></br>
+						<button type="submit">VALIDER LA CREATION</button>
+					</form>
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-4">

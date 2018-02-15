@@ -2,9 +2,11 @@
 <h3>Menu</h3>
 <% if (String.valueOf(session.getAttribute("conducteur")).equals("true")) { %>
 <%@include file="../fragments/menuUser.html" %>
+<hr>
 <% } %>
 <% if (String.valueOf(session.getAttribute("administrateur")).equals("true")) { %>
 <%@include file="../fragments/menuAdmin.html" %>
+<hr>
 <% } %>
 <%@include file="../fragments/menuStatistiques.html" %>
 </br>
