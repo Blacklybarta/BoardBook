@@ -15,18 +15,19 @@ import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAO;
 import fr.eni.ecole.boardbook.dal.DBConnection;
 
-public class GraphKmMensuelParUtilisateur implements DAO<Point<Utilisateur, Integer, Integer>> {
+public class GraphKmMensuelParUtilisateur {
 
 	private Connection con;
 	private PreparedStatement pstmt;
 	private Statement stmt;
-	private List<Point<Utilisateur, Integer, Integer>> listPoint = new ArrayList<>();
+	private List<Point<Integer, Integer, Boolean>> listPoint = new ArrayList<>();
 	
-	private static final String SQL_SELECTALL = "SELECT SUM(nbKmSortie-nbKmEntree) AS TotalKm, "
+	private static final String SQL_SELECT_BY_ID = "SELECT SUM(nbKmSortie-nbKmEntree) AS TotalKm, "
 			+ "MONTH(dateCloture) AS mois,nom,prenom FROM FICHE INNER JOIN RENSEIGNER "
 			+ "ON FICHE.idFiche = RENSEIGNER.idFiche INNER JOIN UTILISATEUR "
 			+ "ON RENSEIGNER.idUtilisateur = UTILISATEUR.idUtilisateur "
-			+ "WHERE MONTH(dateCloture) BETWEEN 1 AND 1 GROUP BY MONTH(dateCloture),nom,prenom";
+			+ "WHERE MONTH(dateCloture) BETWEEN ? AND ? GROUP BY MONTH(dateCloture),nom,prenom "
+			+ "AND idUtilisateur=?";
 	
 	public void closeConnection(){
 		if(con!=null){
@@ -39,51 +40,24 @@ public class GraphKmMensuelParUtilisateur implements DAO<Point<Utilisateur, Inte
 			con=null;
 		}
 	}
-	
-	@Override
-	public void insert(Point<Utilisateur, Integer, Integer> data) throws DALException {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void update(Point<Utilisateur, Integer, Integer> data) throws DALException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(int id) throws DALException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Point<Utilisateur, Integer, Integer> selectById(int id) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Point<Utilisateur, Integer, Integer> selectByIdentifiant(String identifiant, String mdp)
+	public List<Point<Integer, Integer, Boolean>> statistiqueKmMensuelUtilisateur(int id, int moisDebut, int moisFin)
 			throws DALException {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Point<Utilisateur, Integer, Integer>> selectAll() throws DALException {
 		try {
 			con = DBConnection.getConnection();
-			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(SQL_SELECTALL);
-
-			Point<Utilisateur, Integer, Integer> point = null;
+			pstmt = con.prepareStatement(SQL_SELECT_BY_ID);
+			pstmt.setInt(1, moisDebut);
+			pstmt.setInt(2, moisFin);
+			pstmt.setInt(3, id);
+			ResultSet rs = pstmt.executeQuery();
+			
+			Point<Integer, Integer, Boolean> point = null;
 			listPoint.clear();
 			
 			Utilisateur utilisateur;
 			
-			while (rs.next()) {
+			if (rs.next()) {
 				
 				utilisateur = new Utilisateur();
 
@@ -95,9 +69,9 @@ public class GraphKmMensuelParUtilisateur implements DAO<Point<Utilisateur, Inte
 				}
 				
 				point = new Point<>();
-				point.setX(utilisateur);
+				point.setX(rs.getInt("mois"));
 				point.setY(rs.getInt("TotalKm"));
-				point.setZ(rs.getInt("mois"));
+				point.setZ(false);
 				
 				listPoint.add(point);
 			}
@@ -121,19 +95,4 @@ public class GraphKmMensuelParUtilisateur implements DAO<Point<Utilisateur, Inte
 		return listPoint;
 	}
 
-	@Override
-	public List<Point<Utilisateur, Integer, Integer>> selectByKeyWord(String recherche) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Point<Utilisateur, Integer, Integer> selectByUtilisateur(int id) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	
-	
 }

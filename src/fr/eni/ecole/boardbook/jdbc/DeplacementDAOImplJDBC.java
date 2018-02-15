@@ -180,4 +180,10 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 		return null;
 	}
 
+	@Override
+	public List<Deplacement> selectAllById(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
