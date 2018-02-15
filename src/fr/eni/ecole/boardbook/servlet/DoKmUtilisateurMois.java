@@ -35,16 +35,12 @@ public class DoKmUtilisateurMois extends HttpServlet {
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		processRequest (request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		Manager.choix =Manager.KM_PAR_MOIS_PAR_UTILISATEUR;		
+		Manager.idUtilisateur = (Integer.parseInt(request.getParameter("utilisateur")));
+		this.getServletContext().getRequestDispatcher("/statistiques/kmUtilisateurMois.jsp").forward(request, response);
+				
 	}
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest (request, response);
-		Manager.choix =Manager.KM_PAR_MOIS_PAR_UTILISATEUR;
-		
-		
-	}
 	
 }

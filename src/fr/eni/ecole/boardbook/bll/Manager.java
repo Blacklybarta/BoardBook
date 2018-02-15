@@ -86,18 +86,23 @@ public class Manager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		String nom = null;
+		String prenom = null;
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (int i = 0; i < listPoint.size(); ++i) {
-			int mois = listPoint.get(i).getZ() - 1;
-			String month = listMois[listPoint.get(i).getZ() - 1];
-
-			dataset.addValue(listPoint.get(i).getY(),
-					listPoint.get(i).getX().getNom() + " " + listPoint.get(i).getX().getPrenom(), month);
+			if (Manager.idUtilisateur == listPoint.get(i).getX().getId()){
+				nom = listPoint.get(i).getX().getNom();
+				prenom = listPoint.get(i).getX().getPrenom();
+				int mois = listPoint.get(i).getZ() - 1;
+				String month = listMois[listPoint.get(i).getZ() - 1];
+	
+				dataset.addValue(listPoint.get(i).getY(),month, "");
+			}	
 		}
 
-		JFreeChart graph = ChartFactory.createBarChart("Nombre de Km par mois pour ",
-				"",
+		JFreeChart graph = ChartFactory.createBarChart(
+				"Nombre de Km par mois de " + nom + " " + prenom,
+				"Mois",
 				"km", 
 				dataset,
 				PlotOrientation.VERTICAL,
