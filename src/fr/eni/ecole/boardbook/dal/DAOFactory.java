@@ -51,20 +51,10 @@ public class DAOFactory {
 	 *  --  Partie graphique  --
 	 */
 	
-	/*
-	public static DAO<Point<String, Integer, Boolean>> getGraphKmParDeplementDAO (){
-		DAO<Point<String, Integer, Boolean>> graphKmParDeplementDAO = null;
-		graphKmParDeplementDAO = new GraphKmParDeplementDAOImplJDBC();
-		return graphKmParDeplementDAO;
+	public static GraphKmParDeplementDAOImplJDBC getGraphKmParDeplacement(){
+		GraphKmParDeplementDAOImplJDBC graphKmParDeplacement = new GraphKmParDeplementDAOImplJDBC();
+		return graphKmParDeplacement;
 	}
-	*/
-	/*
-	public static DAOStatistique<Point<Integer, Integer, Boolean>> getGraphKmMensuelParUtilisateur () {
-		GraphKmMensuelParUtilisateur<Point<Integer, Integer, Boolean>> graphKmMensuelParUtilisateur = null;
-		graphKmMensuelParUtilisateur = new GraphKmMensuelParUtilisateur();
-		return graphKmMensuelParUtilisateur;
-	}
-	*/
 	
 	public static GraphKmMensuelParUtilisateur getGraphKmMensuelParUtilisateur() {
 		GraphKmMensuelParUtilisateur graphKmMensuelParUtilisateur = new GraphKmMensuelParUtilisateur();

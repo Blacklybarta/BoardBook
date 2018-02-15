@@ -16,7 +16,7 @@ import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAO;
 import fr.eni.ecole.boardbook.dal.DBConnection;
 
-public class GraphKmParDeplementDAOImplJDBC implements DAO<Point<String, Integer, Boolean>> {
+public class GraphKmParDeplementDAOImplJDBC {
 
 	private Connection con;
 	private PreparedStatement pstmt;
@@ -40,37 +40,6 @@ public class GraphKmParDeplementDAOImplJDBC implements DAO<Point<String, Integer
 		}
 	}
 	
-	@Override
-	public void insert(Point data) throws DALException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(Point data) throws DALException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(int id) throws DALException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Point selectById(int id) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Point selectByIdentifiant(String identifiant, String mdp) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Point<String, Integer, Boolean>> selectAll() throws DALException {
 		
 		try {
@@ -109,18 +78,6 @@ public class GraphKmParDeplementDAOImplJDBC implements DAO<Point<String, Integer
 		}
 		return listPoint;	
 		
-	}
-
-	@Override
-	public List<Point<String, Integer, Boolean>> selectByKeyWord(String recherche) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Point<String, Integer, Boolean> selectByUtilisateur(int id) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	
