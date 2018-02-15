@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,9 +20,22 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
 			<br>
-			
-			<!-- Graphique -->
-			<img src="http://localhost:8080/BoardBook/admin/graphique">
+			<% if (request.getAttribute("listeUilisateurs") != null) { %>
+				<!-- Formulaire de sélection de l'employé -->
+				<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
+				<form action="/BoardBook/user/kmUtilisateurMois" method="post">
+					<select name="utilisateur">
+						<option selected disabled hidden>Choisir un employé</option>
+						<% for (Utilisateur u:listeUtilisateurs) {%>
+							<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom() %></option>
+						<% } %>
+					<button action="submit">AFFICHER</button>
+					</select>
+				</form>
+			<% } else {%>
+				<!-- Graphique -->
+				<img src="http://localhost:8080/BoardBook/admin/graphique">
+			<% } %>
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">

@@ -18,8 +18,8 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
 			<br>
-			<!-- Formulaire de création d'un conducteur -->
-			<h3>Création d'un compte conducteur</h3>
+			<!-- Formulaire de création d'un utilisateur -->
+			<h3>Création d'un utilisateur</h3>
 			<form class="addUser" action="/BoardBook/admin/addUser" method="post">
 				<label for="nom">Nom</label>
 				<input type="text" name="nom" required></br>

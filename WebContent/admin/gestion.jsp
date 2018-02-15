@@ -20,7 +20,7 @@
 			<br>
 			En tant qu'admnistrateur vous pouvez :<br>
 			<ul>
-				<li>Ajouter ou supprimer un conducteur</li>
+				<li>Ajouter, modifier ou supprimer un utilisateur</li>
 				<li>Ajouter ou supprimer une destination</li>
 				<li>Ajouter ou supprimer un véhicule</li>
 				<li>Ajouter ou supprimer un type de déplacement</li>

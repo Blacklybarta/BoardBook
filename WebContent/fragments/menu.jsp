@@ -6,9 +6,8 @@
 <% } %>
 <% if (String.valueOf(session.getAttribute("administrateur")).equals("true")) { %>
 <%@include file="../fragments/menuAdmin.html" %>
-<hr>
-<% } %>
 <%@include file="../fragments/menuStatistiques.html" %>
+<% } %>
 </br>
 <a href="/BoardBook/logout">Déconnexion</a></br>
 <% if (session.getAttribute("nomUtilisateur") != null) { %>

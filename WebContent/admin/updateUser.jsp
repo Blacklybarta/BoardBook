@@ -24,7 +24,7 @@
 			<br>
 			<h3>Modification d'un employé</h3>
 
-			<!-- Choix de l'employé à modifier -->
+			<!-- Choix de l'utilisateur à modifier -->
 			<% if (utilisateur == null) { %>
 				<form class="updateUser"action="/BoardBook/admin/updateUser" method="post">
 				<select name="idUser" required>
@@ -37,7 +37,7 @@
 				<button type="submit">CHOISIR</button>
 				</form>
 
-			<!-- Modification de l'employé sélectionné -->
+			<!-- Modification de l'utilisateur sélectionné -->
 			<% } else { %>
 			<form class="updateUser" action="/BoardBook/admin/updateUser" method="post">
 				<label for="nom">Nom</label>

@@ -20,7 +20,7 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
 			<br>
-			<!-- Formulaire de suppression d'un employé -->
+			<!-- Formulaire de suppression d'un utilisateur -->
 			<h3>Suppression d'un employé</h3>
 			<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
 			<form class="removeUser"action="/BoardBook/admin/removeUser" method="post">
