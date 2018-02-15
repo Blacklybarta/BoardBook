@@ -31,6 +31,9 @@
 							<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom() %></option>
 						<% } %>
 					</select><br>
+					<label for="annee">année :</label>
+					<input type="number" name ="annee"/><br>
+					
 					<label for="moisDebut">A partir du mois de</label>
 					<select name="moisDebut" required>
 						<option value="1">Janvier</option>						

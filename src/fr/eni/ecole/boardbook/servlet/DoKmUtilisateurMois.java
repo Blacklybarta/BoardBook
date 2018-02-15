@@ -41,11 +41,12 @@ public class DoKmUtilisateurMois extends HttpServlet {
 		int idUtilisateur = Integer.parseInt(idUtiliateurListe[0]);
 		int moisDebut = Integer.parseInt(request.getParameter("moisDebut"));
 		int moisFin = Integer.parseInt(request.getParameter("moisFin"));
+		int annee = Integer.parseInt(request.getParameter("annee"));
 		
 		GraphKmMensuelParUtilisateur gmpt = DAOFactory.getGraphKmMensuelParUtilisateur();
 		List<Point<Integer, Integer, Boolean>> listPoint = null;
 		try {
-			listPoint = gmpt.statistiqueKmMensuelUtilisateur(idUtilisateur, moisDebut, moisFin);
+			listPoint = gmpt.statistiqueKmMensuelUtilisateur(idUtilisateur, moisDebut, moisFin, annee);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
