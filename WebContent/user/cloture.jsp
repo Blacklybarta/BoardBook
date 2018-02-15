@@ -36,7 +36,7 @@
 						<label for="depart">Depart</label>
 						<input name="depart" type="text" value="<%= fiche.getLieuDepart() %>" disabled/></br>
 						<label for="destination">Destination</label>
-						<input name="destination" type="text" value="<%= fiche.getLieuDepart() %>" disabled/></br>
+						<input name="destination" type="text" value="<%= fiche.getLieuArrivee() %>" disabled/></br>
 						<label for="nature">Nature du déplacement</label>
 						<input name="nature" type="text" value="<%= fiche.getNatureDeplacement() %>" disabled/></br>
 						<label for="vehicule">Véhicule</label>
