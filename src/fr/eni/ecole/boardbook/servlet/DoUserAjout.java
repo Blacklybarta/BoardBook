@@ -115,7 +115,6 @@ public class DoUserAjout extends HttpServlet{
 			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 		
-		System.out.println("fiche = " + fiche);
 		try {
 			DAOFactory.getFicheDAO().insert(fiche);
 			
