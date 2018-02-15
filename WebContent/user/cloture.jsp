@@ -3,6 +3,7 @@
 <%@ page import="fr.eni.ecole.boardbook.bo.Deplacement" %>
 <%@ page import="fr.eni.ecole.boardbook.bo.Vehicule" %>
 <%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Fiche" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -27,7 +28,8 @@
 			<div class="contenu">
 				<br>
 				<h3>Clôture d'un déplacement</h3>
-				<% DateFormat df = new SimpleDateFormat("dd/MM/yyyy") %>
+				<% DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); %>
+				<% Fiche fiche = (Fiche)request.getAttribute("fiche"); %>
 					<form class="cloture" action="/BoardBook/user/cloture" method="post">
 						<label for="dateDepart">Date de départ</label>
 						<input name="dateDepart" type="text" value="<%= df.format(fiche.getDateDepart().getTime()) %>" disabled/></br>
