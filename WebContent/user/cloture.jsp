@@ -27,6 +27,11 @@
 			<!-- Formulaire de cloture d'un déplacement -->
 			<div class="contenu">
 				<br>
+				<% if(request.getAttribute("redirection") != null){%>
+				<p class="error"><%= request.getAttribute("redirection") %></p>
+				<%} %>
+					
+				
 				<h3>Clôture d'un déplacement</h3>
 				<% DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); %>
 				<% Fiche fiche = (Fiche)request.getAttribute("fiche"); %>
@@ -34,15 +39,15 @@
 						<label for="dateDepart">Date de départ</label>
 						<input name="dateDepart" type="text" value="<%= df.format(fiche.getDateDepart().getTime()) %>" disabled/></br>
 						<label for="depart">Depart</label>
-						<input name="depart" type="text" value="<%= fiche.getLieuDepart() %>" disabled/></br>
+						<input name="depart" type="text" value="<%= fiche.getLieuDepart().getNom() %>" disabled/></br>
 						<label for="destination">Destination</label>
-						<input name="destination" type="text" value="<%= fiche.getLieuArrivee() %>" disabled/></br>
+						<input name="destination" type="text" value="<%= fiche.getLieuArrivee().getNom() %>" disabled/></br>
 						<label for="nature">Nature du déplacement</label>
-						<input name="nature" type="text" value="<%= fiche.getNatureDeplacement() %>" disabled/></br>
+						<input name="nature" type="text" value="<%= fiche.getNatureDeplacement().getNature() %>" disabled/></br>
 						<label for="vehicule">Véhicule</label>
 						<input name="vehicule" type="text" value="<%= fiche.getVehiculeLoue().getMarque() + " " +  fiche.getVehiculeLoue().getImmatriculation() %>" disabled/></br>
 						<label for="commentaire">Commentaire</label>
-						<textarea name="commentaire" rows="1" cols="40"><%= fiche.getCommentaire() %></textarea></br>
+						<textarea name="commentaire" rows="1" cols="40" disabled><%= fiche.getCommentaire() %></textarea></br>
 						<label for="nbKmEntree">Kilometrage au départ</label>						
 						<input name="nbKmEntree" type="text" value="<%= fiche.getNbKmEntree() %>" disabled/></br>
 						<label for="nbKmSortie">Kilometrage à l'arrivée</label>
@@ -51,6 +56,7 @@
 						<input type="number" name="carburantNbLitre" required/></br>
 						<label for="carburantMontant">Montant du plein </label>
 						<input type="number" name="carburantMontant" required/></br>
+						<input type="hidden" name="idFiche" value="<%= fiche.getId() %>"/>
 						<button type="submit">CLOTURER</button>
 					</form>
 			</div>
