@@ -6,13 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import com.sun.org.apache.bcel.internal.util.SecuritySupport;
 
 import fr.eni.ecole.boardbook.bo.Deplacement;
 import fr.eni.ecole.boardbook.bo.Fiche;
+import fr.eni.ecole.boardbook.bo.Lieu;
 import fr.eni.ecole.boardbook.bo.Utilisateur;
+import fr.eni.ecole.boardbook.bo.Vehicule;
+import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
 import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAO;
 import fr.eni.ecole.boardbook.dal.DBConnection;
@@ -35,6 +39,9 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 	
 	private static final String SQL_DELETE_RENSEIGNER="DELETE FROM RENSEIGNER WHERE idFiche=?";
 	private static final String SQL_DELETE_FICHE="DELETE FROM FICHE WHERE idFiche=?";
+	
+	private static final String SQL_SELECT_BY_UTILISATEUR="SELECT * FROM FICHE INNER JOIN RENSEIGNER"
+			+"ON FICHE.idFiche = RENSEIGNER.idFiche WHERE cloture=0 AND idUtilisateur=?";
 	
 	public void closeConnection(){
 		if(con!=null){
@@ -158,6 +165,68 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 	public Fiche selectByIdentifiant(String identifiant, String mdp) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Fiche selectByUtilisateur(int id) throws DALException {
+		// TODO Auto-generated method stub
+		ResultSet rs = null;
+		Fiche fiche = null;
+		try {
+			con = DBConnection.getConnection();
+			pstmt = con.prepareStatement(SQL_SELECT_BY_UTILISATEUR);
+			pstmt.setInt(1, id);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				
+				fiche = new Fiche();
+				fiche.setId(rs.getInt("idFiche"));
+				fiche.setCommentaire(rs.getString("commentaire"));
+				fiche.setCloture(rs.getBoolean("cloture"));
+				
+				try {
+					GregorianCalendar gcDateDepart = new GregorianCalendar();
+					gcDateDepart.setTime(rs.getDate("dateDepart"));
+					fiche.setDateDepart(gcDateDepart);
+					
+					Deplacement deplacement = new Deplacement();
+					deplacement.setId(rs.getInt("idDeplacement"));
+					fiche.setNatureDeplacement(deplacement);
+					
+					Lieu lieuDepart = new Lieu();
+					lieuDepart.setId(rs.getInt("idLieuDepart"));
+					fiche.setLieuDepart(lieuDepart);
+					
+					Lieu lieuArrivee = new Lieu();
+					lieuArrivee.setId(rs.getInt("idLieuArrivee"));
+					fiche.setLieuArrivee(lieuArrivee);
+					
+					Vehicule vehicule = new Vehicule();
+					vehicule.setId(rs.getInt("idVehicule"));
+					fiche.setVehiculeLoue(vehicule);
+					
+					fiche.setNbKmEntree(rs.getInt("nbKmEntree"));
+					
+				} catch (ParameterNullException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("selectByUtilisateur fiche failed - ", e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			closeConnection();
+		}
+		return fiche;
 	}
 
 }
