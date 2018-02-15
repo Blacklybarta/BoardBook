@@ -20,7 +20,7 @@ public class DoUserSelectAll extends HttpServlet {
 		HttpSession session = req.getSession();
 		if(session.getAttribute("idUtilisateur") != null){
 			try {
-				List<Fiche> listFiche = DAOFactory.getFicheDAO().selectAll();
+				List<Fiche> listFiche = DAOFactory.getFicheDAO().selectAllById((int)session.getAttribute("idUtilisateur"));
 				req.setAttribute("listeFiches", listFiche);
 				this.getServletContext().getRequestDispatcher("/user/selectAll.jsp").forward(req, resp);
 			} catch (DALException e) {

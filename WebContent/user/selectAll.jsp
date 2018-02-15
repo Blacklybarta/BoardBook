@@ -29,23 +29,26 @@
 				<br>
 				<% List<Fiche> listeFiches = (ArrayList<Fiche>)request.getAttribute("listeFiches"); %>
 				<% for (Fiche f:listeFiches) { %>
+				<div class="recap">
 					<% DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); %>
 					<h3>Deplacement du <%= df.format(f.getDateDepart().getTime()) %> au <%= df.format(f.getDateCloture().getTime()) %></h3>
 						<label for="depart">Depart</label>
-						<input name="depart" type="text" value="<%= f.getLieuDepart() %>" disabled/></br>
+						<input name="depart" type="text" value="<%= f.getLieuDepart().getNom() %>" disabled/></br>
 						<label for="destination">Destination</label>
-						<input name="destination" type="text" value="<%= f.getLieuArrivee() %>" disabled/></br>
+						<input name="destination" type="text" value="<%= f.getLieuArrivee().getNom() %>" disabled/></br>
 						<label for="nature">Nature du déplacement</label>
-						<input name="nature" type="text" value="<%= f.getNatureDeplacement() %>" disabled/></br>
+						<input name="nature" type="text" value="<%= f.getNatureDeplacement().getNature() %>" disabled/></br>
 						<label for="vehicule">Véhicule</label>
 						<input name="vehicule" type="text" value="<%= f.getVehiculeLoue().getMarque() + " " +  f.getVehiculeLoue().getImmatriculation() %>" disabled/></br>
 						<label for="nbKmEntree">Kilometrage au départ</label>
 						<input name="nbKmEntree" type="text" value="<%= f.getNbKmEntree() %>" disabled/></br>
 						<label for="nbKmSortie">Kilometrage à l'arrivée</label>
-						<input type="number" name="nbKmSortie" disabled/></br>
+						<input type="number" name="nbKmSortie" value="<%= f.getNbKmSortie()%>"disabled/></br>
 						<label for="commentaire">Commentaire</label>
 						<textarea name="commentaire" rows="1" cols="40"><%= f.getCommentaire() %></textarea></br>
+					</div>	
 				<% } %>
+				
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-4">

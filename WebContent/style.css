@@ -83,3 +83,8 @@ input {
 hr {
 	width: 70%;
 }
+
+.recap{
+	background-color: #DCDCDC;
+	border-style: dotted thin;
+}
