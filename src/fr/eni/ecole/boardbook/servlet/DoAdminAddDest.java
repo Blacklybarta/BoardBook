@@ -22,7 +22,8 @@ public class DoAdminAddDest extends HttpServlet {
 		if(String.valueOf(session.getAttribute("administrateur")).equals("true")){
 			this.getServletContext().getRequestDispatcher("/admin/addDest.jsp").forward(req, resp);
 		}else{
-			resp.sendRedirect("/BoardBook/connexion.html");
+			req.setAttribute("error", "Droit insuffisant, prendre contact avec un ADMINISTRATEUR");
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 	}
 	

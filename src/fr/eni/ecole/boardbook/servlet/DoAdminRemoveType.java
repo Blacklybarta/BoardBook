@@ -28,7 +28,8 @@ public class DoAdminRemoveType extends HttpServlet{
 				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		}else{
-			resp.sendRedirect("/BoardBook/connexion.html");
+			req.setAttribute("error", "Droit insuffisant, prendre contact avec un ADMINISTRATEUR");
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 		
 	}
