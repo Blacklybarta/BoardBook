@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Vehicule" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,13 +21,13 @@
 		<div class="contenu">
 			<br>
 			<% if (request.getAttribute("listeUilisateurs") != null) { %>
-				<!-- Formulaire de sélection de l'employé -->
-				<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
-				<form action="/BoardBook/user/kmUtilisateurMois" method="post">
-					<select name="utilisateur">
-						<option selected disabled hidden>Choisir un employé</option>
-						<% for (Utilisateur u:listeUtilisateurs) {%>
-							<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom() %></option>
+				<!-- Formulaire de sélection du véhicule -->
+				<% List<Vehicule> listeVehicules = (ArrayList<Vehicule>)request.getAttribute("listeVehicules"); %>
+				<form action="/BoardBook/user/ageVehicule" method="post">
+					<select name="vehicule">
+						<option selected disabled hidden>Choisir un véhicule</option>
+						<% for (Vehicule v:listeVehicules) {%>
+							<option value="<%= v.getId() %>"><%= v.getMarque() + " " + v.getImmatriculation() %></option>
 						<% } %>
 					</select>
 					<button action="submit">AFFICHER</button>
