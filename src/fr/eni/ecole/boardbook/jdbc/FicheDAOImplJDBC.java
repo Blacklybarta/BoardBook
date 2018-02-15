@@ -40,10 +40,15 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 	private static final String SQL_DELETE_RENSEIGNER="DELETE FROM RENSEIGNER WHERE idFiche=?";
 	private static final String SQL_DELETE_FICHE="DELETE FROM FICHE WHERE idFiche=?";
 	
-	private static final String SQL_SELECT_BY_UTILISATEUR="SELECT * FROM FICHE INNER JOIN RENSEIGNER "
-			+"ON FICHE.idFiche = RENSEIGNER.idFiche WHERE cloture=0 AND idUtilisateur=?";
+	private static final String SQL_SELECT_BY_UTILISATEUR="SELECT *,LIEU_DEPART.nom AS lieu_depart,"
+			+ "LIEU_ARRIVEE.nom AS lieu_arrivee FROM FICHE INNER JOIN RENSEIGNER "
+			+"ON FICHE.idFiche = RENSEIGNER.idFiche INNER JOIN DEPLACEMENT "
+			+"ON DEPLACEMENT.idDeplacement = FICHE.idDeplacement INNER JOIN LIEU AS LIEU_DEPART "
+			+"ON LIEU_DEPART.idLieu = FICHE.idLieuDepart INNER JOIN LIEU AS LIEU_ARRIVEE "
+			+"ON LIEU_ARRIVEE.idLieu = FICHE.idLieuArrivee INNER JOIN VEHICULE "
+			+"ON VEHICULE.idVehicule = FICHE.idVehicule WHERE cloture=0 AND idUtilisateur=?";
 	
-	private static final String SQL_UPDATE ="UPDATE FICHE SET identifiant=?,mdp=?,nom=?,prenom=?,administrateur=?,conducteur=? WHERE idUtilisateur=?";
+	private static final String SQL_UPDATE ="UPDATE FICHE SET =?,=?,=?,=?,=?,=? WHERE idUtilisateur=?";
 	
 	public void closeConnection(){
 		if(con!=null){
@@ -113,25 +118,20 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 	@Override
 	public void update(Fiche data) throws DALException {
 		// TODO Auto-generated method stub
-		/*
 		try {
 			con = DBConnection.getConnection();
 			pstmt = con.prepareStatement(SQL_UPDATE);
 			pstmt.setDouble(1, data.getCarburantNbLitre());
 			pstmt.setDouble(2, data.getCarburantMontant());
-			
-			
-			pstmt.setString(2, data.getMdp());
-			pstmt.setString(3, data.getNom());
-			pstmt.setString(4, data.getPrenom());
-			pstmt.setBoolean(5, data.isAdministrateur());
-			pstmt.setBoolean(6, data.isConducteur());
-			pstmt.setInt(7, data.getId());
+			pstmt.setInt(3, data.getNbKmSortie());
+			pstmt.setDate(4, new java.sql.Date(data.getDateCloture().getTimeInMillis()));
+			pstmt.setBoolean(5, data.isCloture());
+			pstmt.setInt(6, data.getId());
 
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DALException("Update utilisateur failed - " + data, e);
+			throw new DALException("Update fiche failed - " + data, e);
 		} finally {
 			try {
 				if (pstmt != null) {
@@ -143,7 +143,6 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 			closeConnection();
 
 		}
-		*/
 		
 	}
 
@@ -224,18 +223,23 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 					
 					Deplacement deplacement = new Deplacement();
 					deplacement.setId(rs.getInt("idDeplacement"));
+					deplacement.setNature(rs.getString("nature"));
 					fiche.setNatureDeplacement(deplacement);
 					
 					Lieu lieuDepart = new Lieu();
 					lieuDepart.setId(rs.getInt("idLieuDepart"));
+					lieuDepart.setNom(rs.getString("lieu_depart"));
 					fiche.setLieuDepart(lieuDepart);
 					
 					Lieu lieuArrivee = new Lieu();
 					lieuArrivee.setId(rs.getInt("idLieuArrivee"));
+					lieuArrivee.setNom(rs.getString("lieu_arrivee"));
 					fiche.setLieuArrivee(lieuArrivee);
 					
 					Vehicule vehicule = new Vehicule();
 					vehicule.setId(rs.getInt("idVehicule"));
+					vehicule.setImmatriculation(rs.getString("immatriculation"));
+					vehicule.setMarque(rs.getString("marque"));
 					fiche.setVehiculeLoue(vehicule);
 					
 					fiche.setNbKmEntree(rs.getInt("nbKmEntree"));
