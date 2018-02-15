@@ -21,7 +21,7 @@
 	</header>
 	
 	<div class="col-xs-12 col-sm-8">
-			<!-- Formulaire d'ajout d'un type de déplacement -->
+			<!-- Formulaire d'ajout d'un déplacement -->
 			<div class="contenu">
 				<br>
 				<h3>Création d'un déplacement</h3>
@@ -67,13 +67,13 @@
 								<% } %>
 							<% } %>
 						</select></br>
-						<label for="nbKmVehicule">Km du véhicule</label>
+						<label for="nbKmVehicule">Kilometrage du véhicule</label>
 						<input type="number" name="nbKmVehicule" required/>
 						<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
 						<label for="listeConducteurs">Conducteurs supplémentaires (9 max)</label>
 						<select name="listeConducteurs" size="5" multiple>
+							<option value="aucun">Aucun</option>
 							<% for (Utilisateur u:listeUtilisateurs) {%>
-								<option value="aucun">Aucun</option>
 								<% if (u.getNom() != session.getAttribute("nomUtilisateur")) {%>
 									<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom() %></option>
 								<% } %>

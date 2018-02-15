@@ -5,6 +5,8 @@
 <%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,14 +23,30 @@
 	</header>
 	
 	<div class="col-xs-12 col-sm-8">
-			<!-- Formulaire d'ajout d'un type de déplacement -->
+			<!-- Formulaire de cloture d'un déplacement -->
 			<div class="contenu">
 				<br>
-				<h3>Création d'un déplacement</h3>
-					<form class="ajout" action="/BoardBook/user/ajout" method="post">
+				<h3>Clôture d'un déplacement</h3>
+				<% DateFormat df = new SimpleDateFormat("dd/MM/yyyy") %>
+					<form class="cloture" action="/BoardBook/user/cloture" method="post">
 						<label for="dateDepart">Date de départ</label>
-						<input name="dateDepart" type="date" value="" required disabled/></br>
+						<input name="dateDepart" type="text" value="<%= df.format(fiche.getDateDepart().getTime()) %>" disabled/></br>
+						<label for="depart">Depart</label>
+						<input name="depart" type="text" value="<%= fiche.getLieuDepart() %>" disabled/></br>
+						<label for="destination">Destination</label>
+						<input name="destination" type="text" value="<%= fiche.getLieuDepart() %>" disabled/></br>
+						<label for="nature">Nature du déplacement</label>
+						<input name="nature" type="text" value="<%= fiche.getNatureDeplacement() %>" disabled/></br>
+						<label for="vehicule">Véhicule</label>
+						<input name="vehicule" type="text" value="<%= fiche.getVehiculeLoue().getMarque() + " " +  fiche.getVehiculeLoue().getImmatriculation() %>" disabled/></br>
+						<label for="nbKmEntree">Kilometrage au départ</label>
+						<input name="nbKmEntree" type="text" value="<%= fiche.getNbKmEntree() %>" disabled/></br>
+						<label for="nbKmSortie">Kilometrage à l'arrivée</label>
+						<input type="number" name="nbKmSortie" required/></br>
+						<label for="commentaire">Commentaire</label>
+						<textarea name="commentaire" rows="1" cols="40"><%= fiche.getCommentaire() %></textarea></br>
 						<button type="submit">VALIDER LA CREATION</button>
+						<button type="submit">CLOTURER</button>
 					</form>
 			</div>
 		</div>

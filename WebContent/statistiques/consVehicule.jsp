@@ -17,17 +17,11 @@
 	
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
-			<mark>L'utilisateur <%= session.getAttribute("nomUtilisateur") %> est connecté</mark>
 			<br>
 			<!-- Formulaire -->
-			<h3>Nombre de kilomètres par conducteur sur une periode</h3>
+			<h3></h3>
 			<form class="removeUser" action="/BoardBook/admin/removeUser" method="post">
-				<label for="dateDebut">Début : </label>
-				<input type="date" name ="dateDebut"></br>
-				<label for="dateFin">Fin : </label>
-				<input type="date" name="dateFin"></br>
 				
-				<button type="submit">SUPPRIMER</button>
 			</form>
 		</div>
 	</div>
