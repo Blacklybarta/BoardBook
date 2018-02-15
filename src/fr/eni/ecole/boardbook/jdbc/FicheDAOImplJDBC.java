@@ -1,13 +1,14 @@
 package fr.eni.ecole.boardbook.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sun.org.apache.bcel.internal.util.SecuritySupport;
 
 import fr.eni.ecole.boardbook.bo.Deplacement;
 import fr.eni.ecole.boardbook.bo.Fiche;
@@ -25,10 +26,9 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 	private List<Utilisateur> listUtilisateur = new ArrayList<>();
 	
 
-	private static final String SQL_INSERT_FICHE = "INSERT INTO FICHE(dateDepart,carburantNbLitre,"
-			+ "carburantMontant,nbKmEntree,nbKmSortie,commentaire,dateCloture,"
-			+ "cloture,idDeplacement,idLieuDepart,idVehicule,idLieuArrivee) "
-			+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String SQL_INSERT_FICHE = "INSERT INTO FICHE(dateDepart,"
+			+ "nbKmEntree,commentaire,cloture,idDeplacement,idLieuDepart,idVehicule,idLieuArrivee) "
+			+ "VALUES(?,?,?,?,?,?,?,?)";
 	
 	private static final String SQL_INSERT_RENSEIGNER="INSERT INTO RENSEIGNER(idFiche,idUtilisateur) "
 			+ "VALUES (?,?)";
@@ -56,20 +56,16 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 			con = DBConnection.getConnection();
 			pstmt = con.prepareStatement(SQL_INSERT_FICHE, Statement.RETURN_GENERATED_KEYS);
 			
-			pstmt.setDate(1, new Date(data.getDateDepart().getTimeInMillis()));
-			pstmt.setDouble(2, data.getCarburantNbLitre());
-			pstmt.setDouble(3, data.getCarburantMontant());
-			pstmt.setInt(4, data.getNbKmEntree());
-			pstmt.setInt(5, data.getNbKmSortie());
-			pstmt.setString(6, data.getCommentaire());
-			pstmt.setDate(7, new Date(data.getDateCloture().getTimeInMillis()));
-			pstmt.setBoolean(8, data.isCloture());
+			pstmt.setDate(1, new java.sql.Date(data.getDateDepart().getTimeInMillis()));
+			pstmt.setInt(2, data.getNbKmEntree());
+			pstmt.setString(3, data.getCommentaire());
+			pstmt.setBoolean(4, false);
 			
 			// Id en lien sur les autres tables
-			pstmt.setInt(9, data.getNatureDeplacement().getId());
-			pstmt.setInt(10, data.getLieuDepart().getId());
-			pstmt.setInt(11, data.getVehiculeLoue().getId());
-			pstmt.setInt(12, data.getLieuArrivee().getId());
+			pstmt.setInt(5, data.getNatureDeplacement().getId());
+			pstmt.setInt(6, data.getLieuDepart().getId());
+			pstmt.setInt(7, data.getVehiculeLoue().getId());
+			pstmt.setInt(8, data.getLieuArrivee().getId());
 			
 			int nbRows = pstmt.executeUpdate();
 			if (nbRows == 1) {
@@ -80,7 +76,7 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 			}
 			
 			// Ajout dans la table RENSEIGNER
-			pstmt = con.prepareStatement(SQL_INSERT_FICHE);
+			pstmt = con.prepareStatement(SQL_INSERT_RENSEIGNER);
 			// Recuperation des conducteurs
 			listUtilisateur = data.getConducteurList();
 			
