@@ -23,13 +23,12 @@
 			<% if (request.getAttribute("listeUtilisateurs") != null) { %>
 				<!-- Formulaire de sélection de l'employé -->
 				<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
-<<<<<<< HEAD
 				<form action="/BoardBook/admin/kmUtilisateurMois" method="post">
 					<select name="utilisateur">
-=======
+
 				<form action="/BoardBook/user/kmUtilisateurMois" method="post">
 					<select name="utilisateur" required>
->>>>>>> refs/remotes/origin/master
+
 						<option selected disabled hidden>Choisir un employé</option>
 						<% for (Utilisateur u:listeUtilisateurs) {%>
 							<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom() %></option>

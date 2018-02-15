@@ -90,12 +90,13 @@ public class Manager {
 		String prenom = null;
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (int i = 0; i < listPoint.size(); ++i) {
+			if (Manager.idUtilisateur == listPoint.get(i).getX().getId()){
 				nom = listPoint.get(i).getX().getNom();
 				prenom = listPoint.get(i).getX().getPrenom();
 				int mois = listPoint.get(i).getZ() - 1;
-				String month = listMois[listPoint.get(i).getZ() - 1];
-	
+				String month = listMois[listPoint.get(i).getZ() - 1];	
 				dataset.addValue(listPoint.get(i).getY(),month, "");
+			}	
 		}
 
 		JFreeChart graph = ChartFactory.createBarChart(
