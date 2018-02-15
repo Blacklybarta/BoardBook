@@ -225,7 +225,10 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 				fiche.setCommentaire(rs.getString("commentaire"));
 				fiche.setCloture(rs.getBoolean("cloture"));
 				
-				listFiches.add(fiche);
+				// Renvoyer uniquement les fiches cloturées
+				if (fiche.isCloture()) {
+					listFiches.add(fiche);
+				}
 			}
 		} catch (SQLException e) {
 			throw new DALException("selectAll fiche failed - ", e);
