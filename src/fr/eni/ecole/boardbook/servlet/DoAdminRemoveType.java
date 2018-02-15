@@ -24,8 +24,8 @@ public class DoAdminRemoveType extends HttpServlet{
 				req.setAttribute("listeTypes", listDeplacement);
 				this.getServletContext().getRequestDispatcher("/admin/removeType.jsp").forward(req, resp);
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				req.setAttribute("error", e.getMessage());
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		}else{
 			resp.sendRedirect("/BoardBook/connexion.html");
@@ -41,11 +41,11 @@ public class DoAdminRemoveType extends HttpServlet{
 			DAOFactory.getDeplacementDAO().delete(Integer.parseInt(values[0]));
 			resp.sendRedirect("/BoardBook/admin/gestion");
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 	}
 	

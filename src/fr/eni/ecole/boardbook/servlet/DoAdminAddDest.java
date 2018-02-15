@@ -38,12 +38,12 @@ public class DoAdminAddDest extends HttpServlet {
 				DAOFactory.getLieuDAO().insert(lieu);
 				resp.sendRedirect("/BoardBook/admin/gestion");
 			} catch (ListException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				req.setAttribute("error", e.getListException());
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error1", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 
 	}

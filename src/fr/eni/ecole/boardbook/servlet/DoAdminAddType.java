@@ -35,12 +35,12 @@ public class DoAdminAddType extends HttpServlet{
 				DAOFactory.getDeplacementDAO().insert(deplacement);
 				resp.sendRedirect("/BoardBook/admin/gestion");
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				req.setAttribute("error", e.getMessage());
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		} catch (ListException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getListException());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 		
 		

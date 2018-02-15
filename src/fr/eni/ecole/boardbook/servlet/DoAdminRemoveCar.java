@@ -24,8 +24,8 @@ public class DoAdminRemoveCar extends HttpServlet{
 				req.setAttribute("listeVehicules", listVehicule);
 				this.getServletContext().getRequestDispatcher("/admin/removeCar.jsp").forward(req, resp);
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				req.setAttribute("error", e.getMessage());
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		}else{
 			resp.sendRedirect("/BoardBook/connexion.html");
@@ -43,11 +43,11 @@ public class DoAdminRemoveCar extends HttpServlet{
 			DAOFactory.getVehiculeDAO().delete(Integer.parseInt(values[0]));
 			resp.sendRedirect("/BoardBook/admin/gestion");
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 	}
 	

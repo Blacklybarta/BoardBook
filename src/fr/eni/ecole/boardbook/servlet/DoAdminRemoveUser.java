@@ -27,8 +27,8 @@ public class DoAdminRemoveUser extends HttpServlet {
 				req.setAttribute("listeUtilisateurs", listUtilisateur);
 				this.getServletContext().getRequestDispatcher("/admin/removeUser.jsp").forward(req, resp);
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				req.setAttribute("error", e.getMessage());
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		}else{
 			resp.sendRedirect("/BoardBook/connexion.html");
@@ -43,11 +43,11 @@ public class DoAdminRemoveUser extends HttpServlet {
 			DAOFactory.getUtilisateurDAO().delete(Integer.parseInt(values[0]));
 			resp.sendRedirect("/BoardBook/admin/gestion");
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 	}
 	

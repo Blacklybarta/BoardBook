@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.ecole.boardbook.bo.Lieu;
-import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.bo.Vehicule;
 import fr.eni.ecole.boardbook.bo.exception.ListException;
 import fr.eni.ecole.boardbook.dal.DALException;
@@ -41,12 +39,14 @@ public class DoAdminAddCar extends HttpServlet{
 				DAOFactory.getVehiculeDAO().insert(vehicule);
 				resp.sendRedirect("/BoardBook/admin/gestion");
 			} catch (ListException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				req.setAttribute("error", e.getListException());
+				System.out.println(e.getListException());
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error1", e.getMessage());
+			System.out.println(e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 	}
 	

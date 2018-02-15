@@ -25,8 +25,8 @@ public class DoAdminUpdateUser extends HttpServlet {
 				req.setAttribute("listeUtilisateurs", listUtilisateur);
 				this.getServletContext().getRequestDispatcher("/admin/updateUser.jsp").forward(req, resp);
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				req.setAttribute("error", e.getMessage());
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		}else{
 			resp.sendRedirect("/BoardBook/connexion.html");
@@ -55,13 +55,13 @@ public class DoAdminUpdateUser extends HttpServlet {
 					DAOFactory.getUtilisateurDAO().update(utilisateur);
 					resp.sendRedirect("/BoardBook/admin/gestion");
 				} catch (ListException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					req.setAttribute("error", e.getMessage());
+					this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 				}
 			}
 		} catch (NumberFormatException | DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 		
 	}

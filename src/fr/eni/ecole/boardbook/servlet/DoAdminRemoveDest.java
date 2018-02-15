@@ -25,8 +25,8 @@ public class DoAdminRemoveDest extends HttpServlet{
 				req.setAttribute("listeLieux", listLieu);
 				this.getServletContext().getRequestDispatcher("/admin/removeDest.jsp").forward(req, resp);
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				req.setAttribute("error", e.getMessage());
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		}else{
 			resp.sendRedirect("/BoardBook/connexion.html");
@@ -41,11 +41,11 @@ public class DoAdminRemoveDest extends HttpServlet{
 			DAOFactory.getLieuDAO().delete(Integer.parseInt(values[0]));
 			resp.sendRedirect("/BoardBook/admin/gestion");
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 		}
 	}
 	

@@ -67,14 +67,16 @@ public class DoValiderAcces extends HttpServlet {
 						session.setAttribute("conducteur", utilisateur.isConducteur());
 						this.getServletContext().getRequestDispatcher("/user/gestion.jsp").forward(req, resp);
 					} else {
-						resp.sendRedirect("errorPage");
+						req.setAttribute("error", "Compte invalide - Ni conducteur, Ni admin");
+						this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 					}
 				} else {
-					resp.sendRedirect("errorPage");
+					req.setAttribute("error", "Compte invalide - Utilisateur == null (DoValiderAcces)");
+					this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 				}
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				req.setAttribute("error", e.getMessage());
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 		
 	}
