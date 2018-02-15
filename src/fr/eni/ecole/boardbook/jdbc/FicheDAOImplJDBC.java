@@ -194,41 +194,43 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 			Fiche fiche = null;
 			listFiches.clear();
 			while (rs.next()) {
-				
+
 				fiche = new Fiche();
-				fiche.setId(rs.getInt("idFiche"));
-				
-				try {
-					GregorianCalendar gcDateDepart = new GregorianCalendar();
-					gcDateDepart.setTime(rs.getDate("dateDepart"));
-					fiche.setDateDepart(gcDateDepart);
-					
-					fiche.setCarburantNbLitre(rs.getDouble("carburantNbLitre"));
-					fiche.setNbKmEntree(rs.getInt("nbKmEntree"));
-					fiche.setNbKmSortie(rs.getInt("nbKmSortie"));
-					
-					try {
-						GregorianCalendar gcDateCloture = new GregorianCalendar();
-						gcDateCloture.setTime(rs.getDate("dateCloture"));
-						fiche.setDateCloture(gcDateCloture);
-					} catch (ClotureException e) {
-						// TODO Auto-generated catch block
-						throw new DALException("ClotureException - ", e);
-					}
-					
-				} catch (ParameterNullException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				fiche.setCarburantMontant(rs.getDouble("carburantMontant"));
-				fiche.setCommentaire(rs.getString("commentaire"));
 				fiche.setCloture(rs.getBoolean("cloture"));
 				
 				// Renvoyer uniquement les fiches cloturées
 				if (fiche.isCloture()) {
+
+					fiche.setId(rs.getInt("idFiche"));
+
+					try {
+						GregorianCalendar gcDateDepart = new GregorianCalendar();
+						gcDateDepart.setTime(rs.getDate("dateDepart"));
+						fiche.setDateDepart(gcDateDepart);
+
+						fiche.setCarburantNbLitre(rs.getDouble("carburantNbLitre"));
+						fiche.setNbKmEntree(rs.getInt("nbKmEntree"));
+						fiche.setNbKmSortie(rs.getInt("nbKmSortie"));
+
+						try {
+							GregorianCalendar gcDateCloture = new GregorianCalendar();
+							gcDateCloture.setTime(rs.getDate("dateCloture"));
+							fiche.setDateCloture(gcDateCloture);
+						} catch (ClotureException e) {
+							// TODO Auto-generated catch block
+							throw new DALException("ClotureException - ", e);
+						}
+
+					} catch (ParameterNullException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					fiche.setCarburantMontant(rs.getDouble("carburantMontant"));
+					fiche.setCommentaire(rs.getString("commentaire"));
+					
 					listFiches.add(fiche);
-				}
+				}	
 			}
 		} catch (SQLException e) {
 			throw new DALException("selectAll fiche failed - ", e);
