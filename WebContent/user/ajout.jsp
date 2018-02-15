@@ -64,6 +64,7 @@
 								<% } %>
 							<% } %>
 						</select></br>
+						<button>AJOUTER UN CONDUCTEUR</button>
 						<button type="submit">VALIDER LA CREATION</button>
 					</form>
 			</div>

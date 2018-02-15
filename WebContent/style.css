@@ -63,3 +63,8 @@ label {
 img {
 	width: 100%;
 }
+
+.error {
+	font-size: 25px;
+	color: red;
+}
