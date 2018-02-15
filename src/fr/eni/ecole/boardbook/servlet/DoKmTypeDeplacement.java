@@ -13,7 +13,7 @@ public class DoKmTypeDeplacement extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Manager.choix = Manager.KM_PAR_TYPE_DEPLACEMENT;
+		Manager.createGraphKmDeplacement();
 		this.getServletContext().getRequestDispatcher("/statistiques/kmParType.jsp").forward(req, resp);
 	}
 	

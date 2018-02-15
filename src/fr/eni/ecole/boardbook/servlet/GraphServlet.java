@@ -30,10 +30,12 @@ public class GraphServlet extends HttpServlet {
 	
 	protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {			
 		  JFreeChart graph = Manager.getGraphique();
-    	  response.setContentType("image/png"); 
-          BufferedImage buf = graph.createBufferedImage(640, 400, null);
-          PngEncoder encoder = new PngEncoder( buf, false, 0, 9 );
-          response.getOutputStream().write(encoder.pngEncode());
+		  if (graph != null){
+	    	  response.setContentType("image/png"); 
+	          BufferedImage buf = graph.createBufferedImage(640, 400, null);
+	          PngEncoder encoder = new PngEncoder( buf, false, 0, 9 );
+	          response.getOutputStream().write(encoder.pngEncode());
+		  }   
 	}
 
 }

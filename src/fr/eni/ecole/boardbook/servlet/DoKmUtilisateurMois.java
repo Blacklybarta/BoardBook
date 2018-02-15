@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.ecole.boardbook.bll.Manager;
+import fr.eni.ecole.boardbook.bo.Point;
 import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAOFactory;
@@ -35,12 +36,20 @@ public class DoKmUtilisateurMois extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		Manager.choix =Manager.KM_PAR_MOIS_PAR_UTILISATEUR;		
-		Manager.idUtilisateur = (Integer.parseInt(request.getParameter("utilisateur")));
+		String [] idUtiliateurListe = request.getParameterValues("utilisateur");
+		int idUtilisateur = Integer.parseInt(idUtiliateurListe[0]);
+
+		Utilisateur utilisateur = null;
+		try {
+			utilisateur = DAOFactory.getUtilisateurDAO().selectById(idUtilisateur);
+		} catch (DALException e) {
+			request.setAttribute("error", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
+		}
 		
-		
-		this.getServletContext().getRequestDispatcher("/statistiques/kmUtilisateurMois.jsp").forward(request, response);
-				
+		List<Point<Utilisateur, Integer, Integer>> listPoint = DAOFactory.getGraphKmMensuelParUtilisateur(utilisateur);
+		Manager.createGraphKmUtilisateur(listPoint);		
+		this.getServletContext().getRequestDispatcher("/statistiques/kmUtilisateurMois.jsp").forward(request, response);			
 	}
 
 	

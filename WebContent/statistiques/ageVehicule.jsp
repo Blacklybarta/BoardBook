@@ -20,10 +20,14 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
 			<br>
-			<% if (request.getAttribute("listeUilisateurs") != null) { %>
+			<% if (request.getAttribute("listeVehicules") != null) { %>
 				<!-- Formulaire de sélection du véhicule -->
 				<% List<Vehicule> listeVehicules = (ArrayList<Vehicule>)request.getAttribute("listeVehicules"); %>
 				<form action="/BoardBook/user/ageVehicule" method="post">
+					<label for="dateDepart">Date de début</label>
+					<input name="dateDepart" type="date" required/></br>
+					<label for="dateFin">Date de fin</label>
+					<input name="dateFin" type="date" required/></br>
 					<select name="vehicule" required>
 						<option selected disabled hidden>Choisir un véhicule</option>
 						<% for (Vehicule v:listeVehicules) {%>
