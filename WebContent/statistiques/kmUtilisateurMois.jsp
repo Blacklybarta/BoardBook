@@ -20,7 +20,7 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="contenu">
 			<br>
-			<% if (request.getAttribute("listeUilisateurs") != null) { %>
+			<% if (request.getAttribute("listeUtilisateurs") != null) { %>
 				<!-- Formulaire de sélection de l'employé -->
 				<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
 				<form action="/BoardBook/user/kmUtilisateurMois" method="post">
