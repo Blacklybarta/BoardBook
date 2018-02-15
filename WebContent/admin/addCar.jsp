@@ -22,9 +22,9 @@
 				<h3>Ajout d'un véhicule</h3>
 					<form class="addCar" action="/BoardBook/admin/addCar" method="post">
 						<label for="marque">Marque</label>
-						<input type="text" name="marque"></br>
+						<input type="text" name="marque" required></br>
 						<label for="immatriculation">Plaque d'immatriculation</label>
-						<input type="text" name="immatriculation"></br>
+						<input type="text" name="immatriculation" required></br>
 						<button type="submit">VALIDER LA CREATION</button>
 					</form>
 			</div>

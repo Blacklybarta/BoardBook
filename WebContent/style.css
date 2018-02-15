@@ -21,8 +21,9 @@ header {
   margin-right: auto;
   height: 100%;
   padding: 0px;
-  text-align: center;
+  text-align: left;
   font-size: 20px;
+  line-height: 35px;
 }
 
 .contenuAccueil {
@@ -57,7 +58,8 @@ header {
 }
 
 label {
-	width: 300px;
+	width: 400px;
+	vertical-align: top;
 }
 
 img {
@@ -67,4 +69,13 @@ img {
 .error {
 	font-size: 25px;
 	color: red;
+	margin-top: 20px;
+}
+
+textarea {
+	max-width: 100%;
+}
+
+input {
+	height: 30px;
 }

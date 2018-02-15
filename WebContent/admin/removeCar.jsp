@@ -24,7 +24,7 @@
 			<h3>Suppression d'un vehicule</h3>
 			<% List<Vehicule> listeVehicules = (ArrayList<Vehicule>)request.getAttribute("listeVehicules"); %>
 			<form class="removeCar"action="/BoardBook/admin/removeCar" method="post">
-				<select name="idVehicule">
+				<select name="idVehicule" required>
 					<option selected disabled hidden>Choisir un véhicule</option>
 					<% for (Vehicule v:listeVehicules) {%>
 						<option value="<%= v.getId() %>"><%= v.getMarque() + " " + v.getImmatriculation()%></option>

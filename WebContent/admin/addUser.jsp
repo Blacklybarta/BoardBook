@@ -22,13 +22,13 @@
 			<h3>Création d'un compte conducteur</h3>
 			<form class="addUser" action="/BoardBook/admin/addUser" method="post">
 				<label for="nom">Nom</label>
-				<input type="text" name="nom"></br>
+				<input type="text" name="nom" required></br>
 				<label for="prenom">Prénom</label>
-				<input type="text" name="prenom"></br>
+				<input type="text" name="prenom" required></br>
 				<label for="identifiant">Identifiant</label>
-				<input type="text" name="identifiant"></br>
+				<input type="text" name="identifiant" required></br>
 				<label for="mdp">Mot de passe</label>
-				<input type="text" name="mdp"></br>
+				<input type="text" name="mdp" required></br>
 				<label for="conducteur">Conducteur</label>
 				<input type="checkbox" name="conducteur" value="true">
 				<label for="administrateur">Administrateur</label>

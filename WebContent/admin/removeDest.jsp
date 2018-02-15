@@ -24,7 +24,7 @@
 			<h3>Suppression d'une destination</h3>
 			<% List<Lieu> listeLieux = (ArrayList<Lieu>)request.getAttribute("listeLieux"); %>
 			<form class="removeDest"action="/BoardBook/admin/removeDest" method="post">
-				<select name="idDest">
+				<select name="idDest" required>
 					<option selected disabled hidden>Choisir une destination</option>
 					<% for (Lieu l:listeLieux) {%>
 						<option value="<%= l.getId() %>"><%= l.getNom()%></option>

@@ -24,7 +24,7 @@
 			<h3>Suppression d'une nature de déplacement</h3>
 			<% List<Deplacement> listeTypes = (ArrayList<Deplacement>)request.getAttribute("listeTypes"); %>
 			<form class="removeType"action="/BoardBook/admin/removeType" method="post">
-				<select name="idType">
+				<select name="idType" required>
 					<option selected disabled hidden>Choisir une nature de déplacement</option>
 					<% for (Deplacement d:listeTypes) {%>
 						<option value="<%= d.getId() %>"><%= d.getNature() %></option>

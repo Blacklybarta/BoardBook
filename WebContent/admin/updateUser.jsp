@@ -27,12 +27,10 @@
 			<!-- Choix de l'employé à modifier -->
 			<% if (utilisateur == null) { %>
 				<form class="updateUser"action="/BoardBook/admin/updateUser" method="post">
-				<select name="idUser">
+				<select name="idUser" required>
 					<option selected disabled hidden>Choisir un employé</option>
 					<% for (Utilisateur u:listeUtilisateurs) {%>
-
-					<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></option>
-
+						<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></option>
 					<% } %>
 				</select>
 				<input type="hidden" name="select" value="true"/>

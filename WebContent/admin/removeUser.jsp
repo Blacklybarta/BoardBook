@@ -24,7 +24,7 @@
 			<h3>Suppression d'un employé</h3>
 			<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
 			<form class="removeUser"action="/BoardBook/admin/removeUser" method="post">
-				<select name="idUser">
+				<select name="idUser" required>
 					<option selected disabled hidden>Choisir un employé</option>
 					<% for (Utilisateur u:listeUtilisateurs) {%>
 						<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></option>

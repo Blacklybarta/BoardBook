@@ -25,11 +25,9 @@
 							Déplacement en cours
 							<form class="clotureDeplacement" action="/BoardBook/user/cloture" method="post">
 								<label for="destination">Destination : </label>
-								<input name="destination" type="text" value="" disabled="disabled"></br>
+								<input name="destination" type="text" value="" disabled="disabled" required></br>
 								<label for="dateDepart">Date de départ : </label>
-								<input name="dateDepart" type="text" value="" disabled="disabled"></br>
-								<label for="conducteurs">Conducteur(s) : </label>
-								<input name="conducteurs" type="text" value="" disabled="disabled"></br>
+								<input name="dateDepart" type="text" value="" disabled="disabled" required></br>s
 							</form>
 						</div>
 					</div>

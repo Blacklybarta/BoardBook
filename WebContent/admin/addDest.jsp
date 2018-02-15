@@ -22,7 +22,7 @@
 				<h3>Création d'une destination</h3>
 					<form class="addDest" action="/BoardBook/admin/addDest" method="post">
 						<label for="nom">Nouvelle destination</label>
-						<input type="text" name="nom"></br>
+						<input type="text" name="nom" required></br>
 						<button type="submit">VALIDER LA CREATION</button>
 					</form>
 			</div>

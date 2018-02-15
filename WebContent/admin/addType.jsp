@@ -22,7 +22,7 @@
 				<h3>Ajout d'un type de déplacement</h3>
 					<form class="addType" action="/BoardBook/admin/addType" method="post">
 						<label for="nom">Type de déplacement</label>
-						<input type="text" name="nom"></br>
+						<input type="text" name="nom" required></br>
 						<button type="submit">VALIDER LA CREATION</button>
 					</form>
 			</div>

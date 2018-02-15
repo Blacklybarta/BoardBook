@@ -2,6 +2,7 @@
 <%@ page import="fr.eni.ecole.boardbook.bo.Lieu" %>
 <%@ page import="fr.eni.ecole.boardbook.bo.Deplacement" %>
 <%@ page import="fr.eni.ecole.boardbook.bo.Vehicule" %>
+<%@ page import="fr.eni.ecole.boardbook.bo.Utilisateur" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,9 +26,11 @@
 				<br>
 				<h3>Création d'un déplacement</h3>
 					<form class="ajout" action="/BoardBook/user/ajout" method="post">
+						<label for="dateDepart">Date de départ</label>
+						<input name="dateDepart" type="date" required/></br>
 						<% List<Lieu> listeLieux = (ArrayList<Lieu>)request.getAttribute("listeLieux"); %>
 						<label for="idDestination">Destination</label>
-						<select name="idDestination">
+						<select name="idDestination" required>
 							<option selected disabled hidden>Choisir une destination</option>
 							<% for (Lieu l:listeLieux) {%>
 								<% if (l.isActif()) {%>
@@ -36,7 +39,7 @@
 							<% } %>
 						</select></br>
 						<label for="idReception">Lieu de réception du véhicule</label>
-						<select name="idReception">
+						<select name="idReception" required>
 							<option selected disabled hidden>Choisir un lieu de réception</option>
 							<% for (Lieu l:listeLieux) {%>
 								<% if (l.isActif()) {%>
@@ -46,7 +49,7 @@
 						</select></br>
 						<% List<Deplacement> listeTypes = (ArrayList<Deplacement>)request.getAttribute("listeTypes"); %>
 						<label for="idType">Deplacement</label>
-						<select name="idType">
+						<select name="idType" required>
 							<option selected disabled hidden>Choisir une nature de déplacement</option>
 							<% for (Deplacement d:listeTypes) {%>
 								<% if (d.isActif()) { %>
@@ -56,7 +59,7 @@
 						</select></br>
 						<% List<Vehicule> listeVehicules = (ArrayList<Vehicule>)request.getAttribute("listeVehicules"); %>
 						<label for="idVehicule">Vehicule</label>
-						<select name="idVehicule">
+						<select name="idVehicule" required>
 							<option selected disabled hidden>Choisir un véhicule</option>
 							<% for (Vehicule v:listeVehicules) {%>
 								<% if (v.isDisponible()) { %>
@@ -64,7 +67,19 @@
 								<% } %>
 							<% } %>
 						</select></br>
-						<button>AJOUTER UN CONDUCTEUR</button>
+						<label for="nbKmVehicule">Km du véhicule</label>
+						<input type="number" name="nbKmVehicule" required/>
+						<% List<Utilisateur> listeUtilisateurs = (ArrayList<Utilisateur>)request.getAttribute("listeUtilisateurs"); %>
+						<label for="listeConducteurs">Conducteurs supplémentaires (9 max)</label>
+						<select name="listeConducteurs" size="5" multiple required>
+							<% for (Utilisateur u:listeUtilisateurs) {%>
+								<% if (u.getNom() != session.getAttribute("nomUtilisateur")) {%>
+									<option value="<%= u.getId() %>"><%= u.getPrenom() + " " + u.getNom() %></option>
+								<% } %>
+							<% } %>
+						</select></br>
+						<label for="commentaire">Commentaire</label>
+						<textarea name="commentaire" rows="1" cols="40"></textarea></br>
 						<button type="submit">VALIDER LA CREATION</button>
 					</form>
 			</div>
