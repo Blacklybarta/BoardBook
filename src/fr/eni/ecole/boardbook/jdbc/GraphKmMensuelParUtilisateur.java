@@ -22,12 +22,15 @@ public class GraphKmMensuelParUtilisateur {
 	private Statement stmt;
 	private List<Point<Integer, Integer, Boolean>> listPoint = new ArrayList<>();
 	
-	private static final String SQL_SELECT_BY_ID = "SELECT SUM(nbKmSortie-nbKmEntree) AS TotalKm, "
+	private static final String SQL_SELECT_BY_ID = "SELECT RENSEIGNER.idUtilisateur,"
+			+ "SUM(nbKmSortie-nbKmEntree) AS TotalKm, "
 			+ "MONTH(dateCloture) AS mois,nom,prenom FROM FICHE INNER JOIN RENSEIGNER "
 			+ "ON FICHE.idFiche = RENSEIGNER.idFiche INNER JOIN UTILISATEUR "
 			+ "ON RENSEIGNER.idUtilisateur = UTILISATEUR.idUtilisateur "
-			+ "WHERE MONTH(dateCloture) BETWEEN ? AND ? GROUP BY MONTH(dateCloture),nom,prenom "
-			+ "AND idUtilisateur=?";
+			+ "WHERE MONTH(dateCloture) BETWEEN ? AND ? AND RENSEIGNER.idUtilisateur=? "
+			+ "AND YEAR(dateCloture)=?"
+			+ "GROUP BY MONTH(dateCloture),nom,prenom,RENSEIGNER.idUtilisateur";
+	
 	
 	public void closeConnection(){
 		if(con!=null){
@@ -41,7 +44,7 @@ public class GraphKmMensuelParUtilisateur {
 		}
 	}
 
-	public List<Point<Integer, Integer, Boolean>> statistiqueKmMensuelUtilisateur(int id, int moisDebut, int moisFin)
+	public List<Point<Integer, Integer, Boolean>> statistiqueKmMensuelUtilisateur(int id, int moisDebut, int moisFin,int annee)
 			throws DALException {
 		// TODO Auto-generated method stub
 		try {
@@ -50,6 +53,7 @@ public class GraphKmMensuelParUtilisateur {
 			pstmt.setInt(1, moisDebut);
 			pstmt.setInt(2, moisFin);
 			pstmt.setInt(3, id);
+			pstmt.setInt(4, annee);
 			ResultSet rs = pstmt.executeQuery();
 			
 			Point<Integer, Integer, Boolean> point = null;
