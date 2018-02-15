@@ -66,7 +66,7 @@ public class Fiche {
 		}
 		
 		try {
-			this.setLieuArrivee(lieuArrivee);
+			this.setLieuDepart(lieuDepart);
 		} catch (ParameterNullException e) {
 			listE.addException(e.getMessage());
 			isException = true;

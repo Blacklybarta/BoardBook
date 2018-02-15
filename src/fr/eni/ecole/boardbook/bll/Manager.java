@@ -66,9 +66,9 @@ public class Manager {
 	      }        
 	
 		JFreeChart graph = ChartFactory.createBarChart(
-	    	         "Nombre de Km par mois et par utilisateur",           
+	    	         "Nombre de Km par type de déplacement",           
 	    	         "Déplacements",            
-	    	         "Nb km",            
+	    	         "km",            
 	    	         dataset,          
 	    	         PlotOrientation.VERTICAL,           
 	    	         true, true, false);	
@@ -90,8 +90,12 @@ public class Manager {
 					listPoint.get(i).getX().getNom() + " " + listPoint.get(i).getX().getPrenom(), month);
 		}
 
-		JFreeChart graph = ChartFactory.createBarChart("Nombre de Km par mois et par utilisateur", "Déplacements",
-				"Nb km", dataset, PlotOrientation.VERTICAL, true, true, false);
+		JFreeChart graph = ChartFactory.createBarChart("Nombre de Km par mois pour ",
+				"",
+				"km", 
+				dataset,
+				PlotOrientation.VERTICAL,
+				true, true, false);
 		return graph;
 	}
 	

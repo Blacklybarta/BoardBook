@@ -172,4 +172,12 @@
     <servlet-name>AdminAppelGraphServlet</servlet-name>
     <url-pattern>/admin/graphique</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>AdminKmUtilisateurMois</servlet-name>
+    <servlet-class>fr.eni.ecole.boardbook.servlet.DoKmUtilisateurMois</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminKmUtilisateurMois</servlet-name>
+    <url-pattern>/admin/kmUtilisateurMois</url-pattern>
+  </servlet-mapping>
 </web-app>
