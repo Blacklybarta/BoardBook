@@ -79,15 +79,14 @@ public class DoUserAjout extends HttpServlet{
 			vehicule = DAOFactory.getVehiculeDAO().selectById(idVehicule);
 			conducteurPrincipale = DAOFactory.getUtilisateurDAO().selectById(idConducteurPrincipal);
 			
-			System.out.println("vehicule = " + vehicule);
-			
 			for (int i=0; i <listIdConducteursSecondaires.length; ++i){
 				if (!(listIdConducteursSecondaires [i].equals("aucun"))){
 					int id = Integer.parseInt(listIdConducteursSecondaires [i]);
 					Utilisateur conducteur = DAOFactory.getUtilisateurDAO().selectById(id);
 					listUtilisateur.add(conducteur);
 				}	
-			}			
+			}
+			listUtilisateur.add(conducteurPrincipale);
 			
 		} catch (DALException e) {
 			// TODO Auto-generated catch block

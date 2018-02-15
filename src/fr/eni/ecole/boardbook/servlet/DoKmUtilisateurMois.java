@@ -22,7 +22,6 @@ public class DoKmUtilisateurMois extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("coucou");
 		List<Utilisateur> liste = null;
 		try {
 			liste = DAOFactory.getUtilisateurDAO().selectAll();
@@ -38,6 +37,8 @@ public class DoKmUtilisateurMois extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		Manager.choix =Manager.KM_PAR_MOIS_PAR_UTILISATEUR;		
 		Manager.idUtilisateur = (Integer.parseInt(request.getParameter("utilisateur")));
+		
+		
 		this.getServletContext().getRequestDispatcher("/statistiques/kmUtilisateurMois.jsp").forward(request, response);
 				
 	}
