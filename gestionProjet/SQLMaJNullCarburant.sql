@@ -1,0 +1,1 @@
+ALTER TABLE FICHE ALTER COLUMN carburantNbLitre Real NULL;
