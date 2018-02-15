@@ -15,7 +15,7 @@ public class ListException extends Exception{
 	
 	public String getListException (){
 		StringBuilder sb = new StringBuilder ();
-		sb.append("Liste des erreurs retournées : ");
+		sb.append("Liste des erreurs retournées : \n");
 		for (int i=0; i<listException.size(); ++i){
 			sb.append("-");
 			sb.append(listException.get(i));

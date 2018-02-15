@@ -17,17 +17,81 @@ public class Fiche {
 	private Double carburantNbLitre;
 	private Double carburantMontant;
 	private boolean cloture;
-	private Deplacement natureDeplacement = new Deplacement();
-	private Vehicule vehiculeLoue = new Vehicule();
-	private Lieu lieuArrivee = new Lieu ();
-	private Lieu lieuDepart  = new Lieu ();
-	private List<Utilisateur> conducteurList = new ArrayList<Utilisateur>();
+	private Deplacement natureDeplacement ;
+	private Vehicule vehiculeLoue;
+	private Lieu lieuArrivee ;
+	private Lieu lieuDepart ;
+	private List<Utilisateur> conducteurList ;
 	private String commentaire;
 	
 	
 	public Fiche (){
 		
 	}
+	
+	
+	
+	
+	public Fiche(GregorianCalendar dateDepart, int nbKmEntree, Deplacement natureDeplacement, Vehicule vehiculeLoue,
+			Lieu lieuArrivee, Lieu lieuDepart, List<Utilisateur> conducteurList, String commentaire) throws ListException {
+		
+		ListException listE =  new ListException ();
+		boolean isException = false;
+		
+		try {
+			this.setDateDepart(dateDepart);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;
+		}
+		try {
+			this.setNbKmEntree(nbKmEntree);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;
+		}
+				
+		try {
+			this.setNatureDeplacement(natureDeplacement);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;
+		}
+		
+		try {
+			this.setVehiculeLoue(vehiculeLoue);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;
+		}
+		
+		try {
+			this.setLieuArrivee(lieuArrivee);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;
+		}
+		
+		try {
+			this.setLieuArrivee(lieuArrivee);
+		} catch (ParameterNullException e) {
+			listE.addException(e.getMessage());
+			isException = true;
+		}
+	
+		this.setConducteur(conducteurList);
+		this.setCommentaire (commentaire);
+		
+		
+		if (isException){
+			throw listE;
+		}
+		
+		
+	}
+
+
+
 
 	public Fiche(GregorianCalendar dateDepart, int nbKmEntree) throws ListException {
 		ListException listE =  new ListException ();
@@ -188,7 +252,7 @@ public class Fiche {
 		return conducteurList;
 	}
 
-	private void setConducteur(List<Utilisateur> conducteur) {
+	public void setConducteur(List<Utilisateur> conducteur) {
 		this.conducteurList = conducteur;
 	}
 	
