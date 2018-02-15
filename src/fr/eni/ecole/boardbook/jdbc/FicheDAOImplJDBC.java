@@ -48,7 +48,7 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 			+"ON LIEU_ARRIVEE.idLieu = FICHE.idLieuArrivee INNER JOIN VEHICULE "
 			+"ON VEHICULE.idVehicule = FICHE.idVehicule WHERE cloture=0 AND idUtilisateur=?";
 	
-	private static final String SQL_UPDATE ="UPDATE FICHE SET =?,=?,=?,=?,=?,=? WHERE idUtilisateur=?";
+	private static final String SQL_UPDATE ="UPDATE FICHE SET carburantNbLitre=?,carburantMontant=?,nbKmSortie=?,dateCloture=?,cloture=? WHERE idFiche=?";
 	
 	public void closeConnection(){
 		if(con!=null){
