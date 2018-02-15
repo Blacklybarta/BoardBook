@@ -10,6 +10,7 @@ import java.util.List;
 
 import fr.eni.ecole.boardbook.bo.Deplacement;
 import fr.eni.ecole.boardbook.bo.Lieu;
+import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
 import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAO;
@@ -20,6 +21,7 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 	private static final String SQL_INSERT = "INSERT INTO DEPLACEMENT (nature,actif) VALUES (?,?)";
 	private static final String SQL_DELETE = "UPDATE DEPLACEMENT SET actif=? WHERE idDeplacement=?";
 	private static final String SQL_SELECTALL = "SELECT * FROM DEPLACEMENT";
+	private static final String SQL_SELECT_BY_ID = "SELECT * FROM DEPLACEMENT WHERE idDeplacement=?";
 	
 	private Connection con;
 	private PreparedStatement pstmt;
@@ -84,7 +86,36 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 	@Override
 	public Deplacement selectById(int id) throws DALException {
 		// TODO Auto-generated method stub
-		return null;
+		ResultSet rs = null;
+		Deplacement deplacement = null;
+		try {
+			con = DBConnection.getConnection();
+			pstmt = con.prepareStatement(SQL_SELECT_BY_ID);
+			pstmt.setInt(1, id);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				
+				deplacement = new Deplacement();
+				deplacement.setId(rs.getInt("idDeplacement"));
+				deplacement.setNature(rs.getString("nature"));
+				deplacement.setActif(rs.getBoolean("actif"));
+	
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			closeConnection();
+		}
+		return deplacement;
 	}
 
 

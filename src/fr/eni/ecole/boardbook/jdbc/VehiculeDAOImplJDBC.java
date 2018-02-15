@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.ecole.boardbook.bo.Lieu;
+import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.bo.Vehicule;
 import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
 import fr.eni.ecole.boardbook.dal.DALException;
@@ -25,6 +26,7 @@ public class VehiculeDAOImplJDBC implements DAO<Vehicule>{
 	private static final String SQL_INSERT = "INSERT INTO VEHICULE(immatriculation,marque,disponible) VALUES(?,?,?)";
 	private static final String SQL_DELETE = "UPDATE VEHICULE SET disponible=? WHERE idVehicule=?";
 	private static final String SQL_SELECTALL = "SELECT * FROM VEHICULE";
+	private static final String SQL_SELECT_BY_ID = "SELECT * FROM VEHICULE WHERE idVehicule=?";
 	
 	public void closeConnection(){
 		if(con!=null){
@@ -112,8 +114,36 @@ public class VehiculeDAOImplJDBC implements DAO<Vehicule>{
 
 	@Override
 	public Vehicule selectById(int id) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		ResultSet rs = null;
+		Vehicule vehicule = null;
+		try {
+			con = DBConnection.getConnection();
+			pstmt = con.prepareStatement(SQL_SELECT_BY_ID);
+			pstmt.setInt(1, id);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vehicule = new Vehicule();
+				
+				vehicule.setId(rs.getInt("idVehicule"));
+				vehicule.setImmatriculation(rs.getString("immatriculation"));
+				vehicule.setMarque(rs.getString("marque"));
+				vehicule.setDisponible(rs.getBoolean("disponible"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			closeConnection();
+		}
+		return vehicule;
 	}
 
 

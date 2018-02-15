@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.ecole.boardbook.bo.Lieu;
+import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.bo.exception.ParameterNullException;
 import fr.eni.ecole.boardbook.dal.DAO;
 import fr.eni.ecole.boardbook.dal.DBConnection;
@@ -24,6 +25,7 @@ public class LieuDAOImplJDBC implements DAO<Lieu>{
 	private static final String SQL_INSERT = "INSERT INTO LIEU(nom,actif) VALUES(?,?)";
 	private static final String SQL_DELETE = "UPDATE LIEU SET actif=? WHERE idLieu=?";
 	private static final String SQL_SELECTALL = "SELECT * FROM LIEU";
+	private static final String SQL_SELECT_BY_ID = "SELECT * FROM LIEU WHERE idLieu=?";
 	
 	public void closeConnection(){
 		if(con!=null){
@@ -113,7 +115,34 @@ public class LieuDAOImplJDBC implements DAO<Lieu>{
 	@Override
 	public Lieu selectById(int id) throws DALException {
 		// TODO Auto-generated method stub
-		return null;
+		ResultSet rs = null;
+		Lieu lieu = null;
+		try {
+			con = DBConnection.getConnection();
+			pstmt = con.prepareStatement(SQL_SELECT_BY_ID);
+			pstmt.setInt(1, id);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				lieu = new Lieu();
+				
+				lieu.setId(rs.getInt("idLieu"));
+				lieu.setNom(rs.getString("nom"));
+				lieu.setActif(rs.getBoolean("actif"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			closeConnection();
+		}
+		return lieu;
 	}
 
 
