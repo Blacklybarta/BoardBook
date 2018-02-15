@@ -201,4 +201,10 @@ public class LieuDAOImplJDBC implements DAO<Lieu>{
 		return null;
 	}
 
+	@Override
+	public Lieu selectByUtilisateur(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

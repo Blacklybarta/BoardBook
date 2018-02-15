@@ -275,4 +275,10 @@ public class UtilisateurDAOImplJDBC implements DAO<Utilisateur> {
 		return null;
 	}
 
+	@Override
+	public Utilisateur selectByUtilisateur(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

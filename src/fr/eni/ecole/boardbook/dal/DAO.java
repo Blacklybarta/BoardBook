@@ -3,6 +3,8 @@ package fr.eni.ecole.boardbook.dal;
 import java.sql.SQLException;
 import java.util.List;
 
+import fr.eni.ecole.boardbook.bo.Fiche;
+
 public interface DAO<T> {
 
 	public void insert(T data) throws DALException ;
@@ -18,5 +20,7 @@ public interface DAO<T> {
 	public List<T> selectAll() throws DALException ;
 	
 	public List<T> selectByKeyWord(String recherche) throws DALException;
+	
+	public T selectByUtilisateur(int id) throws DALException;
 	
 }

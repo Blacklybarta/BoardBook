@@ -174,4 +174,10 @@ public class DeplacementDAOImplJDBC implements DAO<Deplacement>{
 		return null;
 	}
 
+	@Override
+	public Deplacement selectByUtilisateur(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -202,4 +202,10 @@ public class VehiculeDAOImplJDBC implements DAO<Vehicule>{
 		return null;
 	}
 
+	@Override
+	public Vehicule selectByUtilisateur(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

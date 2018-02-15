@@ -127,6 +127,12 @@ public class GraphKmMensuelParUtilisateur implements DAO<Point<Utilisateur, Inte
 		return null;
 	}
 
+	@Override
+	public Point<Utilisateur, Integer, Integer> selectByUtilisateur(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	

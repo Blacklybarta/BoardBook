@@ -117,6 +117,12 @@ public class GraphKmParDeplementDAOImplJDBC implements DAO<Point<String, Integer
 		return null;
 	}
 
+	@Override
+	public Point<String, Integer, Boolean> selectByUtilisateur(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

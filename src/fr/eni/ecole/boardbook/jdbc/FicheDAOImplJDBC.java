@@ -43,6 +43,8 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 	private static final String SQL_SELECT_BY_UTILISATEUR="SELECT * FROM FICHE INNER JOIN RENSEIGNER"
 			+"ON FICHE.idFiche = RENSEIGNER.idFiche WHERE cloture=0 AND idUtilisateur=?";
 	
+	private static final String SQL_UPDATE ="UPDATE FICHE SET identifiant=?,mdp=?,nom=?,prenom=?,administrateur=?,conducteur=? WHERE idUtilisateur=?";
+	
 	public void closeConnection(){
 		if(con!=null){
 			try {
@@ -111,6 +113,36 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 	@Override
 	public void update(Fiche data) throws DALException {
 		// TODO Auto-generated method stub
+		/*
+		con = null;
+		pstmt = null;
+		try {
+			con = DBConnection.getConnection();
+			pstmt = con.prepareStatement(SQL_UPDATE);
+			pstmt.setString(1, data.getIdentifiant());
+			pstmt.setString(2, data.getMdp());
+			pstmt.setString(3, data.getNom());
+			pstmt.setString(4, data.getPrenom());
+			pstmt.setBoolean(5, data.isAdministrateur());
+			pstmt.setBoolean(6, data.isConducteur());
+			pstmt.setInt(7, data.getId());
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DALException("Update utilisateur failed - " + data, e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			closeConnection();
+
+		}
+		*/
 		
 	}
 
