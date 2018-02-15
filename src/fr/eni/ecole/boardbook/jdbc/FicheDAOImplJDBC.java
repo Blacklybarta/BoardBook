@@ -51,8 +51,13 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 	
 	private static final String SQL_UPDATE ="UPDATE FICHE SET carburantNbLitre=?,carburantMontant=?,nbKmSortie=?,dateCloture=?,cloture=? WHERE idFiche=?";
 	
-	private static final String SQL_SELECTALL="SELECT * FROM FICHE INNER JOIN RENSEIGNER "
-			+"ON FICHE.idFiche = RENSEIGNER.idFiche WHERE idUtilisateur=?";
+	private static final String SQL_SELECTALL="SELECT *,LIEU_DEPART.nom AS lieu_depart,"
+			+ "LIEU_ARRIVEE.nom AS lieu_arrivee FROM FICHE INNER JOIN RENSEIGNER "
+			+"ON FICHE.idFiche = RENSEIGNER.idFiche INNER JOIN DEPLACEMENT "
+			+"ON DEPLACEMENT.idDeplacement = FICHE.idDeplacement INNER JOIN LIEU AS LIEU_DEPART "
+			+"ON LIEU_DEPART.idLieu = FICHE.idLieuDepart INNER JOIN LIEU AS LIEU_ARRIVEE "
+			+"ON LIEU_ARRIVEE.idLieu = FICHE.idLieuArrivee INNER JOIN VEHICULE "
+			+"ON VEHICULE.idVehicule = FICHE.idVehicule WHERE cloture=1 AND idUtilisateur=?";
 	
 	public void closeConnection(){
 		if(con!=null){
@@ -197,40 +202,58 @@ public class FicheDAOImplJDBC implements DAO<Fiche>{
 
 				fiche = new Fiche();
 				fiche.setCloture(rs.getBoolean("cloture"));
-				
-				// Renvoyer uniquement les fiches cloturées
-				if (fiche.isCloture()) {
 
-					fiche.setId(rs.getInt("idFiche"));
+				fiche.setId(rs.getInt("idFiche"));
+
+				try {
+					GregorianCalendar gcDateDepart = new GregorianCalendar();
+					gcDateDepart.setTime(rs.getDate("dateDepart"));
+					fiche.setDateDepart(gcDateDepart);
+
+					Deplacement deplacement = new Deplacement();
+					deplacement.setId(rs.getInt("idDeplacement"));
+					deplacement.setNature(rs.getString("nature"));
+					fiche.setNatureDeplacement(deplacement);
+
+					Lieu lieuDepart = new Lieu();
+					lieuDepart.setId(rs.getInt("idLieuDepart"));
+					lieuDepart.setNom(rs.getString("lieu_depart"));
+					fiche.setLieuDepart(lieuDepart);
+
+					Lieu lieuArrivee = new Lieu();
+					lieuArrivee.setId(rs.getInt("idLieuArrivee"));
+					lieuArrivee.setNom(rs.getString("lieu_arrivee"));
+					fiche.setLieuArrivee(lieuArrivee);
+
+					Vehicule vehicule = new Vehicule();
+					vehicule.setId(rs.getInt("idVehicule"));
+					vehicule.setImmatriculation(rs.getString("immatriculation"));
+					vehicule.setMarque(rs.getString("marque"));
+					fiche.setVehiculeLoue(vehicule);
+
+					fiche.setCarburantNbLitre(rs.getDouble("carburantNbLitre"));
+					fiche.setNbKmEntree(rs.getInt("nbKmEntree"));
+					fiche.setNbKmSortie(rs.getInt("nbKmSortie"));
 
 					try {
-						GregorianCalendar gcDateDepart = new GregorianCalendar();
-						gcDateDepart.setTime(rs.getDate("dateDepart"));
-						fiche.setDateDepart(gcDateDepart);
-
-						fiche.setCarburantNbLitre(rs.getDouble("carburantNbLitre"));
-						fiche.setNbKmEntree(rs.getInt("nbKmEntree"));
-						fiche.setNbKmSortie(rs.getInt("nbKmSortie"));
-
-						try {
-							GregorianCalendar gcDateCloture = new GregorianCalendar();
-							gcDateCloture.setTime(rs.getDate("dateCloture"));
-							fiche.setDateCloture(gcDateCloture);
-						} catch (ClotureException e) {
-							// TODO Auto-generated catch block
-							throw new DALException("ClotureException - ", e);
-						}
-
-					} catch (ParameterNullException e) {
+						GregorianCalendar gcDateCloture = new GregorianCalendar();
+						gcDateCloture.setTime(rs.getDate("dateCloture"));
+						fiche.setDateCloture(gcDateCloture);
+					} catch (ClotureException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						throw new DALException("ClotureException - ", e);
 					}
+
+				} catch (ParameterNullException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 					fiche.setCarburantMontant(rs.getDouble("carburantMontant"));
 					fiche.setCommentaire(rs.getString("commentaire"));
 					
 					listFiches.add(fiche);
-				}	
+
 			}
 		} catch (SQLException e) {
 			throw new DALException("selectAll fiche failed - ", e);
