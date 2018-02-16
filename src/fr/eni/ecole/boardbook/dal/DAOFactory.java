@@ -10,6 +10,7 @@ import fr.eni.ecole.boardbook.jdbc.DeplacementDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.FicheDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.GraphKmMensuelParUtilisateur;
 import fr.eni.ecole.boardbook.jdbc.GraphKmParDeplementDAOImplJDBC;
+import fr.eni.ecole.boardbook.jdbc.GraphVehiculeNbJoursUtilisationDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.LieuDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.UtilisateurDAOImplJDBC;
 import fr.eni.ecole.boardbook.jdbc.VehiculeDAOImplJDBC;
@@ -46,7 +47,6 @@ public class DAOFactory {
 		return utilisateurDAO;
 	}
 	
-	
 	/**
 	 *  --  Partie graphique  --
 	 */
@@ -59,6 +59,11 @@ public class DAOFactory {
 	public static GraphKmMensuelParUtilisateur getGraphKmMensuelParUtilisateur() {
 		GraphKmMensuelParUtilisateur graphKmMensuelParUtilisateur = new GraphKmMensuelParUtilisateur();
 		return graphKmMensuelParUtilisateur;
+	}
+	
+	public static GraphVehiculeNbJoursUtilisationDAOImplJDBC getGraphVehiculeNbJoursUtilisation() {
+		GraphVehiculeNbJoursUtilisationDAOImplJDBC graphVehiculeNbJoursUtilisation = new GraphVehiculeNbJoursUtilisationDAOImplJDBC();
+		return graphVehiculeNbJoursUtilisation;
 	}
 	
 }
