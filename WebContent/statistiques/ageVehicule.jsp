@@ -28,12 +28,6 @@
 					<input name="dateDepart" type="date" required/></br>
 					<label for="dateFin">Date de fin</label>
 					<input name="dateFin" type="date" required/></br>
-					<select name="vehicule" required>
-						<option selected disabled hidden>Choisir un véhicule</option>
-						<% for (Vehicule v:listeVehicules) {%>
-							<option value="<%= v.getId() %>"><%= v.getMarque() + " " + v.getImmatriculation() %></option>
-						<% } %>
-					</select>
 					<button action="submit">AFFICHER</button>
 				</form>
 			<% } else {%>

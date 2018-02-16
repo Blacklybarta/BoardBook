@@ -62,6 +62,14 @@ label {
 	vertical-align: top;
 }
 
+.labelCheckbox {
+	width: 150px;
+}
+
+checkbox {
+	margin-right: 30px;
+}
+
 img {
 	width: 100%;
 }

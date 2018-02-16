@@ -45,7 +45,7 @@
 						<label for="nbKmSortie">Kilometrage à l'arrivée</label>
 						<input type="number" name="nbKmSortie" value="<%= f.getNbKmSortie()%>"disabled/></br>
 						<label for="commentaire">Commentaire</label>
-						<textarea name="commentaire" rows="1" cols="40"><%= f.getCommentaire() %></textarea></br>
+						<textarea name="commentaire" rows="1" cols="40" disabled><%= f.getCommentaire() %></textarea></br>
 					</div>	
 				<% } %>
 				

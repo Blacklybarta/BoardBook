@@ -29,9 +29,9 @@
 				<input type="text" name="identifiant" required></br>
 				<label for="mdp">Mot de passe</label>
 				<input type="text" name="mdp" required></br>
-				<label for="conducteur">Conducteur</label>
+				<label class="labelCheckbox" for="conducteur">Conducteur</label>
 				<input type="checkbox" name="conducteur" value="true">
-				<label for="administrateur">Administrateur</label>
+				<label class="labelCheckbox" for="administrateur">Administrateur</label>
 				<input type="checkbox" name="administrateur" value="true"></br>
 				<button type="submit">CREER</button>
 			</form>
