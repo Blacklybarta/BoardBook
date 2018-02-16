@@ -65,18 +65,18 @@ public class Manager {
 		int y =0;
 		
 		do {
-			dataset.addValue(0,listMois[listPoint.get(y).getX()-1], "");
+			dataset.addValue(0,listMois[listPoint.get(y).getX()], "");
 			y++;
 		}while (moisDebut < listPoint.get(y).getX());
 		
 			
 		for (int i = 0; i < listPoint.size(); ++i) {
 				int value = listPoint.get(i).getY();
-				dataset.addValue(value,listMois[listPoint.get(i).getX()-1], "");				
+				dataset.addValue(value,listMois[listPoint.get(i).getX()], "");				
 		}
 			
-		y = listPoint.get(listPoint.size()-1).getX();
-		int z = listPoint.get(listPoint.size()-1).getX();
+		y = listPoint.get(listPoint.size()).getX();
+		int z = listPoint.get(listPoint.size()).getX();
 		do {
 			dataset.addValue(0, listMois[z], "");
 			z++;
