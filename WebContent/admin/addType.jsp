@@ -15,7 +15,7 @@
 		<p class="titre2">Administrateur</p>
 	</header>
 	
-	<div class="col-xs-12 col-sm-8">
+	<div class="col-xs-12 col-sm-9">
 			<div class="contenu">
 				<br>
 				<!-- Formulaire d'ajout d'un type de déplacement -->
@@ -27,7 +27,7 @@
 					</form>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-4">
+		<div class="col-xs-12 col-sm-3">
 
 			<!-- Menu -->
 			<%@include file="../fragments/menu.jsp" %>
