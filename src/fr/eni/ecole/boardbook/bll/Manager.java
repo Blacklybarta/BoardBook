@@ -49,7 +49,7 @@ public class Manager {
 	}
 	
 	
-	public static void createGraphKmUtilisateur (List<Point<Integer, Integer, Boolean>> listPoint, int idUtilisateur){
+	public static void createGraphKmUtilisateur (List<Point<Integer, Integer, Boolean>> listPoint, int idUtilisateur, int moisDebut, int moisFin){
 		Utilisateur utilisateur = null;		
 		try {
 			utilisateur = DAOFactory.getUtilisateurDAO().selectById(idUtilisateur);
@@ -62,10 +62,25 @@ public class Manager {
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		
+		int y =0;
 		
-		for (int i = 0; i < listPoint.size(); ++i) {				
-				dataset.addValue(listPoint.get(i).getY(),listMois[listPoint.get(i).getX()], "");				
+		do {
+			dataset.addValue(0,listMois[listPoint.get(y).getX()-1], "");
+			y++;
+		}while (moisDebut < listPoint.get(y).getX());
+		
+			
+		for (int i = 0; i < listPoint.size(); ++i) {
+				int value = listPoint.get(i).getY();
+				dataset.addValue(value,listMois[listPoint.get(i).getX()-1], "");				
 		}
+			
+		y = listPoint.get(listPoint.size()-1).getX();
+		int z = listPoint.get(listPoint.size()-1).getX();
+		do {
+			dataset.addValue(0, listMois[z], "");
+			z++;
+		}while (y <= moisFin);
 
 		graph = ChartFactory.createBarChart(
 				"Nombre de Km par mois de " + nom + " " + prenom,

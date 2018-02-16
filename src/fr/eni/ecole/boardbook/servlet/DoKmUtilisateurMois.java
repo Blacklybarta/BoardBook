@@ -37,8 +37,8 @@ public class DoKmUtilisateurMois extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		String [] idUtiliateurListe = request.getParameterValues("utilisateur");
-		int idUtilisateur = Integer.parseInt(idUtiliateurListe[0]);
+		String [] idUtilisateurListe = request.getParameterValues("utilisateur");
+		int idUtilisateur = Integer.parseInt(idUtilisateurListe[0]);
 		int moisDebut = Integer.parseInt(request.getParameter("moisDebut"));
 		int moisFin = Integer.parseInt(request.getParameter("moisFin"));
 		int annee = Integer.parseInt(request.getParameter("annee"));
@@ -51,7 +51,7 @@ public class DoKmUtilisateurMois extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Manager.createGraphKmUtilisateur(listPoint, idUtilisateur);		
+		Manager.createGraphKmUtilisateur(listPoint, idUtilisateur, moisDebut, moisFin);		
 		this.getServletContext().getRequestDispatcher("/statistiques/kmUtilisateurMois.jsp").forward(request, response);			
 	}
 
