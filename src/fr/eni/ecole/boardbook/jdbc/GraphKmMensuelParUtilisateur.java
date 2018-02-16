@@ -28,7 +28,7 @@ public class GraphKmMensuelParUtilisateur {
 			+ "ON FICHE.idFiche = RENSEIGNER.idFiche INNER JOIN UTILISATEUR "
 			+ "ON RENSEIGNER.idUtilisateur = UTILISATEUR.idUtilisateur "
 			+ "WHERE MONTH(dateCloture) BETWEEN ? AND ? AND RENSEIGNER.idUtilisateur=? "
-			+ "AND YEAR(dateCloture)=?"
+			+ "AND YEAR(dateCloture)=? "
 			+ "GROUP BY MONTH(dateCloture),nom,prenom,RENSEIGNER.idUtilisateur";
 	
 	
