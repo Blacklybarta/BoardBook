@@ -16,7 +16,7 @@ import fr.eni.ecole.boardbook.dal.DAOFactory;
 import fr.eni.ecole.boardbook.jdbc.GraphKmParDeplementDAOImplJDBC;
 
 public class Manager {
-	private final static String [] listMois ={"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};	
+	private final static String [] listMois ={"Jan", "Fev", "Mar", "Avr", "Mai", "Jui", "Jui", "Aoû", "Sep", "Oct", "Nov", "Déc"};	
 	private static JFreeChart graph;
 
 		
@@ -62,25 +62,25 @@ public class Manager {
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		
-		int y =0;
-		
-		do {
-			dataset.addValue(0,listMois[listPoint.get(y).getX()], "");
+		int y =0;		
+		while (moisDebut < listPoint.get(y).getX()){
+			dataset.addValue(0,"", listMois[listPoint.get(y).getX()-1]);
 			y++;
-		}while (moisDebut < listPoint.get(y).getX());
+		};
 		
 			
 		for (int i = 0; i < listPoint.size(); ++i) {
 				int value = listPoint.get(i).getY();
-				dataset.addValue(value,listMois[listPoint.get(i).getX()], "");				
+				dataset.addValue(value,"", listMois[listPoint.get(i).getX()-1]);
 		}
 			
-		y = listPoint.get(listPoint.size()).getX();
-		int z = listPoint.get(listPoint.size()).getX();
-		do {
-			dataset.addValue(0, listMois[z], "");
-			z++;
-		}while (y <= moisFin);
+		
+		int moisX = listPoint.get(listPoint.size()-1).getX();	
+		while (moisX < moisFin){
+			dataset.addValue(0,"", listMois[moisX]);
+			moisX++;
+		};
+		
 
 		graph = ChartFactory.createBarChart(
 				"Nombre de Km par mois de " + nom + " " + prenom,
@@ -89,6 +89,8 @@ public class Manager {
 				dataset,
 				PlotOrientation.VERTICAL,
 				true, true, false);
+		graph.removeLegend();
+		
 	}
 	
 	private static void createGraphKmConsommationUtilisateur (){
