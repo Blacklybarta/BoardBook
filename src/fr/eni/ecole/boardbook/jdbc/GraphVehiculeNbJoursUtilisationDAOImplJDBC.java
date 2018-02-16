@@ -19,10 +19,10 @@ public class GraphVehiculeNbJoursUtilisationDAOImplJDBC {
 	private Statement stmt;
 	private List<Point<Integer, Boolean, Boolean>> listPoint = new ArrayList<>();
 	
-	private static final String SQL_SELECT_BY_ID="SELECT immatriculation, "
+	private static final String SQL_SELECT_BY_ID="SELECT immatriculation,marque, "
 			+ "SUM(DATEDIFF(day, dateDepart, dateCloture)) AS NbJoursUtilisation "
 			+ "FROM FICHE INNER JOIN VEHICULE ON FICHE.idVehicule = VEHICULE.idVehicule "
-			+ "WHERE dateCloture >= ? AND dateCloture <= ? AND VEHICULE.idVehicule = ? GROUP BY immatriculation";
+			+ "WHERE dateCloture >= ? AND dateCloture <= ? GROUP BY immatriculation";
 	
 	
 	public void closeConnection(){
