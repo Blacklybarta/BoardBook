@@ -15,7 +15,7 @@
   		<p class="titre1">Carnet de bord</p>
   		<p class="titre2">Erreur</p>
 	</header>
-	<div class="col-xs-12 col-sm-8">
+	<div class="col-xs-12 col-sm-9">
 		
 		<p class="error"> 
 		<%= request.getAttribute("error") %>
@@ -23,7 +23,7 @@
 		
 		
 	</div>
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-sm-3">
 
       	<!-- Menu -->
       	<div class="menu">

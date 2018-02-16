@@ -23,7 +23,7 @@
 		<p class="titre2">Utilisateur</p>
 	</header>
 	
-	<div class="col-xs-12 col-sm-8">
+	<div class="col-xs-12 col-sm-9">
 			<!-- Affichage des fiches de l'utilisateur -->
 			<div class="contenu">
 				<br>
@@ -51,7 +51,7 @@
 				
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-4">
+		<div class="col-xs-12 col-sm-3">
 
 			<!-- Menu -->
 			<%@include file="../fragments/menu.jsp" %>
