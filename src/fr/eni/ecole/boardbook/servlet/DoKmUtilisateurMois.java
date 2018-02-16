@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.boardbook.bll.Manager;
 import fr.eni.ecole.boardbook.bo.Point;
@@ -22,17 +23,23 @@ public class DoKmUtilisateurMois extends HttpServlet {
 
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		List<Utilisateur> liste = null;
-		try {
-			liste = DAOFactory.getUtilisateurDAO().selectAll();
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		HttpSession session = request.getSession();
+		if(String.valueOf(session.getAttribute("administrateur")).equals("true")){
+			List<Utilisateur> liste = null;
+			try {
+				liste = DAOFactory.getUtilisateurDAO().selectAll();
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("listeUtilisateurs", liste );
+			getServletContext().getRequestDispatcher("/statistiques/kmUtilisateurMois.jsp").forward(request, response);
+		}else{
+			request.setAttribute("error", "Droit insuffisant, prendre contact avec un ADMINISTRATEUR");
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
 		}
-		request.setAttribute("listeUtilisateurs", liste );
-		getServletContext().getRequestDispatcher("/statistiques/kmUtilisateurMois.jsp").forward(request, response);
+		
 	}
 
 

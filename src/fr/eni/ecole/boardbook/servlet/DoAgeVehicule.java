@@ -11,13 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.boardbook.bll.Manager;
 import fr.eni.ecole.boardbook.bo.Point;
-import fr.eni.ecole.boardbook.bo.Utilisateur;
 import fr.eni.ecole.boardbook.bo.Vehicule;
 import fr.eni.ecole.boardbook.dal.DALException;
 import fr.eni.ecole.boardbook.dal.DAOFactory;
+import fr.eni.ecole.boardbook.jdbc.GraphVehiculeNbJoursUtilisationDAOImplJDBC;
 
 /**
  * Servlet implementation class DoAgeVehicule
@@ -30,29 +31,30 @@ public class DoAgeVehicule extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Vehicule> liste = null;
-		try {
-			liste = DAOFactory.getVehiculeDAO().selectAll();
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		HttpSession session = request.getSession();
+		if(String.valueOf(session.getAttribute("administrateur")).equals("true")){
+			List<Vehicule> liste = null;
+			try {
+				liste = DAOFactory.getVehiculeDAO().selectAll();
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("listeVehicules", liste);
+			getServletContext().getRequestDispatcher("/statistiques/ageVehicule.jsp").forward(request, response);
+		}else{
+			request.setAttribute("error", "Droit insuffisant, prendre contact avec un ADMINISTRATEUR");
+			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
 		}
-		request.setAttribute("listeVehicules", liste);
-		getServletContext().getRequestDispatcher("/statistiques/ageVehicule.jsp").forward(request, response);
+		
+		
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		int idVehicule = Integer.parseInt(request.getParameter("vehicule"));
-		Vehicule vehicule = null;
-		try {
-			vehicule = DAOFactory.getVehiculeDAO().selectById(idVehicule);
-		} catch (DALException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {			
 		
 		GregorianCalendar dateDebut = new GregorianCalendar();
 		GregorianCalendar dateFin = new GregorianCalendar();
@@ -66,7 +68,15 @@ public class DoAgeVehicule extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
 		}
 		
-		List<Point<Utilisateur, Integer, Integer>> listPoint = DAOFactory.
+		GraphVehiculeNbJoursUtilisationDAOImplJDBC gkv = DAOFactory.getGraphVehiculeNbJoursUtilisation();
+		try {
+			List<Point<String, Integer, Boolean>> listPoint = gkv.statistiqueVehiculeNbJoursUtilisation(dateDebut, dateFin);
+			Manager.createGraphNbJourVehicule(listPoint);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		
+		this.getServletContext().getRequestDispatcher("/statistiques/ageVehicule.jsp").forward(request, response);
 	}
 
 }

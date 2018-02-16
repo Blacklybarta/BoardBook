@@ -102,28 +102,21 @@ public class Manager {
 		
 	}
 	
-	private static void createGraphNbJourVehicule (List<Point<Integer, Integer, Boolean>> listPoint, int idVehicule) {
-		Vehicule vehicule = null;		
-		try {
-			vehicule = DAOFactory.getVehiculeDAO().selectById(idVehicule);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-		String nom = vehicule.getMarque();		
+	public static void createGraphNbJourVehicule (List<Point<String, Integer, Boolean>> listPoint) {		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 			
 		for (int i = 0; i < listPoint.size(); ++i) {				
-				dataset.addValue(listPoint.get(i).getY(),listMois[listPoint.get(i).getX()], "");				
+				dataset.addValue(listPoint.get(i).getY(),listPoint.get(i).getX(), "");				
 		}
-
+		
 		graph = ChartFactory.createBarChart(
-				"Nombre de Km par mois pour le véhicule : " + vehicule.getMarque(), 
-				"Mois",
-				"km", 
+				"Age des véhicules ", 
+				"Nb jours",
+				"Véhicule", 
 				dataset,
 				PlotOrientation.VERTICAL,
 				true, true, false);	
+
 	}
 	
 }

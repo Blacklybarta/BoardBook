@@ -1,11 +1,13 @@
 package fr.eni.ecole.boardbook.jdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import fr.eni.ecole.boardbook.bo.Point;
@@ -17,12 +19,12 @@ public class GraphVehiculeNbJoursUtilisationDAOImplJDBC {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private Statement stmt;
-	private List<Point<Integer, Boolean, Boolean>> listPoint = new ArrayList<>();
+	private List<Point<String, Integer, Boolean>> listPoint = new ArrayList<>();
 	
 	private static final String SQL_SELECT_BY_ID="SELECT immatriculation,marque, "
 			+ "SUM(DATEDIFF(day, dateDepart, dateCloture)) AS NbJoursUtilisation "
 			+ "FROM FICHE INNER JOIN VEHICULE ON FICHE.idVehicule = VEHICULE.idVehicule "
-			+ "WHERE dateCloture >= ? AND dateCloture <= ? GROUP BY immatriculation";
+			+ "WHERE dateCloture >=? AND dateCloture <=? GROUP BY immatriculation,marque";
 	
 	
 	public void closeConnection(){
@@ -37,25 +39,22 @@ public class GraphVehiculeNbJoursUtilisationDAOImplJDBC {
 		}
 	}
 	
-	public List<Point<Integer, Boolean, Boolean>> statistiqueVehiculeNbJoursUtilisation(int id, java.util.Date dateDebut, java.util.Date dateFin) throws DALException {
+	public List<Point<String, Integer, Boolean>> statistiqueVehiculeNbJoursUtilisation(GregorianCalendar dateDebut, GregorianCalendar dateFin) throws DALException {
 		
 		try {
 			con = DBConnection.getConnection();
-			pstmt = con.prepareStatement(SQL_SELECT_BY_ID);
-			//pstmt.setDate(1, dateDebut);
-			//pstmt.setDate(2, dateFin);
-			pstmt.setInt(3, id);
+			pstmt = con.prepareStatement(SQL_SELECT_BY_ID);			
+			pstmt.setDate(1, new Date(dateDebut.getTimeInMillis()));
+			pstmt.setDate(2, new Date(dateFin.getTimeInMillis()));
 			ResultSet rs = pstmt.executeQuery();
-			
-			
-			Point<Integer, Boolean, Boolean> point = null;
+					
+			Point<String, Integer, Boolean> point = null;
 			listPoint.clear();
 			
-			if (rs.next()) {
-				
+			while (rs.next()) {
 				point = new Point<>();
-				point.setX(rs.getInt("NbJoursUtilisation"));
-				point.setY(false);
+				point.setX(rs.getString("marque"));
+				point.setY(rs.getInt("NbJoursUtilisation"));
 				point.setZ(false);
 				
 				listPoint.add(point);
