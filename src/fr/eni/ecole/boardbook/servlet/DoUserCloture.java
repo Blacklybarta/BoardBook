@@ -1,10 +1,10 @@
 package fr.eni.ecole.boardbook.servlet;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +49,8 @@ public class DoUserCloture extends HttpServlet {
 		int nbKmSortie = Integer.parseInt(req.getParameter("nbKmSortie"));
 		double carburantNbLitre = Double.parseDouble(req.getParameter("carburantNbLitre"));
 		double carburantMontant = Double.parseDouble(req.getParameter("carburantMontant"));
-
+		String debut = String.valueOf(req.getParameter("dateDepart"));
+		System.out.println(debut);
 		try {
 			Fiche fiche = new Fiche();
 			fiche.setNbKmSortie(nbKmSortie);
@@ -58,6 +59,12 @@ public class DoUserCloture extends HttpServlet {
 			GregorianCalendar greg = new GregorianCalendar();
 			fiche.setCloture(true);
 			fiche.setId(Integer.parseInt(req.getParameter("idFiche")));
+			
+			String[] dateDebut = debut.split("/");
+			int dd = Integer.parseInt(dateDebut[0]);
+			int mm = Integer.parseInt(dateDebut[1]);	
+			int yy = Integer.parseInt(dateDebut[2]);
+			GregorianCalendar gregDebut = new GregorianCalendar(yy, mm-1, dd);
 			try {
 				fiche.setDateCloture(greg);
 			} catch (ClotureException e) {
@@ -65,7 +72,13 @@ public class DoUserCloture extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
 			}
 			try {
-				DAOFactory.getFicheDAO().update(fiche);
+				if(greg.before(gregDebut)){
+					req.setAttribute("error", "La date de fin ne peut être antérieure à la date de début");
+					this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
+				}else{
+					DAOFactory.getFicheDAO().update(fiche);
+				}
+				
 			} catch (DALException e) {
 				req.setAttribute("error", e.getMessage());
 				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);

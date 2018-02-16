@@ -57,6 +57,7 @@
 						<label for="carburantMontant">Montant du plein </label>
 						<input type="number" name="carburantMontant" required/></br>
 						<input type="hidden" name="idFiche" value="<%= fiche.getId() %>"/>
+						<input type="hidden" name="dateDepart" value="<%= df.format(fiche.getDateDepart().getTime())%>"/>
 						<button type="submit">CLOTURER</button>
 					</form>
 			</div>

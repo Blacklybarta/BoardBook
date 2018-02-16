@@ -26,8 +26,7 @@
 				<br>
 				<h3>Création d'un déplacement</h3>
 					<form class="ajout" action="/BoardBook/user/ajout" method="post">
-						<label for="dateDepart">Date de départ</label>
-						<input name="dateDepart" type="date" required/></br>
+						
 						<% List<Lieu> listeLieux = (ArrayList<Lieu>)request.getAttribute("listeLieux"); %>
 						<label for="idDestination">Destination</label>
 						<select name="idDestination" required>

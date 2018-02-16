@@ -81,14 +81,6 @@ public class DoUserAjout extends HttpServlet {
 		Utilisateur conducteurPrincipale = null;
 
 		GregorianCalendar dateDebut = new GregorianCalendar();
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
-		try {
-			dateDebut.setTime(df.parse(req.getParameter("dateDepart")));
-		} catch (ParseException e) {
-			req.setAttribute("error", e.getMessage());
-			this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(req, resp);
-		}
 
 		try {
 			lieuArrive = DAOFactory.getLieuDAO().selectById(idDestination);
